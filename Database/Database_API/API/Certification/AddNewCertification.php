@@ -14,12 +14,12 @@ require "/storage/ssd4/981/5026981/APIs/Model.php";
 
  if(mysqli_query($conn,$sql)){
   //thong báo thanh công
-    $cc = json_encode(new Certifications($UidSender,$UidReceiver,$RatingPoint,$Comment,$DateSent));
+    $cc = json_encode(new Certifications($Uid,$IdCertificationTypes,$Image));
     $ms = json_encode(http_response_code());
     echo "{errorCode: ".$ms.", certification:".$cc."}"; 
  }else{
   //thông báo thất bại
-    $cc = json_encode(new Certifications($UidSender,"","","",""));
+    $cc = json_encode(new Certifications($Uid,"",""));
     $ms = json_encode(http_response_code());
     echo "{errorCode: ".$ms.", certification:".$cc."}"; 
  }
