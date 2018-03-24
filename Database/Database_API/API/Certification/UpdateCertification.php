@@ -6,13 +6,12 @@ require "/storage/ssd4/981/5026981/APIs/Model.php";
 
 
 // isset($_POST['submit']) ? $_POST['submit'] : null;
- $Uid=isset($_POST['Uid']) ? $_POST['Uid'] : null;
- $IdVdTypes=isset($_POST['IdVdTypes']) ? $_POST['IdVdTypes'] : null;
- $CardNumber=isset($_POST['CardNumber']) ? $_POST['CardNumber'] : null;
- $FrontSide=isset($_POST['FrontSide']) ? $_POST['FrontSide'] : null;
- $BackSide=isset($_POST['BackSide']) ? $_POST['BackSide'] : null;
+$Uid=isset($_POST['Uid']) ? $_POST['Uid'] : null;
+$IdCertificationTypes=isset($_POST['IdCertificationTypes']) ? $_POST['IdCertificationTypes'] : null;
+$Image=isset($_POST['Image']) ? $_POST['Image'] : null;
+
  
- $sql="UPDATE VerificationDocuments SET CardNumber='$CardNumber', FrontSide='$FrontSide', BackSide='$BackSide' WHERE Uid='$Uid' AND IdVdTypes='$IdVdTypes'"; 
+ $sql="UPDATE Certifications SET Image='$Image' WHERE Uid='$Uid' AND IdCertificationTypes='$IdCertificationTypes'"; 
 
  if(mysqli_query($conn,$sql)){
     //thong báo thanh công

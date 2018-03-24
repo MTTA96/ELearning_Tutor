@@ -12,7 +12,7 @@ require "/storage/ssd4/981/5026981/APIs/Model.php";
  $Comment=isset($_POST['Comment']) ? $_POST['Comment'] : null;
  $DateSent=isset($_POST['DateSent']) ? $_POST['DateSent'] : null;
  
- $sql="UPDATE Reviews SET UidSender='$UidSender', UidReceiver='$UidReceiver', RatingPoint='$RatingPoint', Comment='$Comment', DateSent='$DateSent'"; 
+ $sql="UPDATE Reviews SET RatingPoint='$RatingPoint', Comment='$Comment', DateSent='$DateSent' WHERE UidSender='$UidSender' AND UidReceiver='$UidReceiver'"; 
 
  if(mysqli_query($conn,$sql)){
     //thong báo thanh công

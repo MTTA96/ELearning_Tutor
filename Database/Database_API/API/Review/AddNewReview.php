@@ -18,11 +18,11 @@ require "/storage/ssd4/981/5026981/APIs/Model.php";
   //thong báo thanh công
     $rv = json_encode(new Reviews($UidSender,$UidReceiver,$RatingPoint,$Comment,$DateSent));
     $ms = json_encode(http_response_code());
-    echo "{errorCode: ".$ms.", reviews:".$rv."}"; 
+    echo "{errorCode: ".$ms.", review:".$rv."}"; 
  }else{
   //thông báo thất bại
     $rv = json_encode(new Reviews($UidSender,"","","",""));
     $ms = json_encode(http_response_code());
-    echo "{errorCode: ".$ms.", reviews:".$rv."}"; 
+    echo "{errorCode: ".$ms.", review:".$rv."}"; 
  }
 ?>
