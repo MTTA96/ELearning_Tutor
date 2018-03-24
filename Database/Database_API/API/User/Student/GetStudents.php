@@ -19,12 +19,13 @@ $mang=array();
           }
         $mang = json_encode($mang);
         $ms = json_encode(http_response_code());
-        echo "{errorCode: ".$ms.", student:".$mang."}";  
+        echo "{errorCode: ".$ms.", students:".$mang."}";  
 
     }
     else {
+        $mang = json_encode($mang);
         $ms = json_encode(http_response_code());
-        echo "{errorCode: ".$ms.", student:".$mang."}"; 
+        echo "{errorCode: ".$ms.", students:".$mang."}"; 
         // echo http_response_code();
     }
 

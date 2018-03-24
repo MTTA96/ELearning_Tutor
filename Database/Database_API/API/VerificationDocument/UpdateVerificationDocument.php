@@ -12,7 +12,7 @@ require "/storage/ssd4/981/5026981/APIs/Model.php";
  $FrontSide=isset($_POST['FrontSide']) ? $_POST['FrontSide'] : null;
  $BackSide=isset($_POST['BackSide']) ? $_POST['BackSide'] : null;
  
- $sql="UPDATE VerificationDocuments SET IdVdTypes='$IdVdTypes', CardNumber='$CardNumber', FrontSide='$FrontSide', BackSide='$BackSide' WHERE Uid='$Uid'"; 
+ $sql="UPDATE VerificationDocuments SET IdVdTypes='$IdVdTypes', CardNumber='$CardNumber', FrontSide='$FrontSide', BackSide='$BackSide' WHERE Uid='$Uid' AND IdVdTypes='$IdVdTypes'"; 
 
  if(mysqli_query($conn,$sql)){
     //thong báo thanh công
