@@ -111,7 +111,7 @@ public class GmailHandler {
         apiHandler.getUserById(id).enqueue(new Callback<Teacher>() {
             @Override
             public void onResponse(Call<Teacher> call, Response<Teacher> response) {
-                Log.d("return", response.body().getAddress());
+
             }
 
             @Override
