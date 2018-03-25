@@ -2,7 +2,7 @@ package com.eways.etutor.params;
 
 import android.app.Application;
 
-import com.eways.etutor.MainActivity;
+import com.eways.etutor.Activity.MainActivity;
 import com.google.gson.Gson;
 
 /**
