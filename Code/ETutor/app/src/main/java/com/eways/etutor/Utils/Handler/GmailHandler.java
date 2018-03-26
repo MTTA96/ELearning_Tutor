@@ -6,10 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.eways.etutor.Activity.MainActivity;
 import com.eways.etutor.Fragment.LoginFragment;
 import com.eways.etutor.Model.Teacher;
+import com.eways.etutor.Model.Teacher_;
+import com.eways.etutor.R;
 import com.eways.etutor.Utils.Api.ApiHandler;
 import com.eways.etutor.Utils.Api.ApiUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,6 +39,7 @@ public class GmailHandler {
     private Activity mActivity;
     private LoginFragment loginFragment;
 
+    FragmentHandler fragmentHandler ;
     SharedPreferencesHandler sharedPreferencesHandler;
     Teacher account;
     ApiHandler apiHandler;
@@ -78,10 +82,9 @@ public class GmailHandler {
             Log.d("test", "handleSignInResult: ");
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
-            postLoginGmail(account.getId());
-
             Log.d("idGmail", account.getId());
-//            fragmentHandler.ChangeFragment();
+
+
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -106,12 +109,26 @@ public class GmailHandler {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(mActivity);
     }
 
-    public Teacher postLoginGmail(final String id){
-
+    public Teacher Login(final String id){
+        fragmentHandler = new FragmentHandler(mActivity, R.id.main_activity );
         apiHandler.getUserById(id).enqueue(new Callback<Teacher>() {
             @Override
             public void onResponse(Call<Teacher> call, Response<Teacher> response) {
+                if (response.isSuccessful()){
+                    //Kiem tra các trường hợp
 
+                    Teacher_ teacher_ = response.body().getTeacher();
+
+                    if (teacher_.getVerification() != null){
+                        Toast.makeText(mActivity, "Dang nhap thanh cong", Toast.LENGTH_SHORT).show();
+                    }else {
+                        if (response.body().getErrorCode() != 200){
+                            Toast.makeText(mActivity, "Lỗi server",Toast.LENGTH_SHORT).show();
+                        }else {
+                            
+                        }
+                    }
+                }
             }
 
             @Override
@@ -124,4 +141,5 @@ public class GmailHandler {
         Log.d("test", "1");
         return account;
     }
+
 }
