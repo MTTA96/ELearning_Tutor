@@ -16,6 +16,7 @@ public class SharedPreferencesHandler {
 
     private final String KEY_ID = "id";
     private final String KEY_ACCOUNT_GMAIL = "account_gmail";
+    private final String KEY_PHONE_NUMBER = "phone_number";
 
     public SharedPreferencesHandler(Context context, String fileName) {
         this.context = context;
@@ -33,6 +34,15 @@ public class SharedPreferencesHandler {
 
     public String getId(){
         return sharedPreferences.getString(KEY_ID, null);
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        editor.putString(KEY_PHONE_NUMBER, phoneNumber);
+        editor.commit();
+    }
+
+    public String getPhoneNumber() {
+        return sharedPreferences.getString(KEY_PHONE_NUMBER, null);
     }
 
 }
