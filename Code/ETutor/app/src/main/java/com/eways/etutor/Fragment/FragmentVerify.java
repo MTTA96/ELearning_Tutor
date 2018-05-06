@@ -37,15 +37,26 @@ public class FragmentVerify extends Fragment {
     private SharedPreferencesHandler preferencesHandler;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
+    private String phoneNumber;
 
     public FragmentVerify() {
         // Required empty public constructor
     }
 
+    public static FragmentVerify newInstance(String phoneNumber) {
+
+        Bundle args = new Bundle();
+        args.putString("PhoneNumber", phoneNumber);
+        FragmentVerify fragment = new FragmentVerify();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferencesHandler = new SharedPreferencesHandler(getContext(), SupportKey.SHARED_PREF_FILE_NAME);
+//        this.phoneNumber = getArguments().getString("PhoneNumber");
+
     }
 
     @Override
@@ -57,16 +68,14 @@ public class FragmentVerify extends Fragment {
         verifyPhoneNumber();
         return inflater.inflate(R.layout.fragment_verify, container, false);
     }
+
     private void verifyPhoneNumber() {
-        if (!preferencesHandler.getPhoneNumber().isEmpty()) {
-            String phoneNumber = preferencesHandler.getPhoneNumber();
-            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                    phoneNumber,        // Phone number to verify
-                    30,                 // Timeout duration
-                    TimeUnit.SECONDS,   // Unit of timeout
-                    getActivity(),               // Activity (for callback binding)
-                    mCallbacks);        // OnVerificationStateChangedCallbacks
-        }
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                FragmentEnterPhone.tvPhoneNumber.getText().toString(),        // Phone number to verify
+                30,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                getActivity(),               // Activity (for callback binding)
+                mCallbacks);        // OnVerificationStateChangedCallbacks
     }
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -130,6 +139,7 @@ public class FragmentVerify extends Fragment {
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser user = task.getResult().getUser();
+
                             // ...
                         } else {
                             // Sign in failed, display a message and update the UI

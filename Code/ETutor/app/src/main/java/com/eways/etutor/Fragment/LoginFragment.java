@@ -8,9 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
@@ -96,7 +93,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.skip:
-                fragmentHandler.ChangeFragment(new SignupFragment(), R.anim.slide_from_left, 0);
+                fragmentHandler.changeFragment(new SignupFragment(), R.anim.slide_from_left, 0);
                 break;
         }
     }

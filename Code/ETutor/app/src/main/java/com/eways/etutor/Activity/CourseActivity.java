@@ -20,7 +20,7 @@ public class CourseActivity extends AppCompatActivity {
 
     public void Handle(){
         fragmentHandler = new FragmentHandler(this, R.id.content_course);
-        fragmentHandler.ChangeFragment(new FragmentUpdateDetail(), 0, 0);
+        fragmentHandler.changeFragment(new FragmentUpdateDetail(), 0, 0);
     }
 
     public void Declare(){

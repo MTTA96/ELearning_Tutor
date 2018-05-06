@@ -2,16 +2,12 @@ package com.eways.etutor.Fragment;
 
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +16,10 @@ import android.widget.TextView;
 
 import com.eways.etutor.Activity.CourseActivity;
 import com.eways.etutor.Adapter.Circle.CircleAdapter;
-import com.eways.etutor.Adapter.SignUpPagerAdapter;
 import com.eways.etutor.FragmentWelcome;
 import com.eways.etutor.Model.Circle;
 import com.eways.etutor.R;
-import com.eways.etutor.views.NonSwipeableViewPager;
+import com.eways.etutor.Utils.Handler.FragmentHandler;
 
 import java.util.ArrayList;
 
@@ -34,24 +29,28 @@ import java.util.ArrayList;
 public class SignupFragment extends Fragment implements View.OnClickListener {
 
     /* VIEWS */
-    NonSwipeableViewPager viewPager;
-    SignUpPagerAdapter signUpPagerAdapter;
     AppBarLayout barLayout;
     LinearLayout btnBack, btnNext;
     TextView tvBack, tvNext;
     RecyclerView listCircle;
     android.support.v7.widget.Toolbar toolbar;
 
+    private FragmentHandler fragmentHandler;
     private int curPosition = 0;
-    CircleAdapter circleAdapter;
-    ArrayList<Circle> circles;
-    ArrayList<Fragment> listFragment;
+    private CircleAdapter circleAdapter;
+    private ArrayList<Circle> circles;
+    private ArrayList<Fragment> listFragment;
 
 
     public SignupFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,7 +63,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
     }
 
     private void handle_views() {
-        setUpViewPager();
 
         btnNext.setOnClickListener(this);
         btnBack.setOnClickListener(this);
@@ -77,7 +75,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
 
 
     private void declare_views(View root) {
-        viewPager = root.findViewById(R.id.view_pager);
 
         barLayout = (AppBarLayout) root.findViewById(R.id.appBarLayout);
         btnBack = root.findViewById(R.id.btn_back);
@@ -87,49 +84,22 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         toolbar = root.findViewById(R.id.toolbar);
         listCircle = root.findViewById(R.id.list_circle);
 
-    }
 
-    public void setUpViewPager() {
-        FragmentManager manager = getFragmentManager();
+        //Setup Fragment Handle
+        fragmentHandler = new FragmentHandler(getActivity(), R.id.childSignUpContentView);
         listFragment = new ArrayList<>();
         listFragment.add(new FragmentRules());
         listFragment.add(new FragmentEnterPhone());
         listFragment.add(new FragmentVerify());
         listFragment.add(new FragmentUserInfo());
         listFragment.add(new FragmentWelcome());
-        signUpPagerAdapter = new SignUpPagerAdapter(manager, listFragment);
-        viewPager.setAdapter(signUpPagerAdapter);
+
         setUpParallexView(barLayout, 0);
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                curPosition = position;
-                setUpParallexView(barLayout, position);
-
-
-
-                if (position == listFragment.size() - 1) {
-                    tvNext.setText(getString(R.string.finish));
-                    curPosition = position;
-                }
-                if (position < listFragment.size() - 1 && position > -1){
-                    tvNext.setText(getString(R.string.next));
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
+        //Setup Fragment Handle
+        fragmentHandler.changeFragment(listFragment.get(curPosition), R.anim.slide_from_left, 0);
     }
+
 
 
 
@@ -158,27 +128,28 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btn_back:
                 if (curPosition > 0) {
-                    if (curPosition == listFragment.size() - 1){
-                        viewPager.setCurrentItem(curPosition - 1);
-                        return;
-                    }
-                    viewPager.setCurrentItem(curPosition - 1);
-                } else {
-                    return;
+                    fragmentHandler.changeFragment(listFragment.get(curPosition - 1), R.anim.slide_from_left, 0);
+                    curPosition -= 1;
                 }
                 break;
+
             case R.id.btn_next:
+
+                /** Need to optimize (wanna sleep) */
+                if (curPosition + 1 == 2) {
+                    fragmentHandler.changeFragment(FragmentVerify.newInstance(FragmentEnterPhone.tvPhoneNumber.getText().toString()), R.anim.slide_from_left, 0);
+                }
+
                 if (curPosition < listFragment.size() - 1) {
-                    viewPager.setCurrentItem(curPosition + 1);
-
-
-                } else {
-                    if (curPosition == listFragment.size() - 1 ){
+                    fragmentHandler.changeFragment(listFragment.get(curPosition + 1), R.anim.slide_from_left, 0);
+                    curPosition += 1;
+                }
+                else
+                    if (curPosition == listFragment.size() - 1 ) {
                         startActivity(new Intent(getActivity(), CourseActivity.class));
                         getActivity().finish();
                     }
-                    return;
-                }
+
                 break;
         }
     }

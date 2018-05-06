@@ -61,12 +61,12 @@
                 android:weightSum="100"
                 android:orientation="vertical">
 
-                <com.eways.etutor.views.NonSwipeableViewPager
-                    android:id="@+id/view_pager"
+                <!--Content-->
+                <FrameLayout
+                    android:id="@+id/childSignUpContentView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="98">
-                </com.eways.etutor.views.NonSwipeableViewPager>
+                    android:layout_weight="98"/>
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>

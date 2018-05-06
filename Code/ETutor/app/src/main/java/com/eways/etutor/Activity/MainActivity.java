@@ -1,12 +1,8 @@
 package com.eways.etutor.Activity;
 
-import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.eways.etutor.Fragment.LoginFragment;
 import com.eways.etutor.R;
@@ -40,6 +36,6 @@ public class MainActivity extends AppCompatActivity{
     public void Handle(){
         fragmentHandler = new FragmentHandler(this, R.id.content_user);
 
-        fragmentHandler.ChangeFragment(new LoginFragment(), 0, 0);
+        fragmentHandler.changeFragment(new LoginFragment(), 0, 0);
     }
 }

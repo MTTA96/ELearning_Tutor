@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentEnterPhone extends Fragment {
-    TextView tvPhoneNumber;
+    public static TextView tvPhoneNumber;
 
     // Data variable
     private SharedPreferencesHandler preferencesHandler;

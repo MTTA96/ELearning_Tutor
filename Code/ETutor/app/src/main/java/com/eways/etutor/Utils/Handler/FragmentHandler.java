@@ -24,7 +24,7 @@ public class FragmentHandler {
         this.resource = resource;
     }
 
-    public void  ChangeFragment(Fragment toFragment, int animationIn, int animationOut){
+    public void changeFragment(Fragment toFragment, int animationIn, int animationOut){
         ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().setCustomAnimations(animationIn, animationOut).replace(resource, toFragment).commit();
     }
 }
