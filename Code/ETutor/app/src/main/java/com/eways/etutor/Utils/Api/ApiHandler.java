@@ -9,6 +9,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -17,6 +18,10 @@ import retrofit2.http.Query;
 
 public interface ApiHandler {
     //Get user by id
-    @GET("/API/User/Teacher/GetTeacherByUid.php")
+    @GET("/API/GetTeacherByUid.php")
     Call<Teacher> getUserById(@Query("Uid") String uid);
+
+    @POST("/API/AddNewUser.php")
+    Call<Teacher> addRawUser(@Field("Uid") String uid, @Field("FirstName") String firstName, @Field("Phone") String phone);
+
 }

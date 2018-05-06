@@ -81,8 +81,7 @@ public class GmailHandler {
         try {
             Log.d("test", "handleSignInResult: ");
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            Log.d("idGmail", account.getId());
+            Login(account.getId());
 
 
 
@@ -119,13 +118,11 @@ public class GmailHandler {
 
                     Teacher_ teacher_ = response.body().getTeacher();
 
-                    if (teacher_.getVerification() != null){
-                        Toast.makeText(mActivity, "Dang nhap thanh cong", Toast.LENGTH_SHORT).show();
+                    if (teacher_.getVerification().compareTo("") != 0){
+
                     }else {
-                        if (response.body().getErrorCode() != 200){
-                            Toast.makeText(mActivity, "Lỗi server",Toast.LENGTH_SHORT).show();
-                        }else {
-                            
+                        String temp = response.body().getErrorCode().toString();
+                        if (response.body().getErrorCode().toString().compareTo("200") !=0 ){
                         }
                     }
                 }

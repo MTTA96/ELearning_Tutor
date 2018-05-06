@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
@@ -22,6 +24,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     /*----- VIEWS ------*/
     SignInButton btnLoginGmail;
+    Button skip;
 
     /*---- FRAGMENT HANDLE -----*/
     FragmentHandler fragmentHandler;
@@ -55,19 +58,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     //Handle view
     public void Handle() {
 
-        //Set click button
-        btnLoginGmail.setOnClickListener(this);
+        skip.setOnClickListener(this);
     }
 
     //Declare views
     public void Declare(View root) {
-
+//        View v = getView();
         //Setup button login Gmail
-        btnLoginGmail = root.findViewById(R.id.sign_in_button);
-        btnLoginGmail.setSize(SignInButton.SIZE_STANDARD);
+
+        skip = root.findViewById(R.id.skip);
 
         //Setup Fragment Handle
-        fragmentHandler = new FragmentHandler(getActivity(), R.id.main_activity);
+        fragmentHandler = new FragmentHandler(getActivity(), R.id.content_user);
 
         //Setup Gmail handle
         gmailHandler = new GmailHandler(getActivity(), this);
@@ -93,10 +95,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.sign_in_button:
-
-                gmailHandler.signIn();
-
+            case R.id.skip:
+                fragmentHandler.ChangeFragment(new SignupFragment(), R.anim.slide_from_left, 0);
                 break;
         }
     }

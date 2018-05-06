@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.eways.etutor.R;
+
 /**
  * Created by zzzzz on 10/8/2017.
  *
@@ -22,7 +24,7 @@ public class FragmentHandler {
         this.resource = resource;
     }
 
-    public void  ChangeFragment(Fragment toFragment){
-        ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(resource, toFragment).commit();
+    public void  ChangeFragment(Fragment toFragment, int animationIn, int animationOut){
+        ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().setCustomAnimations(animationIn, animationOut).replace(resource, toFragment).commit();
     }
 }
