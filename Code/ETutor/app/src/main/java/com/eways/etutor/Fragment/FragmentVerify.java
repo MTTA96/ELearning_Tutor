@@ -1,16 +1,19 @@
 package com.eways.etutor.Fragment;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.eways.etutor.R;
+import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
 import com.eways.etutor.Utils.SupportKey;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +41,8 @@ public class FragmentVerify extends Fragment {
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private String phoneNumber;
+    private FragmentHandler fragmentHandler;
+    private Activity activity;
 
     public FragmentVerify() {
         // Required empty public constructor
@@ -54,7 +59,9 @@ public class FragmentVerify extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fragmentHandler = new FragmentHandler(getContext(), R.id.childSignUpContentView);
         preferencesHandler = new SharedPreferencesHandler(getContext(), SupportKey.SHARED_PREF_FILE_NAME);
+        activity = getActivity();
 //        this.phoneNumber = getArguments().getString("PhoneNumber");
 
     }
@@ -64,14 +71,14 @@ public class FragmentVerify extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_verify, container, false);
-
+        phoneNumber = FragmentEnterPhone.tvPhoneNumber.getText().toString();
         verifyPhoneNumber();
         return inflater.inflate(R.layout.fragment_verify, container, false);
     }
 
     private void verifyPhoneNumber() {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                FragmentEnterPhone.tvPhoneNumber.getText().toString(),        // Phone number to verify
+                phoneNumber,        // Phone number to verify
                 30,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 getActivity(),               // Activity (for callback binding)
@@ -131,7 +138,7 @@ public class FragmentVerify extends Fragment {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -140,6 +147,8 @@ public class FragmentVerify extends Fragment {
 
                             FirebaseUser user = task.getResult().getUser();
 
+                            // Move to next step
+                            fragmentHandler.changeFragment(FragmentUserInfo.newInstance(), R.anim.slide_from_left, 0);
                             // ...
                         } else {
                             // Sign in failed, display a message and update the UI

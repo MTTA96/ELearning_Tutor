@@ -26,7 +26,14 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener{
         // Required empty public constructor
     }
 
-
+    public static FragmentUserInfo newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        FragmentUserInfo fragment = new FragmentUserInfo();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
