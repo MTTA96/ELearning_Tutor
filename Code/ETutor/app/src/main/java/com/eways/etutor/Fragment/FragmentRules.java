@@ -45,6 +45,4 @@ public class FragmentRules extends Fragment {
         String rulesText = readTextHandler.readTxt("rules.txt");
         rules.setText(rulesText);
     }
-
-
 }

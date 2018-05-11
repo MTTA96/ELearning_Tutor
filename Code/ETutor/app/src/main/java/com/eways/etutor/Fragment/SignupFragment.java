@@ -102,7 +102,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
 
 
 
-
     //Set up parallex view
     public void setUpParallexView(AppBarLayout appBarLayout, int mode) {
         if (mode == listFragment.size() - 1){
