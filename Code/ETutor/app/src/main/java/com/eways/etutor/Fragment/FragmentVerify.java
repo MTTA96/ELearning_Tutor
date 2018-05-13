@@ -37,12 +37,15 @@ import static android.content.ContentValues.TAG;
  */
 public class FragmentVerify extends Fragment {
 
-    private SharedPreferencesHandler preferencesHandler;
+    /** Models */
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private String phoneNumber;
     private FragmentHandler fragmentHandler;
-    private Activity activity;
+    public static PhoneAuthCredential credential;
+
+    /** Params */
+    public static final String PHONE_PARAM = "PhoneNumber";
 
     public FragmentVerify() {
         // Required empty public constructor
@@ -51,19 +54,20 @@ public class FragmentVerify extends Fragment {
     public static FragmentVerify newInstance(String phoneNumber) {
 
         Bundle args = new Bundle();
-        args.putString("PhoneNumber", phoneNumber);
+        args.putString(PHONE_PARAM, phoneNumber);
         FragmentVerify fragment = new FragmentVerify();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentHandler = new FragmentHandler(getContext(), R.id.childSignUpContentView);
-        preferencesHandler = new SharedPreferencesHandler(getContext(), SupportKey.SHARED_PREF_FILE_NAME);
-        activity = getActivity();
-//        this.phoneNumber = getArguments().getString("PhoneNumber");
 
+        if (getArguments() != null) {
+            phoneNumber = getArguments().getString(PHONE_PARAM);
+        }
     }
 
     @Override
@@ -71,11 +75,12 @@ public class FragmentVerify extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_verify, container, false);
-        phoneNumber = FragmentEnterPhone.tvPhoneNumber.getText().toString();
+//        phoneNumber = FragmentEnterPhone.tvPhoneNumber.getText().toString();
         verifyPhoneNumber();
         return inflater.inflate(R.layout.fragment_verify, container, false);
     }
 
+    /** Verify user phone number */
     private void verifyPhoneNumber() {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,        // Phone number to verify
@@ -85,6 +90,7 @@ public class FragmentVerify extends Fragment {
                 mCallbacks);        // OnVerificationStateChangedCallbacks
     }
 
+    /** This will trigger when verification state changed */
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
@@ -96,8 +102,10 @@ public class FragmentVerify extends Fragment {
             //     detect the incoming verification SMS and perform verification without
             //     user action.
             Log.d(TAG, "onVerificationCompleted:" + credential);
+            FragmentVerify.credential = credential;
 
-            signInWithPhoneAuthCredential(credential);
+            // Move to next step
+            fragmentHandler.changeFragment(FragmentUserInfo.newInstance(), SupportKey.SIGNUP_INFO_FRAGMENT_TAG, R.anim.slide_from_left, 0);
         }
 
         @Override
@@ -133,31 +141,4 @@ public class FragmentVerify extends Fragment {
             // ...
         }
     };
-
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-
-                            FirebaseUser user = task.getResult().getUser();
-
-                            // Move to next step
-                            fragmentHandler.changeFragment(FragmentUserInfo.newInstance(), R.anim.slide_from_left, 0);
-                            // ...
-                        } else {
-                            // Sign in failed, display a message and update the UI
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
-                            }
-                        }
-                    }
-                });
-    }
 }

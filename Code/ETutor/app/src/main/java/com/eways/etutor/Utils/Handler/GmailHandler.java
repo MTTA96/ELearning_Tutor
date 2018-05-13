@@ -1,17 +1,12 @@
 package com.eways.etutor.Utils.Handler;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.eways.etutor.Activity.MainActivity;
 import com.eways.etutor.Fragment.LoginFragment;
 import com.eways.etutor.Model.Teacher;
-import com.eways.etutor.Model.Teacher_;
+import com.eways.etutor.Model.User;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Api.ApiHandler;
 import com.eways.etutor.Utils.Api.ApiUtils;
@@ -21,10 +16,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-
-import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -116,9 +107,9 @@ public class GmailHandler {
                 if (response.isSuccessful()){
                     //Kiem tra các trường hợp
 
-                    Teacher_ teacher_ = response.body().getTeacher();
+                    User user_ = response.body().getTeacher();
 
-                    if (teacher_.getVerification().compareTo("") != 0){
+                    if (user_.getVerification().compareTo("") != 0){
 
                     }else {
                         String temp = response.body().getErrorCode().toString();

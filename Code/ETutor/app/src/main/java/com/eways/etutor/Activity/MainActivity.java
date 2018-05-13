@@ -7,6 +7,7 @@ import android.view.View;
 import com.eways.etutor.Fragment.LoginFragment;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
+import com.eways.etutor.Utils.SupportKey;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -36,6 +37,6 @@ public class MainActivity extends AppCompatActivity{
     public void Handle(){
         fragmentHandler = new FragmentHandler(this, R.id.content_user);
 
-        fragmentHandler.changeFragment(new LoginFragment(), 0, 0);
+        fragmentHandler.changeFragment(new LoginFragment(), SupportKey.LOGIN_FRAGMENT_TAG, 0, 0);
     }
 }

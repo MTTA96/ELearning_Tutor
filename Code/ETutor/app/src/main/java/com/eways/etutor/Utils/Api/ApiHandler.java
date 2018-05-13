@@ -1,10 +1,6 @@
 package com.eways.etutor.Utils.Api;
 
 import com.eways.etutor.Model.Teacher;
-import com.eways.etutor.Model.Teacher_;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

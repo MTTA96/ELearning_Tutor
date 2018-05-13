@@ -2,6 +2,10 @@
     <string name="app_name">ETutor</string>
     <string name="title_activity_login">Sign in</string>
 
+    <!-- Messages -->
+    <string name="unknow_error_msg">Error!</string>
+    <string name="missing_info_msg">Missing info</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

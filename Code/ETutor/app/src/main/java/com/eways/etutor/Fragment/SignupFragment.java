@@ -20,17 +20,18 @@ import com.eways.etutor.FragmentWelcome;
 import com.eways.etutor.Model.Circle;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
+import com.eways.etutor.Utils.SupportKey;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignupFragment extends Fragment implements View.OnClickListener {
+public class SignupFragment extends Fragment {
 
-    /* VIEWS */
+    /** VIEWS */
     AppBarLayout barLayout;
-    LinearLayout btnBack, btnNext;
+    public static LinearLayout btnBack, btnNext;
     TextView tvBack, tvNext;
     RecyclerView listCircle;
     android.support.v7.widget.Toolbar toolbar;
@@ -40,7 +41,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
     private CircleAdapter circleAdapter;
     private ArrayList<Circle> circles;
     private ArrayList<Fragment> listFragment;
-
 
     public SignupFragment() {
         // Required empty public constructor
@@ -62,21 +62,9 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         return root;
     }
 
-    private void handle_views() {
-
-        btnNext.setOnClickListener(this);
-        btnBack.setOnClickListener(this);
-
-        circles = new ArrayList<>();
-        circleAdapter = new CircleAdapter(getActivity(), circles);
-        listCircle.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
-        listCircle.setAdapter(circleAdapter);
-    }
-
-
     private void declare_views(View root) {
 
-        barLayout = (AppBarLayout) root.findViewById(R.id.appBarLayout);
+        barLayout = root.findViewById(R.id.appBarLayout);
         btnBack = root.findViewById(R.id.btn_back);
         btnNext = root.findViewById(R.id.btn_next);
         tvBack = root.findViewById(R.id.tv_back);
@@ -97,11 +85,16 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         setUpParallexView(barLayout, 0);
 
         //Setup Fragment Handle
-        fragmentHandler.changeFragment(listFragment.get(curPosition), R.anim.slide_from_left, 0);
+        fragmentHandler.changeFragment(listFragment.get(curPosition), SupportKey.RULES_FRAGMENT_TAG, R.anim.slide_from_left, 0);
     }
 
+    private void handle_views() {
 
-
+        circles = new ArrayList<>();
+        circleAdapter = new CircleAdapter(getActivity(), circles);
+        listCircle.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
+        listCircle.setAdapter(circleAdapter);
+    }
 
     //Set up parallex view
     public void setUpParallexView(AppBarLayout appBarLayout, int mode) {
@@ -123,36 +116,36 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         return false;
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_back:
-                if (curPosition > 0) {
-                    fragmentHandler.changeFragment(listFragment.get(curPosition - 1), R.anim.slide_from_left, 0);
-                    curPosition -= 1;
-                }
-                break;
-
-            case R.id.btn_next:
-
-                /** Need to optimize (wanna sleep) */
-                if (curPosition + 1 == 2) {
-                    fragmentHandler.changeFragment(FragmentVerify.newInstance(FragmentEnterPhone.tvPhoneNumber.getText().toString()), R.anim.slide_from_left, 0);
-                }
-
-                if (curPosition < listFragment.size() - 1) {
-                    fragmentHandler.changeFragment(listFragment.get(curPosition + 1), R.anim.slide_from_left, 0);
-                    curPosition += 1;
-                }
-                else
-                    if (curPosition == listFragment.size() - 1 ) {
-                        startActivity(new Intent(getActivity(), CourseActivity.class));
-                        getActivity().finish();
-                    }
-
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View view) {
+//        switch (view.getId()) {
+//            case R.id.btn_back:
+//                if (curPosition > 0) {
+//                    fragmentHandler.changeFragment(listFragment.get(curPosition - 1), R.anim.slide_from_left, 0);
+//                    curPosition -= 1;
+//                }
+//                break;
+//
+//            case R.id.btn_next:
+//
+//                /** Need to optimize (wanna sleep) */
+//                if (curPosition + 1 == 2) {
+//                    fragmentHandler.changeFragment(FragmentVerify.newInstance(FragmentEnterPhone.tvPhoneNumber.getText().toString()), R.anim.slide_from_left, 0);
+//                }
+//
+//                if (curPosition < listFragment.size() - 1) {
+//                    fragmentHandler.changeFragment(listFragment.get(curPosition + 1), R.anim.slide_from_left, 0);
+//                    curPosition += 1;
+//                }
+//                else
+//                    if (curPosition == listFragment.size() - 1 ) {
+//                        startActivity(new Intent(getActivity(), CourseActivity.class));
+//                        getActivity().finish();
+//                    }
+//
+//                break;
+//        }
+//    }
 
     public void setUpListCircle(int countCircle){
 

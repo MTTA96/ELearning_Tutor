@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.Handler.GmailHandler;
+import com.eways.etutor.Utils.SupportKey;
 import com.google.android.gms.common.SignInButton;
 
 /**
@@ -93,7 +94,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.skip:
-                fragmentHandler.changeFragment(new SignupFragment(), R.anim.slide_from_left, 0);
+                fragmentHandler.changeFragment(new SignupFragment(), SupportKey.SIGN_UP_FRAGMENT_TAG, R.anim.slide_from_left, 0);
                 break;
         }
     }
