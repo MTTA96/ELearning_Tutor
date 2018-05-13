@@ -22,5 +22,5 @@ public interface UserServicesImp {
     /** Sign up */
     @POST(ServerUrl.SIGN_UP_URL)
     @FormUrlEncoded
-    Call<BaseResponse> signUp(@Field("mydata") String data);
+    Call<BaseResponse> signup(@Field("mydata") String data);
 }

@@ -228,8 +228,7 @@ public class User {
     /** MARK: METHODS */
     public static void signUp(String jsonData, final DataCallBack dataCallBack) {
         UserServicesImp userServices = ApiUtils.userServices();
-        String myData = "\"" + jsonData + "\"";
-        userServices.signUp(myData).enqueue(new Callback<BaseResponse>() {
+        userServices.signup(jsonData).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 Log.d("signUpFirebase:", call.request().toString());

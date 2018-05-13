@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.eways.etutor.FragmentWelcome;
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Model.User;
 import com.eways.etutor.Presenter.SignUpInfoPresenter;
@@ -233,7 +234,7 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener, 
     @Override
     public void dataCallBack(String result, @Nullable Bundle bundle) {
         if (result.compareTo("Success") == 0) {
-            fragmentHandler.changeFragment(FragmentUserInfo.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+            fragmentHandler.changeFragment(FragmentWelcome.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
             return;
         }
 
