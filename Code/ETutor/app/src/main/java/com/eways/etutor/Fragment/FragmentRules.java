@@ -59,7 +59,6 @@ public class FragmentRules extends Fragment implements View.OnClickListener {
         rules.setText(rulesText);
     }
 
-
     /** MARK: - EVENTS */
     @Override
     public void onClick(View v) {
@@ -72,5 +71,4 @@ public class FragmentRules extends Fragment implements View.OnClickListener {
 
 
     /** MARK: - METHODS */
-
 }
