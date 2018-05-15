@@ -11,14 +11,14 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="20" />
+        android:layout_weight="10" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_weight="35"
+        android:layout_weight="60"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="100">
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:textSize="17sp"
-            android:layout_weight="30"
+            android:layout_weight="20"
             android:text="@string/guide_enter_phone"
             android:textColor="@color/colorBlack" />
 
@@ -42,17 +42,30 @@
 
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="35"
+
+            android:layout_weight="20"
             android:weightSum="100"
             android:background="@drawable/edittext_shape_3"
             android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="24">
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorLightBlue"/>
 
             <EditText
                 android:id="@+id/phone"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="90"
+                android:layout_weight="75"
                 android:inputType="phone"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorGrey"
@@ -60,61 +73,14 @@
                 android:padding="7dp"
                 android:textSize="18sp"
                 android:hint="@string/phone"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10">
-                <ImageView
-                    android:id="@+id/clear_phone_text"
-                    android:visibility="invisible"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-
-                    android:background="@drawable/icn_delete"
-                    android:layout_gravity="center_vertical"/>
-            </LinearLayout>
-
 
         </LinearLayout>
 
-        <LinearLayout
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/phone_code_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="35"
-            android:weightSum="100"
-            android:background="@drawable/edittext_shape_3"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="90"
-                android:inputType="phone"
-                android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorGrey"
-                android:singleLine="true"
-                android:padding="7dp"
-                android:textSize="18sp"
-                android:hint="@string/hint_password"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10">
-                <ImageView
-                    android:id="@+id/clear_pass_text"
-                    android:visibility="invisible"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-
-                    android:background="@drawable/icn_delete"
-                    android:layout_gravity="center_vertical"/>
-            </LinearLayout>
-
-
-        </LinearLayout>
+            android:layout_weight="40"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

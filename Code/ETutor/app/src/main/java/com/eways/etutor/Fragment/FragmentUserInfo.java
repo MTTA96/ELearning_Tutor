@@ -50,69 +50,18 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener{
         name = root.findViewById(R.id.name);
         password = root.findViewById(R.id.password);
 
-        clear_name = root.findViewById(R.id.clear_name_text);
+
         clear_phone = root.findViewById(R.id.clear_phone_text);
 
     }
 
     public void handle_views(){
-        setUpEditText();
-
-        clear_name.setOnClickListener(this);
-        clear_phone.setOnClickListener(this);
     }
 
-    public void setUpEditText(){
-        name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (name.getText().toString().compareTo("") != 0){
-                    clear_name.setVisibility(View.VISIBLE);
-                }else {
-                    clear_name.setVisibility(View.INVISIBLE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        password.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(password.getText().toString().compareTo("")!=0){
-                    clear_phone.setVisibility(View.VISIBLE);
-                }else {
-                    clear_phone.setVisibility(View.INVISIBLE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.clear_name_text:
-                name.setText("");
-
-                break;
             case R.id.clear_phone_text:
                 password.setText("");
 

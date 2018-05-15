@@ -38,4 +38,9 @@ public class GlobalParams extends Application {
     public Gson getGSon() {
         return gson;
     }
+
+    public int get_resId_by_name(String name, String type){
+        return instance.getResources().getIdentifier(name, type, instance.getPackageName());
+
+    }
 }

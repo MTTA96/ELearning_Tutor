@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,6 +35,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
     TextView tvBack, tvNext;
     RecyclerView listCircle;
     android.support.v7.widget.Toolbar toolbar;
+    NestedScrollView nestedScrollView;
 
     private FragmentHandler fragmentHandler;
     private int curPosition = 0;
@@ -83,7 +85,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         tvNext = root.findViewById(R.id.tv_next);
         toolbar = root.findViewById(R.id.toolbar);
         listCircle = root.findViewById(R.id.list_circle);
-
+        nestedScrollView = root.findViewById(R.id.nestedScrollView);
 
         //Setup Fragment Handle
         fragmentHandler = new FragmentHandler(getActivity(), R.id.childSignUpContentView);
