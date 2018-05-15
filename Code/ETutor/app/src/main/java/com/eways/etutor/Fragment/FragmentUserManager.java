@@ -52,7 +52,7 @@ public class FragmentUserManager extends Fragment implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_info:
-                fragmentHandler.changeFragment(new FragmentUpdateDetail(), 0 , 0);
+//                fragmentHandler.changeFragment(new FragmentUpdateDetail(), 0 , 0);
 
                 break;
 

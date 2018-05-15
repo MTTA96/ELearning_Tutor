@@ -1,17 +1,29 @@
 package com.eways.etutor.Model;
 
+import android.util.Log;
+
+import com.eways.etutor.Interfaces.DataCallBack;
+import com.eways.etutor.Network.BaseResponse;
+import com.eways.etutor.Network.UserServicesImp;
+import com.eways.etutor.Utils.ApiUtils;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by ADMIN on 3/25/2018.
  */
 
-public class Teacher_ {
-
+public class User {
     @SerializedName("Uid")
     @Expose
     private String uid;
+    @SerializedName("Password")
+    @Expose
+    private String password;
     @SerializedName("Avatar")
     @Expose
     private String avatar;
@@ -33,6 +45,9 @@ public class Teacher_ {
     @SerializedName("Phone")
     @Expose
     private String phone;
+    @SerializedName("Skype")
+    @Expose
+    private String skype;
     @SerializedName("Address")
     @Expose
     private String address;
@@ -51,9 +66,28 @@ public class Teacher_ {
     @SerializedName("Authorization")
     @Expose
     private String authorization;
-    @SerializedName("DateRegisted")
+    @SerializedName("DateRegistered")
     @Expose
-    private String dateRegisted;
+    private String dateRegistered;
+
+    public User() {
+        this.password = "";
+        this.avatar = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.sex = "";
+        this.birthday = "";
+        this.email = "";
+        this.phone = "";
+        this.skype = "";
+        this.address = "";
+        this.degree = "";
+        this.career = "";
+        this.status = "";
+        this.verification = "";
+        this.authorization = "";
+        this.dateRegistered = "";
+    }
 
     public String getUid() {
         return uid;
@@ -61,6 +95,14 @@ public class Teacher_ {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getAvatar() {
@@ -119,6 +161,14 @@ public class Teacher_ {
         this.phone = phone;
     }
 
+    public String getSkype() {
+        return skype;
+    }
+
+    public void setSkype(String skype) {
+        this.skype = skype;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -167,12 +217,34 @@ public class Teacher_ {
         this.authorization = authorization;
     }
 
-    public String getDateRegisted() {
-        return dateRegisted;
+    public String getDateRegistered() {
+        return dateRegistered;
     }
 
-    public void setDateRegisted(String dateRegisted) {
-        this.dateRegisted = dateRegisted;
+    public void setDateRegistered(String dateRegistered) {
+        this.dateRegistered = dateRegistered;
+    }
+
+    /** MARK: METHODS */
+    public static void signUp(String jsonData, final DataCallBack dataCallBack) {
+        UserServicesImp userServices = ApiUtils.userServices();
+        userServices.signup(jsonData).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                Log.d("signUpFirebase:", call.request().toString());
+                if (response.body().getErrorCode() == 200)
+                    if (response.body().getStatus().compareTo("Success") == 0) {
+                        dataCallBack.dataCallBack("Success", null);
+                        return;
+                    }
+                dataCallBack.dataCallBack("Failed", null);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                dataCallBack.dataCallBack("Failed", null);
+            }
+        });
     }
 
 }

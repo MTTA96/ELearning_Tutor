@@ -8,6 +8,7 @@ import com.eways.etutor.Fragment.FragmentUpdateDetail;
 import com.eways.etutor.Fragment.FragmentUserManager;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
+import com.eways.etutor.Utils.SupportKey;
 
 public class CourseActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,7 +27,8 @@ public class CourseActivity extends AppCompatActivity implements View.OnClickLis
 
     public void Handle(){
         fragmentHandler = new FragmentHandler(this, R.id.content_course);
-        fragmentHandler.changeFragment(new FragmentUserManager(), 0, 0);
+        fragmentHandler.changeFragment(new FragmentUpdateDetail(), SupportKey.UPDATE_DETAILs_FRAGMENT_TAG, 0, 0);
+
     }
 
     public void Declare(){

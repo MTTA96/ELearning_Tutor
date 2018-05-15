@@ -18,6 +18,14 @@ public class FragmentWelcome extends Fragment {
         // Required empty public constructor
     }
 
+    public static FragmentWelcome newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        FragmentWelcome fragment = new FragmentWelcome();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
