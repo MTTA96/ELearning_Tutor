@@ -7,142 +7,65 @@
     android:weightSum="100"
     tools:context="com.eways.etutor.Fragment.SignupFragment">
 
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/coordinatorLayout"
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="93">
+        android:layout_weight="10"
+        android:background="@color/colorBlue">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icn_back_white"/>
+    </android.support.v7.widget.Toolbar>
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/collapsingToolbarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                <ImageView
-                    android:id="@+id/ivParallax"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/city"
-                    app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="0.7" />
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:title="Etutor"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
-
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="100"
-                android:orientation="vertical">
-
-                <!--Content-->
-                <FrameLayout
-                    android:id="@+id/childSignUpContentView"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="98"/>
-            </LinearLayout>
-
-        </android.support.v4.widget.NestedScrollView>
-    </android.support.design.widget.CoordinatorLayout>
-
-    <!-- Button bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_weight="4">
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/content_signup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="60"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:layout_weight="10">
 
         <View
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"/>
+            android:layout_weight="20"/>
 
-        <!-- button previous -->
-        <LinearLayout
-            android:id="@+id/btn_back"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:orientation="vertical"
-            android:weightSum="100">
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="60"/>
-            
-            <TextView
-                android:id="@+id/tv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="19sp"
-                android:text="@string/previous"
-                android:textColor="@color/colorBlue"/>
-
-        </LinearLayout>
-
-        <!--circle-->
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/list_circle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="49"/>
-
-        <!-- button next -->
-        <LinearLayout
+        <Button
             android:id="@+id/btn_next"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="25"
-            android:gravity="right"
-            android:orientation="vertical"
-            android:weightSum="100">
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="60"/>
-
-            <TextView
-                android:id="@+id/tv_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="19sp"
-
-                android:text="@string/next"
-                android:textColor="@color/colorBlue"/>
-        </LinearLayout>
-
-
+            android:layout_weight="60"
+            android:text="Tiếp theo"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:background="@drawable/btn_login_shape1"/>
     </LinearLayout>
+
 
 
 </LinearLayout>

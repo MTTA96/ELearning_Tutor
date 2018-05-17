@@ -25,7 +25,7 @@
     <string name="title_information">Thông tin</string>
 
     <!-- Welcome -->
-    <string name="title_welcome">Xin chào</string>
+    <string name="title_welcome"><b>Xin Chào</b></string>
 
     <!-- Login -->
     <string name="title_login">Etutor</string>
@@ -39,7 +39,7 @@
     <string name="next">Tiếp tục</string>
     <string name="finish">Hoàn tất</string>
     <string name="hint_password">Mật khẩu</string>
-    <string name="guide_enter_phone">Nhập số điển thoại để đăng nhập</string>
+    <string name="guide_enter_phone"><b>Số điện thoại:</b></string>
     <string name="guide_enter_info">Cho xin tý thông tin</string>
 
     <!--Update infomation-->

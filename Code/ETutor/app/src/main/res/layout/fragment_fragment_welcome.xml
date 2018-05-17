@@ -1,18 +1,36 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:background="@color/colorWhite"
     tools:context="com.eways.etutor.FragmentWelcome">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40"
+        android:background="@drawable/bg_welcome"
+        android:scaleType="fitXY"/>
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="20"
         android:text="@string/title_welcome"
-        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorBlue"
         android:textSize="50sp"
+        android:gravity="center"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 
-</RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40"
+        android:background="@drawable/bg_welcome"
+        android:scaleType="fitXY"/>
+
+</LinearLayout>

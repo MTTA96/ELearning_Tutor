@@ -12,10 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.eways.etutor.Interface.CallParentFragment;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
 import com.eways.etutor.Utils.SupportKey;
+import com.eways.etutor.views.VerificationCodeView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -42,7 +44,9 @@ public class FragmentVerify extends Fragment {
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private String phoneNumber;
     private FragmentHandler fragmentHandler;
+    private VerificationCodeView code;
     private Activity activity;
+    public static CallParentFragment callParentFragment;
 
     public FragmentVerify() {
         // Required empty public constructor
@@ -59,7 +63,7 @@ public class FragmentVerify extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fragmentHandler = new FragmentHandler(getContext(), R.id.childSignUpContentView);
+//        fragmentHandler = new FragmentHandler(getContext(), R.id.childSignUpContentView);
         preferencesHandler = new SharedPreferencesHandler(getContext(), SupportKey.SHARED_PREF_FILE_NAME);
         activity = getActivity();
 //        this.phoneNumber = getArguments().getString("PhoneNumber");
@@ -71,19 +75,39 @@ public class FragmentVerify extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_verify, container, false);
-        phoneNumber = FragmentEnterPhone.tvPhoneNumber.getText().toString();
-        verifyPhoneNumber();
-        return inflater.inflate(R.layout.fragment_verify, container, false);
+        declare_views(root);
+
+        //listen when completing enter code
+        code.setCodeCompleteListener(new VerificationCodeView.CodeCompleteListener() {
+            @Override
+            public void complete(boolean complete) {
+                if (complete){
+                    String completeCode = code.getTextString();
+
+                    //Handle code at here ...
+                    callParentFragment.callParent(true);
+
+                }
+            }
+        });
+//        phoneNumber = FragmentEnterPhone.tvPhoneNumber.getText().toString();
+//        verifyPhoneNumber();
+
+        return root;
     }
 
-    private void verifyPhoneNumber() {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,        // Phone number to verify
-                30,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                getActivity(),               // Activity (for callback binding)
-                mCallbacks);        // OnVerificationStateChangedCallbacks
+    public void declare_views(View root){
+        code = root.findViewById(R.id.code);
     }
+
+//    private void verifyPhoneNumber() {
+//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//                phoneNumber,        // Phone number to verify
+//                30,                 // Timeout duration
+//                TimeUnit.SECONDS,   // Unit of timeout
+//                getActivity(),               // Activity (for callback binding)
+//                mCallbacks);        // OnVerificationStateChangedCallbacks
+//    }
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -160,4 +184,8 @@ public class FragmentVerify extends Fragment {
                     }
                 });
     }
+
+//    public void onListenerComplete(CallParentFragment callParentFragment){
+//        this.callParentFragment = callParentFragment;
+//    }
 }

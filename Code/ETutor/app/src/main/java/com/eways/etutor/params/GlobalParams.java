@@ -12,27 +12,19 @@ import com.google.gson.Gson;
 public class GlobalParams extends Application {
 
     private static GlobalParams instance;
-    private MainActivity mainActivity;
     private Gson gson;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        gson = new Gson();
     }
 
     /* GET - SET */
 
     public static GlobalParams getInstance() {
         return instance;
-    }
-
-    public MainActivity getMainActivity() {
-        return mainActivity;
-    }
-
-    public void setMainActivity(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
     }
 
     public Gson getGSon() {

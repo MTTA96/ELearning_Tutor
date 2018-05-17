@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
@@ -20,9 +22,10 @@ import com.google.android.gms.common.SignInButton;
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
     /*----- VIEWS ------*/
-    SignInButton btnLoginGmail;
-    Button skip;
-    View btnSDT;
+    EditText edtPhone, edtPass;
+    Button btnLogin;
+    TextView  tvRules;
+    View tvSignup;
 
     /*---- FRAGMENT HANDLE -----*/
     FragmentHandler fragmentHandler;
@@ -55,33 +58,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     //Handle view
     public void Handle() {
-
-        skip.setOnClickListener(this);
-        btnSDT.setOnClickListener(this);
+        tvSignup.setOnClickListener(this);
     }
 
     //Declare views
     public void Declare(View root) {
-//        View v = getView();
-        //Setup button login Gmail
-
-        skip = root.findViewById(R.id.skip);
-        btnSDT = root.findViewById(R.id.btn_sdt);
 
         //Setup Fragment Handle
         fragmentHandler = new FragmentHandler(getActivity(), R.id.content_user);
 
-        //Setup Gmail handle
-        gmailHandler = new GmailHandler(getActivity(), this);
-        gmailHandler.ConfigGoogleLogin();
+        tvSignup = (View) root.findViewById(R.id.btn_dk);
 
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
-        gmailHandler.onStart();
     }
 
     @Override
@@ -95,7 +87,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_sdt:
+            case R.id.btn_dk:
                 fragmentHandler.changeFragment(new SignupFragment(), R.anim.slide_from_left, 0);
                 break;
         }

@@ -11,5 +11,12 @@
     <color name="colorTransparent">#00ffffff</color>
     <color name="colorLightBlue">#40c2e5ff</color>
     <color name="colorGrey">#a4a0a0</color>
-    <color name="colorHightBlue">#1788d9</color>
+    <color name="colorHightBlue">#0068b4</color>
+    <color name="colorLightScrim">#5b9dc8fe</color>
+
+    <color name="vcode_bottom_icon_bg">#f6a500</color>
+    <color name="vcode_bottom_error_icon_bg">#e84849</color>
+    <color name="vcode_text_color">#000000</color>
+
+
 </resources>

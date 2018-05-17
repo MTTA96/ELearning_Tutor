@@ -50,9 +50,6 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener{
         name = root.findViewById(R.id.name);
         password = root.findViewById(R.id.password);
 
-
-        clear_phone = root.findViewById(R.id.clear_phone_text);
-
     }
 
     public void handle_views(){
@@ -61,13 +58,13 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.clear_phone_text:
-                password.setText("");
-
-                break;
-
-
-        }
+//        switch (view.getId()){
+//            case R.id.clear_phone_text:
+//                password.setText("");
+//
+//                break;
+//
+//
+//        }
     }
 }

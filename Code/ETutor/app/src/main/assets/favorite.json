@@ -1,0 +1,37 @@
+[
+  {
+    "id":"0",
+    "image":"city.jpg",
+    "text":"Âm nhạc"
+  },
+
+  {
+    "id":"1",
+    "image":"city.jpg",
+    "text":"Ẩm thực"
+  },
+
+  {
+    "id":"2",
+    "image":"city.jpg",
+    "text":"Vận tải"
+  },
+
+  {
+    "id":"3",
+    "image":"city.jpg",
+    "text":"Phổ thông"
+  },
+
+  {
+    "id":"4",
+    "image":"city.jpg",
+    "text":"Toán học"
+  },
+
+  {
+    "id":"5",
+    "image":"city.jpg",
+    "text":"Trung học"
+  }
+]
