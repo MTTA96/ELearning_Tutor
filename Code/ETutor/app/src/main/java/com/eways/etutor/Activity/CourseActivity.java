@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.eways.etutor.Fragment.FragmentUpdateDetail;
 import com.eways.etutor.Fragment.FragmentUserManager;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;

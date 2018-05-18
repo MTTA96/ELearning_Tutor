@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
-import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
+//import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
 import com.eways.etutor.Utils.SupportKey;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class FragmentEnterPhone extends Fragment {
 
     // Data variable
-    private SharedPreferencesHandler preferencesHandler;
+//    private SharedPreferencesHandler preferencesHandler;
 
     public FragmentEnterPhone() {
         // Required empty public constructor
@@ -33,7 +33,7 @@ public class FragmentEnterPhone extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        preferencesHandler = new SharedPreferencesHandler(getContext(), SupportKey.SHARED_PREF_FILE_NAME);
+//        preferencesHandler = new SharedPreferencesHandler(getContext(), SupportKey.SHARED_PREF_FILE_NAME);
     }
 
     @Override

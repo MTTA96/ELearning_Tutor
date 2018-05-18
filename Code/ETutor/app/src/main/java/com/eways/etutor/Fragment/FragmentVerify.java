@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.eways.etutor.Interface.CallParentFragment;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
-import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
+//import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
 import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.views.VerificationCodeView;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,7 +39,7 @@ import static android.content.ContentValues.TAG;
  */
 public class FragmentVerify extends Fragment {
 
-    private SharedPreferencesHandler preferencesHandler;
+//    private SharedPreferencesHandler preferencesHandler;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private String phoneNumber;
@@ -64,7 +64,7 @@ public class FragmentVerify extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        fragmentHandler = new FragmentHandler(getContext(), R.id.childSignUpContentView);
-        preferencesHandler = new SharedPreferencesHandler(getContext(), SupportKey.SHARED_PREF_FILE_NAME);
+//        preferencesHandler = new SharedPreferencesHandler(getContext(), SupportKey.SHARED_PREF_FILE_NAME);
         activity = getActivity();
 //        this.phoneNumber = getArguments().getString("PhoneNumber");
 

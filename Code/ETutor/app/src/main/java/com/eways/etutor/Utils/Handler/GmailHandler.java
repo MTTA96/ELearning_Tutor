@@ -40,7 +40,7 @@ public class GmailHandler {
     private LoginFragment loginFragment;
 
     FragmentHandler fragmentHandler ;
-    SharedPreferencesHandler sharedPreferencesHandler;
+//    SharedPreferencesHandler sharedPreferencesHandler;
     Teacher account;
     ApiHandler apiHandler;
 
@@ -55,7 +55,7 @@ public class GmailHandler {
 
         apiHandler = ApiUtils.getUserById();
 
-        sharedPreferencesHandler = new SharedPreferencesHandler(mActivity, LoginFragment.KEY_PRE_LOGIN);
+//        sharedPreferencesHandler = new SharedPreferencesHandler(mActivity, LoginFragment.KEY_PRE_LOGIN);
     }
 
     //Configure Google Sign-in and the GoogleSignInClient object

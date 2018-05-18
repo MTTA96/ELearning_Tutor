@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.eways.etutor.Activity.CourseActivity;
 import com.eways.etutor.Activity.WelcomeActivity;
-import com.eways.etutor.Adapter.Circle.CircleAdapter;
 import com.eways.etutor.FragmentWelcome;
 import com.eways.etutor.Interface.CallParentFragment;
 import com.eways.etutor.Model.Circle;
@@ -45,8 +44,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
 
     private FragmentHandler fragmentHandler;
     private int curPosition = 0;
-    private CircleAdapter circleAdapter;
-    private ArrayList<Circle> circles;
+
     private ArrayList<Fragment> listFragment;
 
 
@@ -171,14 +169,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
         }
     }
 
-    public void setUpListCircle(int countCircle) {
 
-        for (int i = 0; i < countCircle; i++) {
-            circles.add(new Circle(R.drawable.circle_full, R.drawable.circle_empty));
-        }
-        circleAdapter.notifyDataSetChanged();
-
-    }
 
     public void clickNext(){
         if (curPosition == listFragment.size() - 1) {

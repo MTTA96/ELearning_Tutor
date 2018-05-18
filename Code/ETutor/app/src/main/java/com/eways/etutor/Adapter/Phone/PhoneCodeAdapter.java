@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.eways.etutor.Adapter.Circle.CircleViewHolder;
 import com.eways.etutor.Model.PhoneCode;
 import com.eways.etutor.R;
 import com.eways.etutor.params.GlobalParams;

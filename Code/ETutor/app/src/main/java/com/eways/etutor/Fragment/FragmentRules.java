@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eways.etutor.R;
-import com.eways.etutor.Utils.Handler.ReadTextHandler;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +17,7 @@ public class FragmentRules extends Fragment {
 
     TextView rules;
 
-    ReadTextHandler readTextHandler;
+
 
     public FragmentRules() {
         // Required empty public constructor
@@ -41,8 +40,8 @@ public class FragmentRules extends Fragment {
 
     public void handle_views(){
         //read and set text for rules
-        readTextHandler = new ReadTextHandler(getActivity());
-        String rulesText = readTextHandler.readTxt("rules.txt");
-        rules.setText(rulesText);
+//        readTextHandler = new ReadTextHandler(getActivity());
+//        String rulesText = readTextHandler.readTxt("rules.txt");
+//        rules.setText(rulesText);
     }
 }
