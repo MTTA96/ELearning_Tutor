@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.Handler.GmailHandler;
+import com.eways.etutor.Utils.SupportKey;
 import com.google.android.gms.common.SignInButton;
 
 /**
@@ -22,10 +23,14 @@ import com.google.android.gms.common.SignInButton;
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
     /*----- VIEWS ------*/
+//<<<<<<< HEAD
     EditText edtPhone, edtPass;
     Button btnLogin;
     TextView  tvRules;
     View tvSignup;
+//=======
+
+//>>>>>>> origin/master
 
     /*---- FRAGMENT HANDLE -----*/
     FragmentHandler fragmentHandler;
@@ -58,11 +63,21 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     //Handle view
     public void Handle() {
+//<<<<<<< HEAD
         tvSignup.setOnClickListener(this);
+//=======
+
+//>>>>>>> origin/master
     }
 
     //Declare views
     public void Declare(View root) {
+//<<<<<<< HEAD
+//=======
+////        View v = getView();
+//        //Setup button login Gmail
+//
+//>>>>>>> origin/master
 
         //Setup Fragment Handle
         fragmentHandler = new FragmentHandler(getActivity(), R.id.content_user);
@@ -86,10 +101,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+//<<<<<<< HEAD
         switch (view.getId()) {
             case R.id.btn_dk:
                 fragmentHandler.changeFragment(new SignupFragment(), R.anim.slide_from_left, 0);
                 break;
         }
+//=======
+//>>>>>>> origin/master
     }
 }

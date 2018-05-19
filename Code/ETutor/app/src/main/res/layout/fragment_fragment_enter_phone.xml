@@ -50,6 +50,12 @@
             android:background="@drawable/edittext_shape_3"
             android:orientation="horizontal">
 
+<!--<<<<<<< HEAD-->
+
+<!--=======-->
+
+            <!--<LinearLayout-->
+<!--&gt;>>>>>> origin/master-->
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

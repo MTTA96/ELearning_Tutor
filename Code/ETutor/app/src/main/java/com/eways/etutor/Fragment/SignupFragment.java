@@ -7,21 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.eways.etutor.Activity.CourseActivity;
 import com.eways.etutor.Activity.WelcomeActivity;
-import com.eways.etutor.FragmentWelcome;
 import com.eways.etutor.Interface.CallParentFragment;
-import com.eways.etutor.Model.Circle;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 
@@ -30,12 +25,21 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
+//<<<<<<< HEAD
 public class SignupFragment extends Fragment implements View.OnClickListener, CallParentFragment {
+//=======
+//public class SignupFragment extends Fragment {
+//>>>>>>> origin/master
 
-    /* VIEWS */
+    /** VIEWS */
     AppBarLayout barLayout;
+//<<<<<<< HEAD
     TextView tvBack;
     Button btnNext;
+//=======
+//    public static LinearLayout btnBack, btnNext;
+//    TextView tvBack, tvNext;
+//>>>>>>> origin/master
     RecyclerView listCircle;
     android.support.v7.widget.Toolbar toolbar;
     NestedScrollView nestedScrollView;
@@ -46,7 +50,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
     private int curPosition = 0;
 
     private ArrayList<Fragment> listFragment;
-
 
     public SignupFragment() {
         // Required empty public constructor
@@ -69,10 +72,23 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
         return root;
     }
 
+//<<<<<<< HEAD
     private void handle_views() {
 
         btnNext.setOnClickListener(this);
         btnBack.setOnClickListener(this);
+//=======
+//    private void declare_views(View root) {
+//
+//        barLayout = root.findViewById(R.id.appBarLayout);
+//        btnBack = root.findViewById(R.id.btn_back);
+//        btnNext = root.findViewById(R.id.btn_next);
+//        tvBack = root.findViewById(R.id.tv_back);
+//        tvNext = root.findViewById(R.id.tv_next);
+//        toolbar = root.findViewById(R.id.toolbar);
+//        listCircle = root.findViewById(R.id.list_circle);
+//        nestedScrollView = root.findViewById(R.id.nestedScrollView);
+//>>>>>>> origin/master
 
         //Setup Fragment Handle
 //        fragmentHandler = new FragmentHandler(getActivity(), R.id.childSignUpContentView);
@@ -83,6 +99,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
         listFragment.add(new FragmentFavorite());
 
         //Setup Fragment Handle
+//<<<<<<< HEAD
         fragmentHandler.changeFragment(listFragment.get(curPosition), 0, 0);
 
 //        btnNext.setOnClickListener(this);
@@ -92,10 +109,22 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
 //        circleAdapter = new CircleAdapter(getActivity(), circles);
 //        listCircle.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
 //        listCircle.setAdapter(circleAdapter);
+//=======
+//        fragmentHandler.changeFragment(listFragment.get(curPosition), SupportKey.RULES_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+//>>>>>>> origin/master
     }
 
+//    private void handle_views() {
 
+//<<<<<<< HEAD
     private void declare_views(View root) {
+//=======
+//        circles = new ArrayList<>();
+//        circleAdapter = new CircleAdapter(getActivity(), circles);
+//        listCircle.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
+//        listCircle.setAdapter(circleAdapter);
+//    }
+//>>>>>>> origin/master
 
 //        barLayout = (AppBarLayout) root.findViewById(R.id.appBarLayout);
         btnBack = root.findViewById(R.id.btn_back);
@@ -129,8 +158,13 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
         return false;
     }
 
+//<<<<<<< HEAD
     @Override
     public void onClick(View view) {
+//=======
+//    @Override
+//    public void onClick(View view) {
+//>>>>>>> origin/master
 //        switch (view.getId()) {
 //            case R.id.btn_back:
 //                if (curPosition > 0) {
@@ -152,12 +186,13 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
 //                }
 //                else
 //                    if (curPosition == listFragment.size() - 1 ) {
-//                        startActivity(new Intent(getActivity(), CourseActivity.class));
+//                        startActivity(new Intent(getActivity(), HomeActivity.class));
 //                        getActivity().finish();
 //                    }
 //
 //                break;
 //        }
+//<<<<<<< HEAD
         switch (view.getId()) {
             case R.id.btn_next:
                 clickNext();
@@ -190,6 +225,9 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
 
         }
     }
+//=======
+////    }
+//>>>>>>> origin/master
 
     public void clickBack(){
         getFragmentManager().popBackStack();

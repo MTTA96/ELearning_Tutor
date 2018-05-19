@@ -24,7 +24,18 @@ public class FragmentHandler {
         this.resource = resource;
     }
 
+//<<<<<<< HEAD
     public void changeFragment(Fragment toFragment, int animationIn, int animationOut){
         ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().setCustomAnimations(animationIn, animationOut).replace(resource, toFragment).addToBackStack(toFragment.getTag()).commit();
+//=======
+//    /** Change fragment */
+//    public void changeFragment(Fragment toFragment, String tag, int animationIn, int animationOut){
+//        ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().setCustomAnimations(animationIn, animationOut).replace(resource, toFragment).commit();
+//>>>>>>> origin/master
+    }
+
+    /** Delete current fragment */
+    public void deleteCurrentFragment() {
+
     }
 }

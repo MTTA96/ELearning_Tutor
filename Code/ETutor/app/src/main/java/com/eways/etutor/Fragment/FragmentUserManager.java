@@ -43,7 +43,7 @@ public class FragmentUserManager extends Fragment implements View.OnClickListene
     }
 
     public void handle_views(){
-        fragmentHandler = new FragmentHandler(getActivity(), R.id.content_course);
+//        fragmentHandler = new FragmentHandler(getActivity(), R.id.content_course);
 
         btnInfo.setOnClickListener(this);
     }
