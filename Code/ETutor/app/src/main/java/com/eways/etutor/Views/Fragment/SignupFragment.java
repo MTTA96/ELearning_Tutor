@@ -58,7 +58,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
         btnNext.setOnClickListener(this);
         btnBack.setOnClickListener(this);
 
-        //Setup Fragment Handle
+        //Setup Fragment handle
         fragmentHandler.changeFragment(FragmentEnterPhone.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG,0, 0);
 
     }

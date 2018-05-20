@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    //Declare
+    //declare
     public void Declare(){
         content = findViewById(R.id.content_user);
     }
 
-    //Handle
+    //handle
     public void Handle(){
         fragmentHandler = new FragmentHandler(this, R.id.content_user);
 
