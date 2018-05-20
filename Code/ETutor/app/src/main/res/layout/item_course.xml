@@ -16,11 +16,11 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="25">
+            android:layout_weight="32">
             <ImageView
                 android:id="@+id/img_avarta"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_centerHorizontal="true"/>
         </RelativeLayout>
 
@@ -29,13 +29,13 @@
             android:layout_height="match_parent"
             android:weightSum="100"
             android:orientation="vertical"
-            android:layout_weight="60">
+            android:layout_weight="58">
 
             <TextView
                 android:id="@+id/student_name"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="50"
+                android:layout_weight="30"
                 android:textSize="20sp"
                 android:gravity="center"
                 android:textColor="@color/colorBlue"
@@ -46,12 +46,38 @@
                 android:id="@+id/subject"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="25"
-                android:textSize="17sp"
+                android:layout_weight="20"
+                android:textSize="13sp"
                 android:gravity="center"
                 android:textColor="@color/colorBlue"
                 android:textStyle="bold"
                 android:text="Subject"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="15"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="37"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:background="drawables"
+                    android:text="18/05/2018"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="35"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorWhite"
+                    android:text="18/05/2018"/>
+            </LinearLayout>
             
             <RelativeLayout
                 android:id="@+id/bg_status"
@@ -72,12 +98,14 @@
                     android:textSize="12sp" />
             </RelativeLayout>
 
+
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="15"
+            android:layout_weight="10"
             android:gravity="center">
 
             <ImageView
