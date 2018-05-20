@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Network.BaseResponse;
+import com.eways.etutor.Network.BaseUserResponse;
 import com.eways.etutor.Network.UserServicesImp;
 import com.eways.etutor.Utils.Api.ApiUtils;
 import com.eways.etutor.Utils.SupportKey;
@@ -263,6 +264,33 @@ public class User {
     }
 
     /** Sign in */
+    public static void signIn(String userName, String password, final DataCallBack dataCallBack) {
+        UserServicesImp userServicesImp = ApiUtils.userServices();
+        userServicesImp.signIn(userName, password).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                Log.d("Sign in", call.request().toString());
+
+                // Handle error
+                if (!response.isSuccessful()) {
+                    Log.d("Sign in", "Connect failed");
+                    dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
+                    return;
+                }
+
+                // Connect success
+                Bundle bundle = new Bundle();
+                bundle.putString(null, response.body().getStatus());
+                dataCallBack.dataCallBack(SupportKey.SUCCESS_CODE, bundle);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Log.d("Sign in", "Connect failed");
+                dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
+            }
+        });
+    }
 
     /** Check phone's status to know if it existing in database when signing up */
     public static void checkPhoneNumber(String phoneNumber, final DataCallBack dataCallBack) {

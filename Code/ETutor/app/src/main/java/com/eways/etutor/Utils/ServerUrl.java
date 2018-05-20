@@ -13,7 +13,7 @@ public class ServerUrl {
 
     /** User */
     public static final String UserAPIRoot = ServerAPIURL + "User/";
-    public static final String LOGIN_URL = UserAPIRoot + "GetTeacherByUid.php";
+    public static final String LOGIN_URL = UserAPIRoot + "Tutor/TutorLogin.php";
     public static final String SIGN_UP_URL = UserAPIRoot + "AddNewUser.php";
     public static final String CHECK_PHONE_NUMBER_URL = UserAPIRoot + "UserIsExisted.php";
 

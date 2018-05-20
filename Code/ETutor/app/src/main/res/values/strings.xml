@@ -10,9 +10,11 @@
     <string name="msg_existing_user">Số điện thoại đã tồn tại</string>
     <string name="msg_sign_in_success">Xin chào </string>
     <string name="msg_sign_in_failed">Đăng nhập thất bại</string>
+    <string name="msg_account_has_not_sign_up">Tài khoản chưa đăng ký</string>
+    <string name="msg_banned_account">Tài khoản đã bị khóa</string>
     <string name="msg_loading">Loading…</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings relatedsignInogin -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>

@@ -47,18 +47,18 @@ public class FragmentFavorite extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_favorite, container, false);
 
-        declare_views(root);
-        handle_views();
+        declareViews(root);
+        handleViews();
 
         return root;
     }
 
-    public void declare_views(View root){
+    public void declareViews(View root){
         rcFavorite = root.findViewById(R.id.list_favorite);
 
     }
 
-    public void handle_views(){
+    public void handleViews(){
         setUpListFavorite();
     }
 

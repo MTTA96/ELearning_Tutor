@@ -16,8 +16,10 @@ import retrofit2.http.Query;
 
 public interface UserServicesImp {
     /** Sign in */
-    @GET(ServerUrl.LOGIN_URL)
-    Call<BaseUserResponse> login(@Query("Uid") String userId);
+    @POST(ServerUrl.LOGIN_URL)
+    @FormUrlEncoded
+    Call<BaseResponse> signIn(@Field("Phone") String userId,
+                                  @Field("Password") String password);
 
     /** Sign up */
     @POST(ServerUrl.SIGN_UP_URL)
