@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.eways.etutor.Activity.HomeActivity">
+    tools:context=".Views.Activity.HomeActivity">
 
     <!-- Nội dung-->
     <!--layout="@layout/content_course"-->

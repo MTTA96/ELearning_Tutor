@@ -1,4 +1,4 @@
-package com.eways.etutor.Fragment;
+package com.eways.etutor.Views.Fragment;
 
 
 import android.content.Intent;
@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
-import com.eways.etutor.Utils.Handler.GmailHandler;
 import com.eways.etutor.Utils.SupportKey;
-import com.google.android.gms.common.SignInButton;
 
 /**
  * A simple {@link Fragment} subclass.

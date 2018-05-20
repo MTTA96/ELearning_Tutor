@@ -1,10 +1,10 @@
-package com.eways.etutor.Activity;
+package com.eways.etutor.Views.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.eways.etutor.Fragment.LoginFragment;
+import com.eways.etutor.Views.Fragment.LoginFragment;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.SupportKey;

@@ -1,4 +1,4 @@
-package com.eways.etutor.Fragment;
+package com.eways.etutor.Views.Fragment;
 
 
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.eways.etutor.Presenter.EnterPhonePresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 //import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
@@ -25,6 +26,7 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
 
     /** Models */
     private FragmentHandler fragmentHandler;
+    private EnterPhonePresenter enterPhonePresenter;
 
     public FragmentEnterPhone() {
         // Required empty public constructor
@@ -64,6 +66,8 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
         if (getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup) == this) {
             switch (v.getId()) {
                 case R.id.btn_next:
+                    // Check phone number on server
+                    checkPhone();
                     String phoneNumber = "+84" + tvPhoneNumber.getText().toString();
                     if (!phoneNumber.isEmpty())
                         fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKey.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
@@ -73,5 +77,10 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
                     break;
             }
         }
+    }
+
+    /** Check phone's status on server */
+    private void checkPhone() {
+
     }
 }

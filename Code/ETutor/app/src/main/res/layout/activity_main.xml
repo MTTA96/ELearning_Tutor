@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:weightSum="100"
     android:orientation="vertical"
-    tools:context="com.eways.etutor.Activity.MainActivity">
+    tools:context=".Views.Activity.MainActivity">
 
 
     <LinearLayout

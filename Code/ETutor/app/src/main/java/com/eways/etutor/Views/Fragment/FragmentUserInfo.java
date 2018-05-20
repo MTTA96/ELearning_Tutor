@@ -1,4 +1,4 @@
-package com.eways.etutor.Fragment;
+package com.eways.etutor.Views.Fragment;
 
 
 import android.app.Activity;
@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.eways.etutor.FragmentWelcome;
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Model.User;
 import com.eways.etutor.Presenter.SignUpInfoPresenter;

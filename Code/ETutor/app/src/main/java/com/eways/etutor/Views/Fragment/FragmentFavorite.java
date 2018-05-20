@@ -1,14 +1,11 @@
-package com.eways.etutor.Fragment;
+package com.eways.etutor.Views.Fragment;
 
 
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,9 +13,7 @@ import com.eways.etutor.Adapter.Favorite.FavoriteAdapter;
 import com.eways.etutor.Model.Favorite;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.FileUtils;
-import com.eways.etutor.params.GlobalParams;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.eways.etutor.Utils.params.GlobalParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;

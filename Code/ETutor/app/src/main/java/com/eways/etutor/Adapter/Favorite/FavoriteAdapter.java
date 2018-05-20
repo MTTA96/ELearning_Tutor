@@ -5,10 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.eways.etutor.Adapter.Phone.PhoneCodeVHolder;
 import com.eways.etutor.Model.Favorite;
 import com.eways.etutor.R;
-import com.eways.etutor.params.GlobalParams;
+import com.eways.etutor.Utils.params.GlobalParams;
 
 import java.util.ArrayList;
 

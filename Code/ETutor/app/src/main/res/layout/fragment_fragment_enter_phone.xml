@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:weightSum="100"
     android:background="@color/colorWhite"
-    tools:context="com.eways.etutor.Fragment.FragmentEnterPhone">
+    tools:context=".Views.Fragment.FragmentEnterPhone">
 
     <!--fake space-->
     <View

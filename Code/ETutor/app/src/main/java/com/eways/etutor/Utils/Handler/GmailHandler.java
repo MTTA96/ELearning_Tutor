@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
-import com.eways.etutor.Fragment.LoginFragment;
+import com.eways.etutor.Views.Fragment.LoginFragment;
 import com.eways.etutor.Model.Teacher;
 import com.eways.etutor.Model.User;
 import com.eways.etutor.R;

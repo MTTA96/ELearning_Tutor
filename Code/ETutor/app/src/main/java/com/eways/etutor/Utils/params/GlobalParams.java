@@ -1,8 +1,7 @@
-package com.eways.etutor.params;
+package com.eways.etutor.Utils.params;
 
 import android.app.Application;
 
-import com.eways.etutor.Activity.MainActivity;
 import com.google.gson.Gson;
 
 /**

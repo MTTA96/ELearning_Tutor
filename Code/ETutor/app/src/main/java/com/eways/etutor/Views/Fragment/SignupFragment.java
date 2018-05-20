@@ -1,22 +1,16 @@
-package com.eways.etutor.Fragment;
+package com.eways.etutor.Views.Fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.eways.etutor.Activity.WelcomeActivity;
-import com.eways.etutor.Interface.CallParentFragment;
+import com.eways.etutor.Interfaces.CallParentFragment;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.SupportKey;

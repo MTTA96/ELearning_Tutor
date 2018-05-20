@@ -5,7 +5,7 @@
     android:background="@color/colorWhite"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context="com.eways.etutor.Fragment.FragmentUserInfo">
+    tools:context=".Views.Fragment.FragmentUserInfo">
 
     <!--fake space-->
     <View

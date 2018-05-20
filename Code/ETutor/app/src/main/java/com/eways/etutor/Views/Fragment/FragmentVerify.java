@@ -1,4 +1,4 @@
-package com.eways.etutor.Fragment;
+package com.eways.etutor.Views.Fragment;
 
 
 import android.app.Activity;
@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.eways.etutor.Interface.CallParentFragment;
+import com.eways.etutor.Interfaces.CallParentFragment;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 //import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
 import com.eways.etutor.Utils.SupportKey;
-import com.eways.etutor.views.VerificationCodeView;
+import com.eways.etutor.Views.VerificationCodeView;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;

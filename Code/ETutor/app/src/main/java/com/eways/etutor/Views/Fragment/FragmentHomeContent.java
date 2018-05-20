@@ -1,4 +1,4 @@
-package com.eways.etutor.Fragment;
+package com.eways.etutor.Views.Fragment;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.eways.etutor.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentCourseAttended extends Fragment {
+public class FragmentHomeContent extends Fragment {
 
 
-    public FragmentCourseAttended() {
+    public FragmentHomeContent() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class FragmentCourseAttended extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_course_attended, container, false);
+        return inflater.inflate(R.layout.fragment_fragment_home_content, container, false);
     }
 
 }
