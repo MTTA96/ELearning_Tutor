@@ -56,7 +56,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="15"
+                android:layout_weight="16"
                 android:orientation="horizontal"
                 android:weightSum="100">
 
@@ -66,15 +66,27 @@
                     android:layout_weight="37"
                     android:textStyle="bold"
                     android:gravity="center"
+                    android:background="@drawable/date_shape"
                     android:textColor="@color/colorWhite"
-                    android:background="drawables"
                     android:text="18/05/2018"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="35"
+                    android:layout_weight="5"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack"
+                    android:text="-"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="37"
                     android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@drawable/date_shape"
                     android:textColor="@color/colorWhite"
                     android:text="18/05/2018"/>
             </LinearLayout>
