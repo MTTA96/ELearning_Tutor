@@ -4,9 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
-import com.eways.etutor.Utils.Api.ApiUtils;
 import com.eways.etutor.Views.Fragment.LoginFragment;
-import com.eways.etutor.Model.UserBaseResponse;
+import com.eways.etutor.Network.UserBaseResponse;
 import com.eways.etutor.Model.User;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Api.ApiHandler;

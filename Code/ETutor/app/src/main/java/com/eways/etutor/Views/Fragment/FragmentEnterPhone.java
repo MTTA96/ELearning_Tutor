@@ -62,7 +62,18 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
         return root;
     }
 
+    /** Check phone's status */
+    private void checkPhone(String phoneNumber) {
+        if (!phoneNumber.isEmpty())
+            // Handle phone number
+            fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKey.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+            //enterPhonePresenter.checkPhoneStatus(phoneNumber);
+        else {
+            Toast.makeText(getContext(), getString(R.string.msg_missing_info), Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    /** EVENTS */
     @Override
     public void onClick(View v) {
         // Check if this fragment is the current fragment
@@ -77,21 +88,11 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
         }
     }
 
-    /** Check phone's status */
-    private void checkPhone(String phoneNumber) {
-        if (!phoneNumber.isEmpty())
-            // Handle phone number
-            fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKey.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
-            //enterPhonePresenter.checkPhoneStatus(phoneNumber);
-        else {
-            Toast.makeText(getContext(), getString(R.string.msg_missing_info), Toast.LENGTH_SHORT).show();
-        }
-    }
 
-    /** handle result from presenter */
+    /** Handle result from presenter */
     @Override
     public void dataCallBack(int result, @Nullable Bundle bundle) {
-        // handle error
+        // Handle error
         if (result == SupportKey.FAILED_CODE) {
             Toast.makeText(getContext(), R.string.msg_existing_user, Toast.LENGTH_SHORT).show();
             return;
