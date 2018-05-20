@@ -1,12 +1,12 @@
 package com.eways.etutor.Views.Activity;
 
 import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.View;
+import android.os.Bundle;
+import android.view.View;
 
-        import com.eways.etutor.R;
-        import com.eways.etutor.Utils.Handler.FragmentHandler;
-        import com.eways.etutor.Utils.SupportKey;
+import com.eways.etutor.R;
+import com.eways.etutor.Utils.Handler.FragmentHandler;
+import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.Views.Fragment.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //handle
-    public void Handle(){
+    public void Handle() {
         fragmentHandler = new FragmentHandler(this, R.id.content_user);
 
         fragmentHandler.changeFragment(new LoginFragment(), SupportKey.LOGIN_FRAGMENT_TAG, R.anim.slide_from_left, 0);

@@ -8,12 +8,37 @@
     android:background="@android:color/white"
     tools:context=".Views.Activity.HomeActivity">
 
-    <!-- Nội dung-->
-    <!--layout="@layout/content_course"-->
-    <include
-        layout="@layout/fragment_fragment_home_content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tbr_home"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10">
+
+        </android.support.v7.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="90">
+
+            <RelativeLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+    </LinearLayout>
 
     <!-- Menu -->
     <android.support.design.widget.NavigationView

@@ -48,6 +48,7 @@ public class FragmentHomeContent extends Fragment {
     }
 
     public void handle_views(){
+
     }
 
 }
