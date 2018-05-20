@@ -36,7 +36,7 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentUserInfo extends Fragment implements View.OnClickListener {
+public class FragmentUserInfo extends Fragment implements View.OnClickListener, DataCallBack {
 
     /**
      * VIEWS
@@ -62,6 +62,7 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener {
 
         Bundle args = new Bundle();
 //        args.putSerializable(credentialParam, (Serializable) credential);
+//
         FragmentUserInfo fragment = new FragmentUserInfo();
         fragment.setArguments(args);
         return fragment;
@@ -71,11 +72,11 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.activity = getActivity();
-//        fragmentHandler = new FragmentHandler(getContext(), R.id.childSignUpContentView);
-//        signUpInfoPresenter = new SignUpInfoPresenter(this);
-//        if (getArguments() != null) {
-//            credential = (PhoneAuthCredential) getArguments().getSerializable(credentialParam);
-//        }
+        fragmentHandler = new FragmentHandler(getContext(), R.id.content_signup);
+        signUpInfoPresenter = new SignUpInfoPresenter(this);
+        if (getArguments() != null) {
+            credential = (PhoneAuthCredential) getArguments().getSerializable(credentialParam);
+        }
     }
 
     @Override
@@ -94,23 +95,14 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener {
     public void declare_views(View root) {
         etName = root.findViewById(R.id.name);
         etPassword = root.findViewById(R.id.password);
-
-//<<<<<<< HEAD
-//=======
-//
-//
-//>>>>>>> origin/master
     }
 
     public void handle_views() {
-        setUpEditText();
-
-        clear_name.setOnClickListener(this);
-        clear_phone.setOnClickListener(this);
-//        SignupFragment.btnNext.setOnClickListener(this);
-//        SignupFragment.btnBack.setOnClickListener(this);
+//        setUpEditText();
+        SignupFragment.btnNext.setOnClickListener(this);
     }
 
+    /** This function only need when having clearing content feature (Consider to delete it)*/
     public void setUpEditText() {
         etName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -160,33 +152,15 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener {
      */
     @Override
     public void onClick(View view) {
-//<<<<<<< HEAD
-//        switch (view.getId()){
-//            case R.id.clear_phone_text:
-//                password.setText("");
-//
-//                break;
-//
-//
-//        }
-//=======
-
-//        switch (view.getId()) {
-//
-//            case R.id.btn_next:
-//                if (getActivity().getSupportFragmentManager().findFragmentById(R.id.childSignUpContentView) == this) {
-//                    user = prepareData();
-//                    if (user != null)
-//                        signInWithPhoneAuthCredential(FragmentVerify.credential);
-//                }
-//                break;
-//
-//            case R.id.btn_back:
-//                if (getActivity().getSupportFragmentManager().findFragmentById(R.id.childSignUpContentView) == this) {
-//                    fragmentHandler.changeFragment(FragmentEnterPhone.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
-//                }
-//                break;
-//        }
+        switch (view.getId()) {
+            case R.id.btn_next:
+                if (getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup) == this) {
+                    user = prepareData();
+                    if (user != null)
+                        signInWithPhoneAuthCredential(FragmentVerify.credential);
+                }
+                break;
+        }
     }
 
 
@@ -235,14 +209,13 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener {
         return null;
     }
 
-//    @Override
-//    public void dataCallBack(String result, @Nullable Bundle bundle) {
-//        if (result.compareTo("Success") == 0) {
-//            fragmentHandler.changeFragment(FragmentWelcome.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
-//            return;
-//        }
-//
-//        Toast.makeText(getContext(), getString(R.string.unknow_error_msg), Toast.LENGTH_SHORT).show();
-//>>>>>>> origin/master
-//    }
+    @Override
+    public void dataCallBack(String result, @Nullable Bundle bundle) {
+        if (result.compareTo("Success") == 0) {
+            fragmentHandler.changeFragment(FragmentWelcome.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+            return;
+        }
+
+        Toast.makeText(getContext(), getString(R.string.msg_unknow_error), Toast.LENGTH_SHORT).show();
+    }
 }
