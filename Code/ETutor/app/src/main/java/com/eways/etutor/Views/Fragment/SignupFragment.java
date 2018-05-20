@@ -30,7 +30,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
     /** Models */
     private FragmentHandler fragmentHandler;
     private int curPosition = 0;
-    private ArrayList<Fragment> listFragment;
 
     /** Methods */
     public SignupFragment() {
@@ -60,14 +59,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
         btnBack.setOnClickListener(this);
 
         //Setup Fragment Handle
-        fragmentHandler = new FragmentHandler(getActivity(), R.id.content_signup);
-        listFragment = new ArrayList<>();
-        listFragment.add(new FragmentEnterPhone());
-        listFragment.add(new FragmentVerify());
-        listFragment.add(new FragmentFavorite());
-
-        //Setup Fragment Handle
-        fragmentHandler.changeFragment(listFragment.get(curPosition), SupportKey.ENTER_PHONE_FRAGMENT_TAG,0, 0);
+        fragmentHandler.changeFragment(FragmentEnterPhone.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG,0, 0);
 
     }
 
