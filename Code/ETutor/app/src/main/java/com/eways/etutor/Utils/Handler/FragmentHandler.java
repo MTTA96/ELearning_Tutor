@@ -26,11 +26,14 @@ public class FragmentHandler {
 
     /** Change fragment */
     public void changeFragment(Fragment toFragment, String tag, int animationIn, int animationOut){
-        ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().setCustomAnimations(animationIn, animationOut).replace(resource, toFragment).commit();
+        if (tag != null)
+            ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().addToBackStack(tag).setCustomAnimations(animationIn, animationOut).replace(resource, toFragment).commit();
+        else
+            ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().setCustomAnimations(animationIn, animationOut).replace(resource, toFragment).commit();
     }
 
     /** Delete current fragment */
     public void deleteCurrentFragment() {
-
+        ((AppCompatActivity) context).getSupportFragmentManager().popBackStack();
     }
 }

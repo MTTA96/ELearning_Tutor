@@ -32,6 +32,14 @@ public class FragmentFavorite extends Fragment {
         // Required empty public constructor
     }
 
+    public static FragmentFavorite newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        FragmentFavorite fragment = new FragmentFavorite();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

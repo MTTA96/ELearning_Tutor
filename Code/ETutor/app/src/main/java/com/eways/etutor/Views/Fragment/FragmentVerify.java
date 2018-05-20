@@ -119,7 +119,7 @@ public class FragmentVerify extends Fragment implements View.OnClickListener, Ve
             FragmentVerify.credential = credential;
 
             // Move to next step
-            fragmentHandler.changeFragment(FragmentUserInfo.newInstance(), SupportKey.SIGNUP_INFO_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+            fragmentHandler.changeFragment(FragmentUserInfo.newInstance(), null, R.anim.slide_from_left, 0);
             SignupFragment.btnNext.setVisibility(View.VISIBLE);
         }
 

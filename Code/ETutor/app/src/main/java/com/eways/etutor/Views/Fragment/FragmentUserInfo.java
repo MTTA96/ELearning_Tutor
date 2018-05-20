@@ -151,14 +151,19 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener, 
      */
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_next:
-                if (getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup) == this) {
-                    user = prepareData();
-                    if (user != null)
-                        signInWithPhoneAuthCredential(FragmentVerify.credential);
+        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup);
+        if (currentFragment != null && currentFragment == this) {
+            {
+                switch (view.getId()) {
+                    case R.id.btn_next:
+                        if (getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup) == this) {
+                            user = prepareData();
+                            if (user != null)
+                                signInWithPhoneAuthCredential(FragmentVerify.credential);
+                        }
+                        break;
                 }
-                break;
+            }
         }
     }
 
@@ -205,24 +210,25 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener, 
         if (!name.isEmpty() && !password.isEmpty()) {
             tempUser.setFirstName(name);
             tempUser.setPassword(password);
+            tempUser.setPhone("+84" + FragmentEnterPhone.tvPhoneNumber.getText().toString());
             return tempUser;
         }
         return null;
     }
 
     /**
-     * handle results from presenter
+     * Handle results from presenter
      * */
     @Override
-    public void dataCallBack(int result, @Nullable Bundle bundle) {
+    public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
         // handle error
-        if (result == SupportKey.FAILED_CODE) {
+        if (resultCode == SupportKey.FAILED_CODE) {
             Toast.makeText(getContext(), getString(R.string.msg_unknow_error), Toast.LENGTH_SHORT).show();
             return;
         }
 
         // User signed up success
-        fragmentHandler.changeFragment(FragmentWelcome.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+        fragmentHandler.changeFragment(FragmentFavorite.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
 
     }
 }

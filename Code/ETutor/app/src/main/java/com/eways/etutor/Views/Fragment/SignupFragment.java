@@ -24,8 +24,7 @@ import java.util.ArrayList;
 public class SignupFragment extends Fragment implements View.OnClickListener, CallParentFragment {
 
     /** Views */
-    public static Button btnNext;
-    ImageView btnBack;
+    public static Button btnNext, btnBack;
 
     /** Models */
     private FragmentHandler fragmentHandler;
@@ -60,7 +59,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
         btnBack.setOnClickListener(this);
 
         //Setup Fragment handle
-        fragmentHandler.changeFragment(FragmentEnterPhone.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG,0, 0);
+        fragmentHandler.changeFragment(FragmentEnterPhone.newInstance(), null,0, 0);
 
     }
 
@@ -77,7 +76,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
                 break;
 
             case R.id.btn_back:
-//                clickBack();
+                clickBack();
                 break;
         }
     }
@@ -101,7 +100,9 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
 //        }
 //    }
 
-//    public void clickBack(){
+    public void clickBack(){
+        fragmentHandler.deleteCurrentFragment();
+
 //        getFragmentManager().popBackStack();
 //
 //        if (curPosition - 1 == 1){
@@ -111,7 +112,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Ca
 //        }
 //
 //        curPosition--;
-//    }
+    }
 
     @Override
     public void callParent(boolean result) {

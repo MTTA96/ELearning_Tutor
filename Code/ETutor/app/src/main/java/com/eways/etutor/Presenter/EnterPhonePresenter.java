@@ -2,6 +2,7 @@ package com.eways.etutor.Presenter;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Model.User;
@@ -23,16 +24,16 @@ public class EnterPhonePresenter implements DataCallBack {
         User.checkPhoneNumber(phoneNumber, this);
     }
 
-    /** handle results from database */
+    /** Handle results from database */
     @Override
-    public void dataCallBack(int result, @Nullable Bundle bundle) {
-        // handle error
-        if (result == SupportKey.FAILED_CODE) {
-            dataCallBack.dataCallBack(result, null);
+    public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
+        // Handle error
+        if (resultCode == SupportKey.FAILED_CODE) {
+            dataCallBack.dataCallBack(resultCode, null);
             return;
         }
 
-        // handle data
-        dataCallBack.dataCallBack(result, bundle);
+        // Handle data
+        dataCallBack.dataCallBack(resultCode, bundle);
     }
 }

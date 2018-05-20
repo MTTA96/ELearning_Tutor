@@ -112,9 +112,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
 
     /** Handle result from presenter */
     @Override
-    public void dataCallBack(int result, @Nullable Bundle bundle) {
+    public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
         // Handle error
-        if (result == SupportKey.FAILED_CODE) {
+        if (resultCode == SupportKey.FAILED_CODE) {
             Toast.makeText(getContext(), R.string.msg_sign_in_failed, Toast.LENGTH_SHORT).show();
             return;
         }

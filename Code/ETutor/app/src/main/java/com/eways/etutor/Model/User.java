@@ -1,5 +1,6 @@
 package com.eways.etutor.Model;
 
+import android.os.Bundle;
 import android.util.Log;
 
 import com.eways.etutor.Interfaces.DataCallBack;
@@ -231,20 +232,31 @@ public class User {
     /** Sign up*/
     public static void signUp(String jsonData, final DataCallBack dataCallBack) {
         UserServicesImp userServices = ApiUtils.userServices();
-        userServices.signup(jsonData).enqueue(new Callback<BaseResponse>() {
+        userServices.signUp(jsonData).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                // Handle errors
                 Log.d("signUpFirebase:", call.request().toString());
-                if (response.body().getErrorCode() == 200)
-                    if (response.body().getStatus().compareTo("Success") == 0) {
-                        dataCallBack.dataCallBack(SupportKey.SUCCESS_CODE, null);
-                        return;
-                    }
-                dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
+                if (!response.isSuccessful()) {
+                    Log.d("signUp:", "connect failed");
+                    dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
+                    return;
+                }
+
+                // Handle result
+                if (Integer.parseInt(response.body().getStatus()) == 0) {
+                    Log.d("signUp:", "sign up failed");
+                    dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
+                    return;
+                }
+
+                // Sign up success
+                dataCallBack.dataCallBack(SupportKey.SUCCESS_CODE, null);
             }
 
             @Override
             public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Log.d("signUp:", t.getLocalizedMessage());
                 dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
             }
         });
@@ -253,9 +265,30 @@ public class User {
     /** Sign in */
 
     /** Check phone's status to know if it existing in database when signing up */
-    public static void checkPhoneNumber(String phoneNumber, DataCallBack dataCallBack) {
+    public static void checkPhoneNumber(String phoneNumber, final DataCallBack dataCallBack) {
         UserServicesImp userServicesImp = ApiUtils.userServices();
-//        userServicesImp.checkPhoneNumber(phoneNumber).en
+        userServicesImp.checkPhoneNumber(phoneNumber).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                // Handle error
+                if (!response.isSuccessful()) {
+                    Log.d("checkPhoneNumber:", "connect failed");
+                    dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
+                    return;
+                }
+
+                // Prepare data
+                Bundle bundle = new Bundle();
+                bundle.putInt(null, Integer.parseInt(response.body().getStatus()));
+                dataCallBack.dataCallBack(SupportKey.SUCCESS_CODE, bundle);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Log.d("checkPhoneNumber:", t.getLocalizedMessage());
+                dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
+            }
+        });
     }
 
 }

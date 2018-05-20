@@ -22,7 +22,12 @@ public interface UserServicesImp {
     /** Sign up */
     @POST(ServerUrl.SIGN_UP_URL)
     @FormUrlEncoded
-    Call<BaseResponse> signup(@Field("mydata") String data);
+    Call<BaseResponse> signUp(@Field("mydata") String data);
+
+    /** Check phone number */
+    @POST(ServerUrl.CHECK_PHONE_NUMBER_URL)
+    @FormUrlEncoded
+    Call<BaseResponse> checkPhoneNumber(@Field("Phone") String phone);
 
     /** Add majors */
 
