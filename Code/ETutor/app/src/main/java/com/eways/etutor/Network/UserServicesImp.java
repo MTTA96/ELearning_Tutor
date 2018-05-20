@@ -23,4 +23,7 @@ public interface UserServicesImp {
     @POST(ServerUrl.SIGN_UP_URL)
     @FormUrlEncoded
     Call<BaseResponse> signup(@Field("mydata") String data);
+
+    /** Add majors */
+
 }

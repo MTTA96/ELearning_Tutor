@@ -211,11 +211,11 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener, 
     }
 
     /**
-     * Handle results from presenter
+     * handle results from presenter
      * */
     @Override
     public void dataCallBack(int result, @Nullable Bundle bundle) {
-        // Handle error
+        // handle error
         if (result == SupportKey.FAILED_CODE) {
             Toast.makeText(getContext(), getString(R.string.msg_unknow_error), Toast.LENGTH_SHORT).show();
             return;

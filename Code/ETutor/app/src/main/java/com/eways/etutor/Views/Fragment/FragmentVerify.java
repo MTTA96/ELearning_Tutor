@@ -90,7 +90,7 @@ public class FragmentVerify extends Fragment implements View.OnClickListener {
                 if (complete){
                     String completeCode = code.getTextString();
 
-                    //Handle code at here ...
+                    //handle code at here ...
                     callParentFragment.callParent(true);
 
                 }

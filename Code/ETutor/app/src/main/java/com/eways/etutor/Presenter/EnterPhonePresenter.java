@@ -23,16 +23,16 @@ public class EnterPhonePresenter implements DataCallBack {
         User.checkPhoneNumber(phoneNumber, this);
     }
 
-    /** Handle results from database */
+    /** handle results from database */
     @Override
     public void dataCallBack(int result, @Nullable Bundle bundle) {
-        // Handle error
+        // handle error
         if (result == SupportKey.FAILED_CODE) {
             dataCallBack.dataCallBack(result, null);
             return;
         }
 
-        // Handle data
+        // handle data
         dataCallBack.dataCallBack(result, bundle);
     }
 }

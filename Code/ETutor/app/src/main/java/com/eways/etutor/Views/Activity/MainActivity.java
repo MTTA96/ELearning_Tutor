@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         content = findViewById(R.id.content_user);
     }
 
-    //Handle
-    public void Handle() {
+    //handle
+    public void Handle(){
         fragmentHandler = new FragmentHandler(this, R.id.content_user);
 
         fragmentHandler.changeFragment(new LoginFragment(), SupportKey.LOGIN_FRAGMENT_TAG, R.anim.slide_from_left, 0);
