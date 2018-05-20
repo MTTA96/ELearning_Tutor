@@ -194,7 +194,9 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener, 
                 });
     }
 
-    /** Prepare data before sign up */
+    /**
+     * Prepare data before sign up
+     * */
     private User prepareData() {
         User tempUser = new User();
         name = etName.getText().toString();
@@ -208,13 +210,19 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener, 
         return null;
     }
 
+    /**
+     * Handle results from presenter
+     * */
     @Override
-    public void dataCallBack(String result, @Nullable Bundle bundle) {
-        if (result.compareTo("Success") == 0) {
-            fragmentHandler.changeFragment(FragmentWelcome.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+    public void dataCallBack(int result, @Nullable Bundle bundle) {
+        // Handle error
+        if (result == SupportKey.FAILED_CODE) {
+            Toast.makeText(getContext(), getString(R.string.msg_unknow_error), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Toast.makeText(getContext(), getString(R.string.msg_unknow_error), Toast.LENGTH_SHORT).show();
+        // User signed up success
+        fragmentHandler.changeFragment(FragmentWelcome.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+
     }
 }

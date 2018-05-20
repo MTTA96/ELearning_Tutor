@@ -1,15 +1,18 @@
 package com.eways.etutor.Utils.Api;
 
-import retrofit2.Retrofit;
+
+import com.eways.etutor.Network.RetrofitClient;
+import com.eways.etutor.Network.UserServicesImp;
+import com.eways.etutor.Utils.ServerUrl;
 
 /**
- * Created by ADMIN on 3/18/2018.
+ * Created by zzzzz on 3/13/2018.
  */
 
 public class ApiUtils {
-    public static final String BASE_URL = "https://ewayslearn.000webhostapp.com";
+    public static final String BASE_URL = ServerUrl.ServerAPIURL;
 
-    public static ApiHandler getUserById(){
-        return Client.getClient(BASE_URL).create(ApiHandler.class);
+    public static UserServicesImp userServices() {
+        return RetrofitClient.getClient(BASE_URL).create(UserServicesImp.class);
     }
 }

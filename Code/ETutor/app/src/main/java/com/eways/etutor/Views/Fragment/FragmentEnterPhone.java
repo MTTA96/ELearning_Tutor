@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Presenter.EnterPhonePresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
@@ -21,12 +22,13 @@ import com.eways.etutor.Utils.SupportKey;
  * A simple {@link Fragment} subclass.
  */
 
-public class FragmentEnterPhone extends Fragment implements View.OnClickListener {
+public class FragmentEnterPhone extends Fragment implements View.OnClickListener, DataCallBack {
     public static TextView tvPhoneNumber;
 
     /** Models */
     private FragmentHandler fragmentHandler;
     private EnterPhonePresenter enterPhonePresenter;
+    private String phoneNumber;
 
     public FragmentEnterPhone() {
         // Required empty public constructor
@@ -45,6 +47,7 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentHandler = new FragmentHandler(getContext(), R.id.content_signup);
+        enterPhonePresenter = new EnterPhonePresenter(this);
     }
 
     @Override
@@ -66,21 +69,34 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
         if (getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup) == this) {
             switch (v.getId()) {
                 case R.id.btn_next:
-                    // Check phone number on server
-                    checkPhone();
-                    String phoneNumber = "+84" + tvPhoneNumber.getText().toString();
-                    if (!phoneNumber.isEmpty())
-                        fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKey.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
-                    else {
-                        Toast.makeText(getContext(), getString(R.string.msg_missing_info), Toast.LENGTH_SHORT).show();
-                    }
+                    // Check phone number
+                    phoneNumber = "+84" + tvPhoneNumber.getText().toString();
+                    checkPhone(phoneNumber);
                     break;
             }
         }
     }
 
-    /** Check phone's status on server */
-    private void checkPhone() {
+    /** Check phone's status */
+    private void checkPhone(String phoneNumber) {
+        if (!phoneNumber.isEmpty())
+            // Handle phone number////////
+            enterPhonePresenter.checkPhoneStatus(phoneNumber);
+        else {
+            Toast.makeText(getContext(), getString(R.string.msg_missing_info), Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    /** Handle result from presenter */
+    @Override
+    public void dataCallBack(int result, @Nullable Bundle bundle) {
+        // Handle error
+        if (result == SupportKey.FAILED_CODE) {
+            Toast.makeText(getContext(), R.string.msg_existing_user, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Phone is available to use now
+        fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKey.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
     }
 }

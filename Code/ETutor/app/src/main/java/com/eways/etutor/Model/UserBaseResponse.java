@@ -7,7 +7,7 @@ package com.eways.etutor.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Teacher {
+public class UserBaseResponse {
 
     @SerializedName("errorCode")
     @Expose

@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
+import com.eways.etutor.Utils.Api.ApiUtils;
 import com.eways.etutor.Views.Fragment.LoginFragment;
-import com.eways.etutor.Model.Teacher;
+import com.eways.etutor.Model.UserBaseResponse;
 import com.eways.etutor.Model.User;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Api.ApiHandler;
-import com.eways.etutor.Utils.Api.ApiUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -32,7 +32,7 @@ public class GmailHandler {
 
     FragmentHandler fragmentHandler ;
 //    SharedPreferencesHandler sharedPreferencesHandler;
-    Teacher account;
+    UserBaseResponse account;
     ApiHandler apiHandler;
 
     private static final int RC_SIGN_IN = 1 ;
@@ -44,7 +44,7 @@ public class GmailHandler {
         this.mActivity = mActivity;
         this.loginFragment = loginFragment;
 
-        apiHandler = ApiUtils.getUserById();
+//        apiHandler = ApiUtils.getUserById();
 
 //        sharedPreferencesHandler = new SharedPreferencesHandler(mActivity, LoginFragment.KEY_PRE_LOGIN);
     }
@@ -99,11 +99,11 @@ public class GmailHandler {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(mActivity);
     }
 
-    public Teacher Login(final String id){
+    public UserBaseResponse Login(final String id){
         fragmentHandler = new FragmentHandler(mActivity, R.id.main_activity );
-        apiHandler.getUserById(id).enqueue(new Callback<Teacher>() {
+        apiHandler.getUserById(id).enqueue(new Callback<UserBaseResponse>() {
             @Override
-            public void onResponse(Call<Teacher> call, Response<Teacher> response) {
+            public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
                 if (response.isSuccessful()){
                     //Kiem tra các trường hợp
 
@@ -120,7 +120,7 @@ public class GmailHandler {
             }
 
             @Override
-            public void onFailure(Call<Teacher> call, Throwable t) {
+            public void onFailure(Call<UserBaseResponse> call, Throwable t) {
 
 
             }

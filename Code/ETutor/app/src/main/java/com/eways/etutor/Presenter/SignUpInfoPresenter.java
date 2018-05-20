@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Model.User;
+import com.eways.etutor.Utils.SupportKey;
 import com.google.gson.Gson;
 
 /**
@@ -18,7 +19,7 @@ public class SignUpInfoPresenter implements DataCallBack {
         this.dataCallBack = dataCallBack;
     }
 
-    /** Sign up*/
+    /** Sign up */
     public void signUp(User user) {
         Gson gson = new Gson();
 
@@ -29,14 +30,17 @@ public class SignUpInfoPresenter implements DataCallBack {
         User.signUp(jsonData, this);
     }
 
+    /** Handle results from database */
     @Override
-    public void dataCallBack(String result, @Nullable Bundle bundle) {
-        if (result.compareTo("Success") == 0) {
+    public void dataCallBack(int result, @Nullable Bundle bundle) {
+        // Handle error
+        if (result == SupportKey.FAILED_CODE) {
             dataCallBack.dataCallBack(result, null);
             return;
         }
 
-        dataCallBack.dataCallBack(result, null);
+        // Handle data
+        dataCallBack.dataCallBack(result, bundle);
     }
 
 }
