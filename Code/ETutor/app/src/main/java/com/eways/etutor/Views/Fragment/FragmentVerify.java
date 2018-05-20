@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.eways.etutor.Interfaces.CallParentFragment;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 //import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
@@ -30,7 +29,7 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentVerify extends Fragment implements View.OnClickListener {
+public class FragmentVerify extends Fragment implements View.OnClickListener, VerificationCodeView.CodeCompleteListener {
 
     /** MODELS */
     private String mVerificationId;
@@ -39,7 +38,6 @@ public class FragmentVerify extends Fragment implements View.OnClickListener {
     private FragmentHandler fragmentHandler;
     private VerificationCodeView code;
     private Activity activity;
-    public static CallParentFragment callParentFragment;
     public static PhoneAuthCredential credential;
 
     /** PARAMS */
@@ -78,24 +76,13 @@ public class FragmentVerify extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_verify, container, false);
 
         // Configure views
-        declare_views(root);
+        declareViews(root);
 
         // Events
         root.findViewById(R.id.resent_code_text_view).setOnClickListener(this);
 
         //listen when completing enter code
-        code.setCodeCompleteListener(new VerificationCodeView.CodeCompleteListener() {
-            @Override
-            public void complete(boolean complete) {
-                if (complete){
-                    String completeCode = code.getTextString();
-
-                    //handle code at here ...
-                    callParentFragment.callParent(true);
-
-                }
-            }
-        });
+        code.setCodeCompleteListener(this);
 
         SignupFragment.btnNext.setVisibility(View.INVISIBLE);
         verifyPhoneNumber();
@@ -103,7 +90,7 @@ public class FragmentVerify extends Fragment implements View.OnClickListener {
         return root;
     }
 
-    public void declare_views(View root){
+    public void declareViews(View root){
         code = root.findViewById(R.id.code);
     }
 
@@ -174,6 +161,14 @@ public class FragmentVerify extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.resent_code_text_view) {
             verifyPhoneNumber();
+        }
+    }
+
+    @Override
+    public void complete(boolean complete) {
+        if (complete) {
+            // Create credential with verificationId and code
+            credential = PhoneAuthProvider.getCredential(mVerificationId, code.getTextString());
         }
     }
 }

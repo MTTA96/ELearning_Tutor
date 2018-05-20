@@ -1,6 +1,6 @@
 package com.eways.etutor.Utils.Api;
 
-import com.eways.etutor.Model.UserBaseResponse;
+import com.eways.etutor.Network.UserBaseResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

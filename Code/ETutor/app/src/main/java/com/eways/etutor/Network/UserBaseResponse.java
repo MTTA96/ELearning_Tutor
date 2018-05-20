@@ -1,9 +1,10 @@
-package com.eways.etutor.Model;
+package com.eways.etutor.Network;
 
 /**
  * Created by ADMIN on 3/18/2018.
  */
 
+import com.eways.etutor.Model.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
