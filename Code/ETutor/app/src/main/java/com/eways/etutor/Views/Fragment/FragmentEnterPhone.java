@@ -80,8 +80,9 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
     /** Check phone's status */
     private void checkPhone(String phoneNumber) {
         if (!phoneNumber.isEmpty())
-            // handle phone number////////
-            enterPhonePresenter.checkPhoneStatus(phoneNumber);
+            // Handle phone number
+            fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKey.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+            //enterPhonePresenter.checkPhoneStatus(phoneNumber);
         else {
             Toast.makeText(getContext(), getString(R.string.msg_missing_info), Toast.LENGTH_SHORT).show();
         }
