@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 
-import com.eways.etutor.params.GlobalParams;
+import com.eways.etutor.Utils.params.GlobalParams;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -6,28 +6,21 @@ import android.support.annotation.Nullable;
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Model.User;
 import com.eways.etutor.Utils.SupportKey;
-import com.google.gson.Gson;
 
 /**
- * Created by zzzzz on 5/13/2018.
+ * Created by zzzzz on 5/20/2018.
  */
 
-public class SignUpInfoPresenter implements DataCallBack {
+public class EnterPhonePresenter implements DataCallBack {
     private DataCallBack dataCallBack;
 
-    public SignUpInfoPresenter(DataCallBack dataCallBack) {
+    public EnterPhonePresenter(DataCallBack dataCallBack) {
         this.dataCallBack = dataCallBack;
     }
 
-    /** Sign up */
-    public void signUp(User user) {
-        Gson gson = new Gson();
-
-        // Parse obj to json
-        String jsonData = gson.toJson(user);
-
-        // Send to server
-        User.signUp(jsonData, this);
+    /** Check phone's status on server */
+    public void checkPhoneStatus(String phoneNumber) {
+        User.checkPhoneNumber(phoneNumber, this);
     }
 
     /** Handle results from database */
@@ -42,5 +35,4 @@ public class SignUpInfoPresenter implements DataCallBack {
         // Handle data
         dataCallBack.dataCallBack(result, bundle);
     }
-
 }

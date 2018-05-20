@@ -1,4 +1,4 @@
-package com.eways.etutor.views;
+package com.eways.etutor.Views;
 
 /**
  * Created by ADMIN on 5/17/2018.

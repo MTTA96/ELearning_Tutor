@@ -5,7 +5,8 @@ import android.util.Log;
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Network.BaseResponse;
 import com.eways.etutor.Network.UserServicesImp;
-import com.eways.etutor.Utils.ApiUtils;
+import com.eways.etutor.Utils.Api.ApiUtils;
+import com.eways.etutor.Utils.SupportKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -225,7 +226,9 @@ public class User {
         this.dateRegistered = dateRegistered;
     }
 
-    /** MARK: METHODS */
+    /** MARK: - METHODS */
+
+    /** Sign up*/
     public static void signUp(String jsonData, final DataCallBack dataCallBack) {
         UserServicesImp userServices = ApiUtils.userServices();
         userServices.signup(jsonData).enqueue(new Callback<BaseResponse>() {
@@ -234,17 +237,25 @@ public class User {
                 Log.d("signUpFirebase:", call.request().toString());
                 if (response.body().getErrorCode() == 200)
                     if (response.body().getStatus().compareTo("Success") == 0) {
-                        dataCallBack.dataCallBack("Success", null);
+                        dataCallBack.dataCallBack(SupportKey.SUCCESS_CODE, null);
                         return;
                     }
-                dataCallBack.dataCallBack("Failed", null);
+                dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
             }
 
             @Override
             public void onFailure(Call<BaseResponse> call, Throwable t) {
-                dataCallBack.dataCallBack("Failed", null);
+                dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
             }
         });
+    }
+
+    /** Sign in */
+
+    /** Check phone's status to know if it existing in database when signing up */
+    public static void checkPhoneNumber(String phoneNumber, DataCallBack dataCallBack) {
+        UserServicesImp userServicesImp = ApiUtils.userServices();
+//        userServicesImp.checkPhoneNumber(phoneNumber).en
     }
 
 }

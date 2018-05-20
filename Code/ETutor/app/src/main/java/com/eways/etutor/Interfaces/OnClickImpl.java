@@ -1,4 +1,4 @@
-package com.eways.etutor;
+package com.eways.etutor.Interfaces;
 
 /**
  * Created by zzzzz on 5/7/2018.

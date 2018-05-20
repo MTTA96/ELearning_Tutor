@@ -8,6 +8,10 @@ public class SupportKey {
     // SharedPreference file's name
     public static String SHARED_PREF_FILE_NAME = "SharedPreferDB";
 
+    /** ERRORS CODE */
+    public static final int FAILED_CODE = 0;
+    public static final int SUCCESS_CODE = 1;
+
     /** TAGS */
     public static final String LOGIN_FRAGMENT_TAG = "LoginFragmentTag";
     public static final String SIGN_UP_FRAGMENT_TAG = "SignUpFragmentTag";

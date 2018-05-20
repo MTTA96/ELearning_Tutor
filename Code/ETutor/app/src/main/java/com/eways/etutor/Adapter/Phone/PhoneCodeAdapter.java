@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.eways.etutor.Model.PhoneCode;
 import com.eways.etutor.R;
-import com.eways.etutor.params.GlobalParams;
+import com.eways.etutor.Utils.params.GlobalParams;
 
 import java.util.ArrayList;
 

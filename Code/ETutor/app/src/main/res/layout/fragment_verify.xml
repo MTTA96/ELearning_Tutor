@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorWhite"
-    tools:context="com.eways.etutor.Fragment.FragmentVerify">
+    tools:context=".Views.Fragment.FragmentVerify">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,12 +41,12 @@
                 android:layout_height="0dp"
                 android:layout_weight="10"/>
 
-            <com.eways.etutor.views.VerificationCodeView
+            <com.eways.etutor.Views.VerificationCodeView
                 android:id="@+id/code"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="40"
-                app:vcodeTextSize="15sp"></com.eways.etutor.views.VerificationCodeView>
+                app:vcodeTextSize="15sp"></com.eways.etutor.Views.VerificationCodeView>
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -64,6 +64,7 @@
                     android:layout_weight="25"/>
 
                 <TextView
+                    android:id="@+id/resent_code_text_view"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="50"

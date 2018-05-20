@@ -1,6 +1,6 @@
 package com.eways.etutor.Utils.Api;
 
-import com.eways.etutor.Model.Teacher;
+import com.eways.etutor.Model.UserBaseResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -15,9 +15,9 @@ import retrofit2.http.Query;
 public interface ApiHandler {
     //Get user by id
     @GET("/API/GetTeacherByUid.php")
-    Call<Teacher> getUserById(@Query("Uid") String uid);
+    Call<UserBaseResponse> getUserById(@Query("Uid") String uid);
 
     @POST("/API/AddNewUser.php")
-    Call<Teacher> addRawUser(@Field("Uid") String uid, @Field("FirstName") String firstName, @Field("Phone") String phone);
+    Call<UserBaseResponse> addRawUser(@Field("Uid") String uid, @Field("FirstName") String firstName, @Field("Phone") String phone);
 
 }
