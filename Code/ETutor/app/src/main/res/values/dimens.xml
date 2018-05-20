@@ -8,7 +8,7 @@
     <dimen name="vcode_text_size" >18sp</dimen>
     <dimen name="vcode_bottom_icon_height">6dp</dimen>
     <dimen name="vcode_bottom_icon_width">48dp</dimen>
-    <dimen name="vcode_item_space_size">19dp</dimen>
+    <dimen name="vcode_item_space_size">8.5dp</dimen>
 
     <!-- Slide menu -->
     <dimen name="nav_header_main_height">160dp</dimen>

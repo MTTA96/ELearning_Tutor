@@ -8,7 +8,6 @@ import com.eways.etutor.Views.Fragment.LoginFragment;
 import com.eways.etutor.Network.UserBaseResponse;
 import com.eways.etutor.Model.User;
 import com.eways.etutor.R;
-import com.eways.etutor.Utils.Api.ApiHandler;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -32,7 +31,6 @@ public class GmailHandler {
     FragmentHandler fragmentHandler ;
 //    SharedPreferencesHandler sharedPreferencesHandler;
     UserBaseResponse account;
-    ApiHandler apiHandler;
 
     private static final int RC_SIGN_IN = 1 ;
 
@@ -100,30 +98,30 @@ public class GmailHandler {
 
     public UserBaseResponse Login(final String id){
         fragmentHandler = new FragmentHandler(mActivity, R.id.main_activity );
-        apiHandler.getUserById(id).enqueue(new Callback<UserBaseResponse>() {
-            @Override
-            public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
-                if (response.isSuccessful()){
-                    //Kiem tra các trường hợp
-
-                    User user_ = response.body().getTeacher();
-
-                    if (user_.getVerification().compareTo("") != 0){
-
-                    }else {
-                        String temp = response.body().getErrorCode().toString();
-                        if (response.body().getErrorCode().toString().compareTo("200") !=0 ){
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UserBaseResponse> call, Throwable t) {
-
-
-            }
-        });
+//        apiHandler.getUserById(id).enqueue(new Callback<UserBaseResponse>() {
+//            @Override
+//            public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
+//                if (response.isSuccessful()){
+//                    //Kiem tra các trường hợp
+//
+//                    User user_ = response.body().getTeacher();
+//
+//                    if (user_.getVerification().compareTo("") != 0){
+//
+//                    }else {
+//                        String temp = response.body().getErrorCode().toString();
+//                        if (response.body().getErrorCode().toString().compareTo("200") !=0 ){
+//                        }
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<UserBaseResponse> call, Throwable t) {
+//
+//
+//            }
+//        });
 
         Log.d("test", "1");
         return account;

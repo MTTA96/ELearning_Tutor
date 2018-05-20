@@ -27,8 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.Activity.HomeActivity" />
-        <activity android:name= ".Views.Activity.MainActivity"/>
+        <activity android:name=".Views.Activity.HomeActivity"/>
+        <activity android:name=".Views.Activity.MainActivity"/>
         <activity android:name=".Views.Activity.WelcomeActivity"></activity>
     </application>
 

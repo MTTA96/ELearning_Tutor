@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 /**
- * Created by Victor Yang on 2016/12/15 0015.
+
  * TextViewUtils.
  */
 

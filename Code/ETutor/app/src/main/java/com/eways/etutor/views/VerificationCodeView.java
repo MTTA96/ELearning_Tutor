@@ -81,7 +81,7 @@ public class VerificationCodeView extends LinearLayout {
         if (mVCodeBottomErrorIcon == null) {
             mVCodeBottomErrorIcon = getResources().getDrawable(R.drawable.icon_vcode_err_bottom);
         }
-        int mVCodeViewCount = typedArray.getInt(R.styleable.VerificationCodeView_vcodeViewCount, 4);
+        int mVCodeViewCount = typedArray.getInt(R.styleable.VerificationCodeView_vcodeViewCount, 6);
         mVCodeItemCenterSpaceSize = typedArray.getDimensionPixelSize(
                 R.styleable.VerificationCodeView_vcodeItemSpaceSize,
                 getResources().getDimensionPixelSize(R.dimen.vcode_item_space_size));

@@ -15,4 +15,8 @@ public class ApiUtils {
     public static UserServicesImp userServices() {
         return RetrofitClient.getClient(BASE_URL).create(UserServicesImp.class);
     }
+
+    public static CourseServicesImp courseServices() {
+        return RetrofitClient.getClient(BASE_URL).create(CourseServicesImp.class);
+    }
 }

@@ -5,14 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.eways.etutor.Adapter.Favorite.FavoriteViewHolder;
 import com.eways.etutor.Model.Course;
-import com.eways.etutor.Model.Favorite;
 import com.eways.etutor.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by ADMIN on 5/19/2018.
@@ -38,8 +34,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseVHolder> {
     public void onBindViewHolder(CourseVHolder holder, int position) {
         Course course = listCourse.get(position);
 
-        holder.studentName.setText(course.getName());
-        holder.subject.setText(course.getSubject());
+        holder.studentName.setText(course.getFirstName() + course.getLastName());
+        holder.subject.setText(course.getSubjectName());
 
         //check time and set status
         //do it later
@@ -48,7 +44,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseVHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listCourse.size();
     }
 
 }

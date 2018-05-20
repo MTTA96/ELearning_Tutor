@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="40"
-                app:vcodeTextSize="15sp"></com.eways.etutor.Views.VerificationCodeView>
+                app:vcodeTextSize="10sp"></com.eways.etutor.Views.VerificationCodeView>
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"

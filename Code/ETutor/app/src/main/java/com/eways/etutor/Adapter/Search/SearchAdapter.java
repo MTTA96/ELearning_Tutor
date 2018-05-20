@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.eways.etutor.Adapter.Favorite.FavoriteViewHolder;
 import com.eways.etutor.Model.Course;
 import com.eways.etutor.R;
 
@@ -37,8 +36,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchVHolder> {
 
         //load image with picasso here
 
-        holder.nameStudent.setText(course.getName());
-        holder.subject.setText(course.getSubject());
+        holder.nameStudent.setText(course.getFirstName());
+        holder.subject.setText(course.getSubjectName());
     }
 
     @Override
