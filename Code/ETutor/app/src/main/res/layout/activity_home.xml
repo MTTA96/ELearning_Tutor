@@ -24,19 +24,20 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="90">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></RelativeLayout>
-
+            <!-- Suggestions -->
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_search"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <!-- Content -->
+            <FrameLayout
+                android:id="@+id/home_content_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
         </RelativeLayout>
     </LinearLayout>

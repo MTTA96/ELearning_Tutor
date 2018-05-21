@@ -1,4 +1,4 @@
-package com.eways.etutor.Views.Fragment;
+package com.eways.etutor.Views.Fragment.Authentication;
 
 
 import android.os.Bundle;
@@ -8,14 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.eways.etutor.Interfaces.CallParentFragment;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
-import com.eways.etutor.Utils.SupportKey;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
