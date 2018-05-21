@@ -32,15 +32,15 @@ public class SignUpInfoPresenter implements DataCallBack {
 
     /** handle results from database */
     @Override
-    public void dataCallBack(int result, @Nullable Bundle bundle) {
+    public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
         // handle error
-        if (result == SupportKey.FAILED_CODE) {
-            dataCallBack.dataCallBack(result, null);
+        if (resultCode == SupportKey.FAILED_CODE) {
+            dataCallBack.dataCallBack(resultCode, null);
             return;
         }
 
         // handle data
-        dataCallBack.dataCallBack(result, bundle);
+        dataCallBack.dataCallBack(resultCode, bundle);
     }
 
 }

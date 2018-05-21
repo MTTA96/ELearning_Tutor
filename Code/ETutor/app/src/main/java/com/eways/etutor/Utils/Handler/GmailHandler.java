@@ -64,7 +64,7 @@ public class GmailHandler {
         loginFragment.startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    //handle result of login gmail
+    //handle result of signIn gmail
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             Log.d("test", "handleSignInResult: ");

@@ -1,12 +1,14 @@
 package com.eways.etutor.Adapter.Search;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.eways.etutor.Model.Course;
 import com.eways.etutor.R;
+import com.eways.etutor.Utils.params.GlobalParams;
 
 import java.util.ArrayList;
 
@@ -32,16 +34,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchVHolder> {
 
     @Override
     public void onBindViewHolder(SearchVHolder holder, int position) {
+        Log.d("parseJson", String.valueOf(listCourse.get(position)));
         Course course = listCourse.get(position);
-
         //load image with picasso here
 
-        holder.nameStudent.setText(course.getFirstName());
+        holder.nameStudent.setText(course.getFirstName() + course.getLastName());
         holder.subject.setText(course.getSubjectName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listCourse.size();
     }
 }

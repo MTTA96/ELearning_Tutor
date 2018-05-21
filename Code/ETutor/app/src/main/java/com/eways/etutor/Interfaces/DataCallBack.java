@@ -8,5 +8,5 @@ import android.support.annotation.Nullable;
  */
 
 public interface DataCallBack {
-    void dataCallBack(int result, @Nullable Bundle bundle);
+    void dataCallBack(int resultCode, @Nullable Bundle bundle);
 }

@@ -227,7 +227,7 @@ public class Course {
     /** Search course */
     public static void searchCourses(String keyWord, String filters, final DataCallBack dataCallBack) {
         CourseServicesImp courseServicesImp = ApiUtils.courseServices();
-        String condition = "{\"KeyWord\":\"" + keyWord + "\",\"SubjectName\":\"" + keyWord + "\",\"CourseType\":\""+ 0 +"\"}";
+        String condition = "{\"TutorName\":\"" + keyWord + "\",\"SubjectName\":\"" + keyWord + "\",\"CourseType\":\""+ 0 +"\"}";
         courseServicesImp.getCourseSearch(condition).enqueue(new Callback<ListResponse>() {
             @Override
             public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {

@@ -32,10 +32,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseVHolder> {
 
     @Override
     public void onBindViewHolder(CourseVHolder holder, int position) {
-        Course course = listCourse.get(position);
 
-        holder.studentName.setText(course.getFirstName() + course.getLastName());
-        holder.subject.setText(course.getSubjectName());
+        holder.studentName.setText(listCourse.get(position).getFirstName().toString() + listCourse.get(position).getLastName().toString());
+        holder.subject.setText(listCourse.get(position).getSubjectName().toString());
 
         //check time and set status
         //do it later

@@ -57,6 +57,7 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
         View root = inflater.inflate(R.layout.fragment_fragment_enter_phone, container, false);
         tvPhoneNumber = root.findViewById(R.id.phone);
 
+        // Events
         SignupFragment.btnNext.setOnClickListener(this);
 
         return root;
@@ -64,25 +65,29 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
 
     /** Check phone's status */
     private void checkPhone(String phoneNumber) {
-        if (!phoneNumber.isEmpty())
-            // Handle phone number
-            fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKey.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
-            //enterPhonePresenter.checkPhoneStatus(phoneNumber);
-        else {
-            Toast.makeText(getContext(), getString(R.string.msg_missing_info), Toast.LENGTH_SHORT).show();
+        // Handle errors
+        if (phoneNumber.isEmpty() || phoneNumber.length() < 9 || phoneNumber.length() > 10) {
+            Toast.makeText(getContext(), getString(R.string.msg_wrong_info), Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        // Check phone number in database
+        this.phoneNumber = "+84" + tvPhoneNumber.getText().toString();
+        enterPhonePresenter.checkPhoneStatus(this.phoneNumber);
+
+        return;
     }
 
     /** EVENTS */
     @Override
     public void onClick(View v) {
         // Check if this fragment is the current fragment
-        if (getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup) == this) {
+        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup);
+        if (currentFragment != null && currentFragment == this) {
             switch (v.getId()) {
                 case R.id.btn_next:
                     // Check phone number
-                    phoneNumber = "+84" + tvPhoneNumber.getText().toString();
-                    checkPhone(phoneNumber);
+                    checkPhone(tvPhoneNumber.getText().toString());
                     break;
             }
         }
@@ -91,14 +96,25 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
 
     /** Handle result from presenter */
     @Override
-    public void dataCallBack(int result, @Nullable Bundle bundle) {
+    public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
         // Handle error
-        if (result == SupportKey.FAILED_CODE) {
-            Toast.makeText(getContext(), R.string.msg_existing_user, Toast.LENGTH_SHORT).show();
+        if (resultCode == SupportKey.FAILED_CODE) {
+            Toast.makeText(getContext(), R.string.msg_unknow_error, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Handle result
+        int status = bundle.getInt(null);
+
+        // If phone is not available
+        if (status == 0) {
+            Toast.makeText(getContext(), R.string.msg_existing_user, Toast.LENGTH_LONG).show();
             return;
         }
 
         // Phone is available to use now
         fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKey.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
     }
+
 }
+

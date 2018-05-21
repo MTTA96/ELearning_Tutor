@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.eways.etutor.Adapter.Course.CourseAdapter;
+import com.eways.etutor.Adapter.Search.SearchAdapter;
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Model.Course;
 import com.eways.etutor.Presenter.HomePresenter;
@@ -100,7 +101,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (newText != null)
-                    homePresenter.searchCorese("", "");
+                    homePresenter.searchCorese(newText, "");
                 return true;
             }
         });
@@ -160,13 +161,20 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // Get data success
         ArrayList resultsList = (ArrayList) bundle.getSerializable(null);
 
-        if (resultsList != null){
-            CourseAdapter courseAdapter = new CourseAdapter(resultsList, R.layout.item_search);
+        if (resultsList.size() > 0){
+            ArrayList<Course> listCourse = new ArrayList<>();
 
-            listSearch.setLayoutManager(new GridLayoutManager(GlobalParams.getInstance(), 1));
+            for (int i = 0; i < resultsList.size(); i++){
+                String temp = GlobalParams.getInstance().getGSon().fromJson(resultsList.get(i).toString(), Course.class).toString();
+                listCourse.add(GlobalParams.getInstance().getGSon().fromJson(resultsList.get(i).toString(), Course.class));
+            }
+
+            SearchAdapter searchAdapter = new SearchAdapter(listCourse, R.layout.item_search);
+            listSearch.setLayoutManager(new LinearLayoutManager(getParent(), LinearLayoutManager.VERTICAL, false));
             listSearch.hasFixedSize();
-            listSearch.setAdapter(courseAdapter);
-            courseAdapter.notifyDataSetChanged();
+            listSearch.setAdapter(searchAdapter);
+
+            searchAdapter.notifyDataSetChanged();
         }
     }
 }

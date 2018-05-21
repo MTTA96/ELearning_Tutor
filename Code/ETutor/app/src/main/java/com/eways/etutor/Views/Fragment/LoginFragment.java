@@ -18,6 +18,8 @@ import com.eways.etutor.Presenter.SignInPresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.SupportKey;
+import com.eways.etutor.Views.Activity.HomeActivity;
+import com.eways.etutor.Views.Activity.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,22 +76,23 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
         edtPhone = root.findViewById(R.id.phone);
         edtPass = root.findViewById(R.id.password_login);
         tvSignup = root.findViewById(R.id.btn_dk);
-
+        btnLogin = root.findViewById(R.id.sign_in_button);
     }
 
     /** Handle views */
     public void handle() {
+        btnLogin.setOnClickListener(this);
         tvSignup.setOnClickListener(this);
     }
 
     private boolean checkInfo() {
-        if (userName.isEmpty() && password.isEmpty())
+        if (userName.isEmpty() || password.isEmpty())
             return false;
 
         return true;
     }
 
-    /** MARK: - Events */
+    /** MARK: - EVENTS */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -98,7 +101,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
                 userName = edtPhone.getText().toString();
                 password = edtPass.getText().toString();
                 if (checkInfo())
-                    signInPresenter.signIn(userName, password);
+                    signInPresenter.signIn("+84" + userName, password);
                 else
                     Toast.makeText(getContext(), R.string.msg_missing_info, Toast.LENGTH_SHORT).show();
                 break;
@@ -112,15 +115,38 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
 
     /** Handle result from presenter */
     @Override
-    public void dataCallBack(int result, @Nullable Bundle bundle) {
+    public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
         // Handle error
-        if (result == SupportKey.FAILED_CODE) {
+        if (resultCode == SupportKey.FAILED_CODE) {
             Toast.makeText(getContext(), R.string.msg_sign_in_failed, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Sign in success
-        Toast.makeText(getContext(), "Sign in success but missing home's view",Toast.LENGTH_SHORT).show();
+        int status = Integer.parseInt(bundle.getString(null));
+        switch (status) {
+            // Sign in success
+            case 0:
+                // Move to home
+                Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(homeIntent);
+                getActivity().finish();
+                break;
+
+            // User existed in elearning
+            case 1:
+                Toast.makeText(getContext(), R.string.msg_account_has_not_sign_up, Toast.LENGTH_SHORT).show();
+                break;
+
+            // Wrong info
+            case 2:
+                Toast.makeText(getContext(), R.string.msg_wrong_info, Toast.LENGTH_SHORT).show();
+                break;
+
+            // Banned account
+            case 3:
+                Toast.makeText(getContext(), R.string.msg_banned_account, Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
     /** Handle result from Gmail */
