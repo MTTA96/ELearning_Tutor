@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorBlue"
             android:minHeight="?attr/actionBarSize"
             app:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
@@ -34,7 +34,7 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_search"
-                android:background="#e71c1c"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

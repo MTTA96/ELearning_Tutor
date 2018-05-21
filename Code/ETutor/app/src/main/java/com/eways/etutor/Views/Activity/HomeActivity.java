@@ -28,6 +28,8 @@ import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.Utils.params.GlobalParams;
+import com.google.gson.JsonObject;
+import com.google.gson.internal.LinkedTreeMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +52,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     /** MODELS */
     private HomePresenter homePresenter;
 
+    SearchAdapter searchAdapter;
+    ArrayList<Course> listCourse;
+
 
     FragmentHandler fragmentHandler;
     @Override
@@ -67,6 +72,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //        fragmentHandler = new FragmentHandler(this, R.id.content_course);
 //        fragmentHandler.changeFragment(new FragmentUpdateDetail(), SupportKey.UPDATE_DETAILs_FRAGMENT_TAG, 0, 0);
         setUpToolBar();
+        listCourse = new ArrayList<>();
+        searchAdapter = new SearchAdapter(listCourse, R.layout.item_search);
+        listSearch.setLayoutManager(new LinearLayoutManager(getParent(), LinearLayoutManager.VERTICAL, false));
+        listSearch.hasFixedSize();
+        listSearch.setAdapter(searchAdapter);
 
 
     }
@@ -100,8 +110,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText != null)
-                    homePresenter.searchCorese(newText, "");
+                if (newText.compareTo("")==0){
+                    listCourse.clear();
+                    searchAdapter.notifyDataSetChanged();
+                }
+                homePresenter.searchCorese(newText, "");
                 return true;
             }
         });
@@ -161,21 +174,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // Get data success
         ArrayList resultsList = (ArrayList) bundle.getSerializable(null);
 
-        if (resultsList.size() > 0){
-            ArrayList<Course> listCourse = new ArrayList<>();
+        if (resultsList.size() > 0) {
+            listCourse.clear();
+            for (int i = 0; i < resultsList.size(); i++) {
 
-            for (int i = 0; i < resultsList.size(); i++){
-                String temp = GlobalParams.getInstance().getGSon().fromJson(resultsList.get(i).toString(), Course.class).toString();
-                listCourse.add(GlobalParams.getInstance().getGSon().fromJson(resultsList.get(i).toString(), Course.class));
+                JsonObject jsonObject = GlobalParams.getInstance().getGSon().toJsonTree(resultsList.get(i)).getAsJsonObject();
+                listCourse.add(GlobalParams.getInstance().getGSon().fromJson(jsonObject.toString(), Course.class));
+
             }
-
-            SearchAdapter searchAdapter = new SearchAdapter(listCourse, R.layout.item_search);
-            listSearch.setLayoutManager(new LinearLayoutManager(getParent(), LinearLayoutManager.VERTICAL, false));
-            listSearch.hasFixedSize();
-            listSearch.setAdapter(searchAdapter);
-
             searchAdapter.notifyDataSetChanged();
+
         }
+
     }
 }
 

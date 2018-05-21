@@ -34,7 +34,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchVHolder> {
 
     @Override
     public void onBindViewHolder(SearchVHolder holder, int position) {
-        Log.d("parseJson", String.valueOf(listCourse.get(position)));
         Course course = listCourse.get(position);
         //load image with picasso here
 
