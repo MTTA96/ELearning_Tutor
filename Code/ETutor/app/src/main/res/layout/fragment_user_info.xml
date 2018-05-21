@@ -26,15 +26,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="20"
-            android:text="@string/guide_enter_info"
-            android:textColor="@color/colorBlack"
-            android:textSize="17sp" />
+            android:layout_weight="12"
+            android:text="Họ tên:"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlue"
+            android:textSize="19sp" />
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="5" />
+
 
         <!-- username -->
         <EditText
@@ -53,13 +51,22 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="5"/>
+            android:layout_weight="10"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"
+            android:text="Mật khẩu"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlue"
+            android:textSize="19sp" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="25"
+            android:inputType="textPassword"
             android:background="@drawable/edittext_shape_3"
             android:hint="@string/hint_password"
             android:padding="7dp"
