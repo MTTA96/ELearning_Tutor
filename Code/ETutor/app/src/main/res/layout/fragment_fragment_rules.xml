@@ -5,7 +5,7 @@
     android:background="@color/colorWhite"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context=".Views.Fragment.FragmentRules">
+    tools:context=".Views.Fragment.Authentication.FragmentRules">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
