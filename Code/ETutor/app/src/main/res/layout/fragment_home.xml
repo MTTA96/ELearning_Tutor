@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        android:text="This is home, press search to move to search screen" />
+        android:text="This is home, press search to move to search screen"
+        android:textColor="@color/colorGrey"/>
 
 </FrameLayout>

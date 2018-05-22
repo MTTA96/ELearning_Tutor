@@ -14,11 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.eways.etutor.Adapter.Course.CourseAdapter;
 import com.eways.etutor.Adapter.Search.SearchAdapter;
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Model.Course;
@@ -29,19 +26,10 @@ import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.Utils.params.GlobalParams;
 import com.eways.etutor.Views.Fragment.HomeFragment;
+import com.eways.etutor.Views.Fragment.SearchResultsFragment;
 import com.google.gson.JsonObject;
-import com.google.gson.internal.LinkedTreeMap;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener, DataCallBack {
 
@@ -120,6 +108,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    /** Handle options menu item selected */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_search) {
+            fragmentHandler.changeFragment(SearchResultsFragment.newInstance(), SupportKey.SEARCH_RESULTS_TAG, 0, 0);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void setUpToolBar(){

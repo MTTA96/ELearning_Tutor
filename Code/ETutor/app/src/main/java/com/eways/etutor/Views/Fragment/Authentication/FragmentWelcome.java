@@ -1,6 +1,7 @@
 package com.eways.etutor.Views.Fragment.Authentication;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.eways.etutor.R;
+import com.eways.etutor.Views.Activity.HomeActivity;
 
 
 /**
@@ -41,8 +43,11 @@ public class FragmentWelcome extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View root = inflater.inflate(R.layout.fragment_fragment_welcome, container, false);
         SignupFragment.btnNext.setOnClickListener(this);
-        return inflater.inflate(R.layout.fragment_fragment_welcome, container, false);
+
+        SignupFragment.btnNext.setText(R.string.next);
+        return root;
     }
 
     @Override
@@ -52,7 +57,9 @@ public class FragmentWelcome extends Fragment implements View.OnClickListener {
             switch (v.getId()) {
                 case R.id.btn_next:
                     // Go to home
-                    Toast.makeText(getContext(), "Need home's view", Toast.LENGTH_SHORT).show();
+                    Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(homeIntent);
+                    getActivity().finish();
                     break;
             }
         }

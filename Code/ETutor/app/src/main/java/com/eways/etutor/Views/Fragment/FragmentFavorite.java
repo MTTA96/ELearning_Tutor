@@ -2,7 +2,9 @@ package com.eways.etutor.Views.Fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +15,12 @@ import com.eways.etutor.Adapter.Favorite.FavoriteAdapter;
 import com.eways.etutor.Model.Favorite;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.FileUtils;
+import com.eways.etutor.Utils.Handler.FragmentHandler;
+import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.Utils.params.GlobalParams;
+import com.eways.etutor.Views.Fragment.Authentication.FragmentVerify;
+import com.eways.etutor.Views.Fragment.Authentication.FragmentWelcome;
+import com.eways.etutor.Views.Fragment.Authentication.SignupFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,10 +30,13 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentFavorite extends Fragment {
+public class FragmentFavorite extends Fragment implements View.OnClickListener {
 
-    /* VIEWS */
+    /** VIEWS */
     RecyclerView rcFavorite;
+
+    /** MODELS */
+    private FragmentHandler fragmentHandler;
 
     public FragmentFavorite() {
         // Required empty public constructor
@@ -39,6 +49,12 @@ public class FragmentFavorite extends Fragment {
         FragmentFavorite fragment = new FragmentFavorite();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fragmentHandler = new FragmentHandler(getContext(), R.id.content_signup);
     }
 
     @Override
@@ -59,7 +75,11 @@ public class FragmentFavorite extends Fragment {
     }
 
     public void handleViews(){
+        SignupFragment.btnNext.setOnClickListener(this);
+
+        // Configure views
         setUpListFavorite();
+        SignupFragment.btnNext.setText("Bỏ qua");
     }
 
     public void setUpListFavorite(){
@@ -81,4 +101,17 @@ public class FragmentFavorite extends Fragment {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup);
+        if (currentFragment != null && currentFragment == this) {
+            {
+                switch (v.getId()) {
+                    case R.id.btn_next:
+                        fragmentHandler.changeFragment(FragmentWelcome.newInstance(), SupportKey.WELCOME_FRAGMENT_TAG, 0, 0);
+                        break;
+                }
+            }
+        }
+    }
 }

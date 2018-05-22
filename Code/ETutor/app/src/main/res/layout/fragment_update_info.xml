@@ -5,7 +5,7 @@
     android:background="@color/colorWhite"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context=".Views.Fragment.FragmentUpdateInfo">
+    tools:context=".Views.Fragment.Account.FragmentUpdateInfo">
 
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
