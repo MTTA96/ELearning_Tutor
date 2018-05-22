@@ -74,7 +74,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
 
         edtPhone = root.findViewById(R.id.phone);
         edtPass = root.findViewById(R.id.password_login);
-        tvSignup = root.findViewById(R.id.btn_dk);
+        tvSignup = root.findViewById(R.id.sign_up_button);
         btnLogin = root.findViewById(R.id.sign_in_button);
     }
 
@@ -106,7 +106,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
                 break;
 
             // Sign up
-            case R.id.btn_dk:
+            case R.id.sign_up_button:
                 fragmentHandler.changeFragment(new SignupFragment(), SupportKey.SIGN_UP_FRAGMENT_TAG,R.anim.slide_from_left, 0);
                 break;
         }

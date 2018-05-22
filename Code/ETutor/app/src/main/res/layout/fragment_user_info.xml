@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     android:orientation="vertical"
     android:weightSum="100"
     tools:context=".Views.Fragment.Authentication.FragmentUserInfo">
@@ -13,67 +15,50 @@
         android:layout_height="0dp"
         android:layout_weight="10" />
 
-    <LinearLayout
+
+    <!-- username -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_weight="40"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="100">
+        android:layout_height="wrap_content"
+        android:text="Họ tên:"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlue"
+        android:textSize="19sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="12"
-            android:text="Họ tên:"
-            android:textStyle="bold"
-            android:textColor="@color/colorBlue"
-            android:textSize="19sp" />
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:hint="@string/hint_username"
+        android:padding="7dp"
+        android:singleLine="true"
+        android:background="@drawable/edittext_shape_3"
+        android:textColor="@color/colorBlack"
+        android:textColorHint="@color/colorGrey"
+        android:textSize="18sp" />
 
+    <!--Password-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Mật khẩu"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlue"
+        android:textSize="19sp" />
 
-
-        <!-- username -->
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="25"
-            android:hint="@string/hint_username"
-            android:padding="7dp"
-            android:singleLine="true"
-            android:background="@drawable/edittext_shape_3"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@color/colorGrey"
-            android:textSize="18sp" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="10"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="12"
-            android:text="Mật khẩu"
-            android:textStyle="bold"
-            android:textColor="@color/colorBlue"
-            android:textSize="19sp" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="25"
-            android:inputType="textPassword"
-            android:background="@drawable/edittext_shape_3"
-            android:hint="@string/hint_password"
-            android:padding="7dp"
-            android:singleLine="true"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@color/colorGrey"
-            android:textSize="18sp" />
-
-    </LinearLayout>
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:inputType="textPassword"
+        android:background="@drawable/edittext_shape_3"
+        android:hint="@string/hint_password"
+        android:padding="7dp"
+        android:singleLine="true"
+        android:textColor="@color/colorBlack"
+        android:textColorHint="@color/colorGrey"
+        android:textSize="18sp" />
 </LinearLayout>

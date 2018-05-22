@@ -21,5 +21,6 @@ public class SupportKey {
     public static final String SIGNUP_INFO_FRAGMENT_TAG = "SignUpInfoFragmentTag";
     public static final String WELCOME_FRAGMENT_TAG = "WelcomeFragmentTag";
     public static final String HOME_FRAGMENT_TAG = "HomeFragmentTag";
+    public static final String SEARCH_RESULTS_TAG = "SearchResultsTag";
     public static final String UPDATE_DETAILs_FRAGMENT_TAG = "UpdateDetailsFragmentTag";
 }
