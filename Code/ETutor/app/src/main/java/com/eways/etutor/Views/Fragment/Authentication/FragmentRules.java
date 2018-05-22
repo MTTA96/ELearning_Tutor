@@ -1,4 +1,4 @@
-package com.eways.etutor.Views.Fragment;
+package com.eways.etutor.Views.Fragment.Authentication;
 
 
 import android.os.Bundle;

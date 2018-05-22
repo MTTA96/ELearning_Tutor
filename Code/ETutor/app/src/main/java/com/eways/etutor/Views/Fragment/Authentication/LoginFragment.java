@@ -1,4 +1,4 @@
-package com.eways.etutor.Views.Fragment;
+package com.eways.etutor.Views.Fragment.Authentication;
 
 
 import android.content.Intent;
@@ -19,7 +19,6 @@ import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.Views.Activity.HomeActivity;
-import com.eways.etutor.Views.Activity.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.

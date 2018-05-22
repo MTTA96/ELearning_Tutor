@@ -1,4 +1,4 @@
-package com.eways.etutor.Views.Fragment;
+package com.eways.etutor.Views.Fragment.Authentication;
 
 
 import android.app.Activity;
@@ -22,6 +22,7 @@ import com.eways.etutor.Presenter.SignUpInfoPresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.SupportKey;
+import com.eways.etutor.Views.Fragment.FragmentFavorite;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -211,7 +212,7 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener, 
             tempUser.setFirstName(name);
             tempUser.setPassword(password);
             tempUser.setPhone("+84" + FragmentEnterPhone.tvPhoneNumber.getText().toString());
-            tempUser.setAuthorization("2");
+            tempUser.setAuthorization("1");
             return tempUser;
         }
         return null;

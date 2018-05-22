@@ -4,9 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
-import com.eways.etutor.Views.Fragment.LoginFragment;
+import com.eways.etutor.Views.Fragment.Authentication.LoginFragment;
 import com.eways.etutor.Network.UserBaseResponse;
-import com.eways.etutor.Model.User;
 import com.eways.etutor.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -14,10 +13,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by ADMIN on 3/11/2018.

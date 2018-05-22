@@ -1,6 +1,5 @@
 package com.eways.etutor.Views.Activity;
 
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,14 +7,12 @@ import android.view.View;
 //<<<<<<< HEAD
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
-import com.eways.etutor.Utils.SupportKey;
 //=======
 //        import com.eways.etutor.R;
 //        import com.eways.etutor.Utils.Handler.FragmentHandler;
 //        import com.eways.etutor.Utils.SupportKey;
-import com.eways.etutor.Views.Fragment.FragmentEnterPhone;
 //>>>>>>> 0ae5b509ad329b50db0111083a03465365a181c2
-import com.eways.etutor.Views.Fragment.LoginFragment;
+import com.eways.etutor.Views.Fragment.Authentication.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
 

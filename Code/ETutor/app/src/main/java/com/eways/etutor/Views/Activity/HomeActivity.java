@@ -28,6 +28,7 @@ import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.Utils.params.GlobalParams;
+import com.eways.etutor.Views.Fragment.HomeFragment;
 import com.google.gson.JsonObject;
 import com.google.gson.internal.LinkedTreeMap;
 
@@ -51,12 +52,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     /** MODELS */
     private HomePresenter homePresenter;
+    private FragmentHandler fragmentHandler;
+    private SearchAdapter searchAdapter;
+    private ArrayList<Course> listCourse;
 
-    SearchAdapter searchAdapter;
-    ArrayList<Course> listCourse;
-
-
-    FragmentHandler fragmentHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +68,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void Handle(){
-//        fragmentHandler = new FragmentHandler(this, R.id.content_course);
-//        fragmentHandler.changeFragment(new FragmentUpdateDetail(), SupportKey.UPDATE_DETAILs_FRAGMENT_TAG, 0, 0);
+        fragmentHandler = new FragmentHandler(this, R.id.home_content_view);
         setUpToolBar();
         listCourse = new ArrayList<>();
         searchAdapter = new SearchAdapter(listCourse, R.layout.item_search);
@@ -78,6 +76,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         listSearch.hasFixedSize();
         listSearch.setAdapter(searchAdapter);
 
+        // Move to home
+        fragmentHandler.changeFragment(HomeFragment.newInstance(), SupportKey.HOME_FRAGMENT_TAG, 0, 0);
 
     }
 

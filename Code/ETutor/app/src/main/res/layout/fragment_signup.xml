@@ -5,7 +5,7 @@
     android:background="@color/colorWhite"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context=".Views.Fragment.SignupFragment">
+    tools:context=".Views.Fragment.Authentication.SignupFragment">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
