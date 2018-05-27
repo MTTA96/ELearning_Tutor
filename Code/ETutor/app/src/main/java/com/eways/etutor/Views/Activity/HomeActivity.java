@@ -128,7 +128,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void setResultSearch(String tutorName, String subjectName, int courseType){
         final ArrayList<Course> courses = new ArrayList<>();
 //        String condition = "{\"TutorName\":\"" + tutorName + "\",\"SubjectName\":\"" + subjectName + "\",\"CourseType\":\""+ courseType +"\"}";
-//        apiHandler.getCourseSearch(condition).enqueue(new Callback<String>() {
+//        apiHandler.searchSuggestions(condition).enqueue(new Callback<String>() {
 //            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 //            @Override
 //            public void onResponse(Call<String> call, Response<String> response) {

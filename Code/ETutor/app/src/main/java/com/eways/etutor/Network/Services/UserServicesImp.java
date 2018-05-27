@@ -1,5 +1,6 @@
-package com.eways.etutor.Network;
+package com.eways.etutor.Network.Services;
 
+import com.eways.etutor.Network.BaseResponse;
 import com.eways.etutor.Utils.ServerUrl;
 
 import retrofit2.Call;
@@ -19,7 +20,7 @@ public interface UserServicesImp {
     @POST(ServerUrl.LOGIN_URL)
     @FormUrlEncoded
     Call<BaseResponse> signIn(@Field("Phone") String userId,
-                                  @Field("Password") String password);
+                              @Field("Password") String password);
 
     /** Sign up */
     @POST(ServerUrl.SIGN_UP_URL)

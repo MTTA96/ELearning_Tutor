@@ -8,10 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.eways.etutor.Interfaces.DataCallBack;
-import com.eways.etutor.Network.BaseResponse;
+import com.eways.etutor.Network.ApiUtils;
 import com.eways.etutor.Network.ListResponse;
-import com.eways.etutor.Utils.Api.ApiUtils;
-import com.eways.etutor.Utils.Api.CourseServicesImp;
+import com.eways.etutor.Network.Services.CourseServicesImp;
 import com.eways.etutor.Utils.SupportKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -221,36 +220,5 @@ public class Course {
 
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
-    }
-
-    /** METHODS */
-    /** Search course */
-    public static void searchCourses(String keyWord, String filters, final DataCallBack dataCallBack) {
-        CourseServicesImp courseServicesImp = ApiUtils.courseServices();
-        String condition = "{\"TutorName\":\"" + keyWord + "\",\"SubjectName\":\"" + keyWord + "\",\"CourseType\":\""+ 0 +"\"}";
-        courseServicesImp.getCourseSearch(condition).enqueue(new Callback<ListResponse>() {
-            @Override
-            public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {
-                Log.d("searchCourses:", call.request().toString());
-                // Handle errors
-                if (!response.isSuccessful()) {
-                    Log.d("searchCourse:", " Connect Failed");
-                    dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
-                    return;
-                }
-
-                // Get data success
-                // Prepare data
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(null, (Serializable) response.body().getListC());
-                dataCallBack.dataCallBack(SupportKey.SUCCESS_CODE, bundle);
-            }
-
-            @Override
-            public void onFailure(Call<ListResponse> call, Throwable t) {
-                Log.d("searchCourse:", "Search failed");
-                dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
-            }
-        });
     }
 }

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Model.Course;
+import com.eways.etutor.Model.SearchResults;
 import com.eways.etutor.Utils.SupportKey;
 
 /**
@@ -20,7 +21,7 @@ public class HomePresenter implements DataCallBack {
 
     /** Search courses */
     public void searchCorese(String keyWord, String filter) {
-        Course.searchCourses(keyWord, filter, this);
+        SearchResults.searchSuggestions(keyWord, filter, this);
     }
 
     /** Handle data from server */

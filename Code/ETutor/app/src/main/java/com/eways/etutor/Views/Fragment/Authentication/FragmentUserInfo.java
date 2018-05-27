@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Model.User;
-import com.eways.etutor.Presenter.SignUpInfoPresenter;
+import com.eways.etutor.Presenter.Authentication.SignUpInfoPresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.SupportKey;
