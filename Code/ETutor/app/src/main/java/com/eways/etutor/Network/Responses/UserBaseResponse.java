@@ -1,4 +1,4 @@
-package com.eways.etutor.Network;
+package com.eways.etutor.Network.Responses;
 
 /**
  * Created by ADMIN on 3/18/2018.

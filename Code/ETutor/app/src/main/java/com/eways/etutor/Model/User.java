@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Network.ApiUtils;
-import com.eways.etutor.Network.BaseResponse;
+import com.eways.etutor.Network.Responses.BaseResponse;
 import com.eways.etutor.Network.Services.UserServicesImp;
 import com.eways.etutor.Utils.SupportKey;
 import com.google.gson.annotations.Expose;
@@ -235,7 +235,7 @@ public class User {
         userServices.signUp(jsonData).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                // Handle errors
+                // handle errors
                 Log.d("signUpFirebase:", call.request().toString());
                 if (!response.isSuccessful()) {
                     Log.d("signUp:", "connect failed");
@@ -243,7 +243,7 @@ public class User {
                     return;
                 }
 
-                // Handle result
+                // handle result
                 if (Integer.parseInt(response.body().getStatus()) == 0) {
                     Log.d("signUp:", "sign up failed");
                     dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
@@ -270,7 +270,7 @@ public class User {
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 Log.d("Sign in", call.request().toString());
 
-                // Handle error
+                // handle error
                 if (!response.isSuccessful()) {
                     Log.d("Sign in", "Connect failed");
                     dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
@@ -297,7 +297,7 @@ public class User {
         userServicesImp.checkPhoneNumber(phoneNumber).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                // Handle error
+                // handle error
                 if (!response.isSuccessful()) {
                     Log.d("checkPhoneNumber:", "connect failed");
                     dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);

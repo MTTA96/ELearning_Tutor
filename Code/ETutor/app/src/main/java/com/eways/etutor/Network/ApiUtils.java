@@ -4,7 +4,6 @@ package com.eways.etutor.Network;
 import com.eways.etutor.Network.Services.CourseServicesImp;
 import com.eways.etutor.Network.Services.ETutorServicesImp;
 import com.eways.etutor.Network.Services.UserServicesImp;
-import com.eways.etutor.Utils.ServerUrl;
 
 /**
  * Created by zzzzz on 3/13/2018.

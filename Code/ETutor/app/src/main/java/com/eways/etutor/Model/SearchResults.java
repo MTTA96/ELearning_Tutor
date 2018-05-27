@@ -5,8 +5,7 @@ import android.util.Log;
 
 import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Network.ApiUtils;
-import com.eways.etutor.Network.ListResponse;
-import com.eways.etutor.Network.Services.CourseServicesImp;
+import com.eways.etutor.Network.Responses.ListResponse;
 import com.eways.etutor.Network.Services.ETutorServicesImp;
 import com.eways.etutor.Utils.SupportKey;
 
@@ -25,14 +24,13 @@ public class SearchResults {
     /** METHODS */
 
     /** Sign in */
-    public static void search(String keyWord, String filters, final DataCallBack dataCallBack) {
+    public static void search(String keyWord, final DataCallBack dataCallBack) {
         ETutorServicesImp eTutorServicesImp = ApiUtils.eTutorServices();
-        String param = "{\"TutorName\":\"" + keyWord + "\",\"SubjectName\":\"" + keyWord + "\",\"CourseType\":\""+ 0 +"\"}";
-        eTutorServicesImp.search(param).enqueue(new Callback<ListResponse>() {
+        eTutorServicesImp.search(String.valueOf(0), keyWord).enqueue(new Callback<ListResponse>() {
             @Override
             public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {
                 Log.d("search:", call.request().toString());
-                // Handle errors
+                // handle errors
                 if (!response.isSuccessful()) {
                     Log.d("search:", " Connect Failed");
                     dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
@@ -42,7 +40,7 @@ public class SearchResults {
                 // Get data success
                 // Prepare data
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(null, (Serializable) response.body().getListC());
+                bundle.putSerializable(null, (Serializable) response.body().getResults());
                 dataCallBack.dataCallBack(SupportKey.SUCCESS_CODE, bundle);
             }
 
@@ -54,17 +52,16 @@ public class SearchResults {
         });
     }
 
-    /** Search all suggestions */
-    public static void searchSuggestions(String keyWord, String filters, final DataCallBack dataCallBack) {
+    /** Search subject suggestions */
+    public static void searchSubjectSuggestions(String keyWord, final DataCallBack dataCallBack) {
         ETutorServicesImp eTutorServicesImp = ApiUtils.eTutorServices();
-        String condition = "{\"TutorName\":\"" + keyWord + "\",\"SubjectName\":\"" + keyWord + "\",\"CourseType\":\""+ 0 +"\"}";
-        eTutorServicesImp.searchSuggestions(condition).enqueue(new Callback<ListResponse>() {
+        eTutorServicesImp.searchSuggestions(String.valueOf(0), keyWord).enqueue(new Callback<ListResponse>() {
             @Override
             public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {
-                Log.d("searchSuggestions:", call.request().toString());
-                // Handle errors
+                Log.d("SearchSubSuggestions:", call.request().toString());
+                // handle errors
                 if (!response.isSuccessful()) {
-                    Log.d("searchSuggestions:", " Connect Failed");
+                    Log.d("SearchSubSuggestions:", " Connect Failed");
                     dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
                     return;
                 }
@@ -72,13 +69,44 @@ public class SearchResults {
                 // Get data success
                 // Prepare data
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(null, (Serializable) response.body().getListC());
+                bundle.putSerializable(null, (Serializable) response.body().getResults());
                 dataCallBack.dataCallBack(SupportKey.SUCCESS_CODE, bundle);
             }
 
             @Override
             public void onFailure(Call<ListResponse> call, Throwable t) {
-                Log.d("searchSuggestions:", "Connect Failed");
+                Log.d("SearchSubSuggestions:", "Connect Failed");
+                dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
+            }
+        });
+    }
+
+    /** Search user suggestions */
+    public static void searchUserSuggestions(String keyWord, final DataCallBack dataCallBack) {
+        ETutorServicesImp eTutorServicesImp = ApiUtils.eTutorServices();
+        eTutorServicesImp.searchSuggestions(String.valueOf(0), keyWord).enqueue(new Callback<ListResponse>() {
+            @Override
+            public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {
+                Log.d("SearchResults:", call.request().toString());
+                // handle errors
+                if (!response.isSuccessful()) {
+                    Log.d("SearchResults:", " Connect Failed");
+                    dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
+                    return;
+                }
+
+                // Get data success
+                // Prepare data
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(null, response.body().getResults());
+
+                // Response to presenter
+                dataCallBack.dataCallBack(SupportKey.SUCCESS_CODE, bundle);
+            }
+
+            @Override
+            public void onFailure(Call<ListResponse> call, Throwable t) {
+                Log.d("SearchResults:", "Connect Failed");
                 dataCallBack.dataCallBack(SupportKey.FAILED_CODE, null);
             }
         });

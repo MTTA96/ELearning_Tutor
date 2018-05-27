@@ -1,4 +1,4 @@
-package com.eways.etutor.Utils;
+package com.eways.etutor.Network;
 
 import android.content.Context;
 import android.graphics.Bitmap;

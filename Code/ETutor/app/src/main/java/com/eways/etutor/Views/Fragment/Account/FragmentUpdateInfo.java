@@ -15,7 +15,7 @@ import com.eways.etutor.Model.ImageSelect;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.DialogPlusHandler;
 import com.eways.etutor.Utils.FileUtils;
-import com.eways.etutor.Utils.ImageHandler;
+import com.eways.etutor.Utils.Handler.ImageHandler;
 import com.eways.etutor.Utils.params.GlobalParams;
 
 import org.json.JSONArray;

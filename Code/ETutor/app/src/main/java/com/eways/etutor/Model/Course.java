@@ -4,22 +4,8 @@ package com.eways.etutor.Model;
  * Created by ADMIN on 5/20/2018.
  */
 
-import android.os.Bundle;
-import android.util.Log;
-
-import com.eways.etutor.Interfaces.DataCallBack;
-import com.eways.etutor.Network.ApiUtils;
-import com.eways.etutor.Network.ListResponse;
-import com.eways.etutor.Network.Services.CourseServicesImp;
-import com.eways.etutor.Utils.SupportKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Course {
 

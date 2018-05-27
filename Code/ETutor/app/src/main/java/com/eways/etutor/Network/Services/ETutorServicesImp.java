@@ -1,13 +1,11 @@
 package com.eways.etutor.Network.Services;
 
-import com.eways.etutor.Network.BaseResponse;
-import com.eways.etutor.Network.ListResponse;
-import com.eways.etutor.Utils.ServerUrl;
+import com.eways.etutor.Network.Responses.ListResponse;
+import com.eways.etutor.Network.ServerUrl;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by zzzzz on 5/22/2018.
@@ -16,12 +14,12 @@ import retrofit2.http.POST;
 public interface ETutorServicesImp {
 
     /** Search */
-    @POST(ServerUrl.SEARCH_URL)
-    @FormUrlEncoded
-    Call<ListResponse> search(@Field("mydata") String data);
+    @GET(ServerUrl.SEARCH_URL)
+    Call<ListResponse> search(@Query("CourseType") String type,
+                              @Query("SubjectName") String subjectName);
 
     /** Search suggestions */
-    @POST(ServerUrl.SEARCH_SUGGESTIONS_URL)
-    @FormUrlEncoded
-    Call<ListResponse> searchSuggestions(@Field("mydata") String condition);
+    @GET(ServerUrl.SEARCH_SUGGESTIONS_URL)
+    Call<ListResponse> searchSuggestions(@Query("CourseType") String type,
+                              @Query("SubjectName") String subjectName);
 }

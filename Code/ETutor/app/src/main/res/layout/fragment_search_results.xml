@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorGrey"
     android:orientation="vertical"
-    tools:context="com.eways.etutor.Views.Fragment.SearchResultsFragment">
+    tools:context="com.eways.etutor.Views.Fragment.SearchFragment">
 
     <!-- Tutors list -->
     <LinearLayout

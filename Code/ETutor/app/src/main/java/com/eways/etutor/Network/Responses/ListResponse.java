@@ -1,21 +1,22 @@
-package com.eways.etutor.Network;
+package com.eways.etutor.Network.Responses;
 
 /**
- * Created by zzzzz on 3/25/2018.
+ * Created by ADMIN on 5/20/2018.
  */
 
-import com.eways.etutor.Model.User;
+
+import java.util.ArrayList;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class BaseUserResponse {
+public class ListResponse {
 
     @SerializedName("errorCode")
     @Expose
     private Integer errorCode;
-    @SerializedName("user")
+    @SerializedName("results")
     @Expose
-    private User user;
+    private ArrayList results = null;
 
     public Integer getErrorCode() {
         return errorCode;
@@ -25,12 +26,12 @@ public class BaseUserResponse {
         this.errorCode = errorCode;
     }
 
-    public User getUser() {
-        return user;
+    public ArrayList getResults() {
+        return results;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setResults(ArrayList results) {
+        this.results = results;
     }
 
 }

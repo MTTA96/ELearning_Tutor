@@ -2,30 +2,18 @@ package com.eways.etutor.Utils;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 
-import com.eways.etutor.Model.ImageSelect;
+import com.eways.etutor.Utils.Handler.ImageHandler;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.DialogPlusBuilder;
 import com.orhanobut.dialogplus.GridHolder;
-import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.OnItemClickListener;
-
-import java.lang.reflect.Array;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by ADMIN on 5/26/2018.

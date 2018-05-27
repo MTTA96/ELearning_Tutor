@@ -219,7 +219,7 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener, 
     }
 
     /**
-     * Handle results from presenter
+     * handle results from presenter
      * */
     @Override
     public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
