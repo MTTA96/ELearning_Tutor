@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.eways.etutor.Interfaces.DataCallBack;
+import com.eways.etutor.Network.ApiUtils;
 import com.eways.etutor.Network.BaseResponse;
 import com.eways.etutor.Network.Services.UserServicesImp;
-import com.eways.etutor.Utils.Api.ApiUtils;
 import com.eways.etutor.Utils.SupportKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
