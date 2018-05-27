@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         return super.onCreateOptionsMenu(menu);
     }
 
-    /** handle options menu item selected */
+    /** Handle options menu item selected */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
@@ -126,46 +126,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
-    public void setResultSearch(String tutorName, String subjectName, int courseType){
-        final ArrayList<Course> courses = new ArrayList<>();
-//        String condition = "{\"TutorName\":\"" + tutorName + "\",\"SubjectName\":\"" + subjectName + "\",\"CourseType\":\""+ courseType +"\"}";
-//        apiHandler.searchSubjectSuggestions(condition).enqueue(new Callback<String>() {
-//            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                if (response.isSuccessful()){
-//                    try {
-//                        JSONObject jsonObject = new JSONObject(response.body());
-//                        if(jsonObject.get("errorCode").toString().compareTo("200") == 0){
-//                            JSONArray jsonArray = new JSONArray(jsonObject.get("listC"));
-//
-//                            for (int i = 0; i < jsonArray.length(); i++){
-//                                courses.add(GlobalParams.getInstance().getGSon().fromJson(jsonArray.get(i).toString(), Course.class));
-//                            }
-//
-//                            ArrayList<Course> temp = courses;
-//                        }
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//
-//            }
-//        });
-
-    }
-
-    /** handle result from server */
+    /** Handle result from server */
     @Override
     public void dataCallBack(int result, @Nullable Bundle bundle) {
         // handle errors
         if (result == SupportKey.FAILED_CODE) {
-            Log.d("Search results:", "search failed!");
+            Log.d("SearchSuggestionsAct:", "search failed!");
             return;
         }
 

@@ -41,14 +41,6 @@ public class SearchPresenter implements DataCallBack {
         ArrayList resultsList = (ArrayList) bundle.getSerializable(null);
 
         if (resultsList.size() > 0) {
-//            listCourse.clear();
-//            for (int i = 0; i < resultsList.size(); i++) {
-//
-//                JsonObject jsonObject = GlobalParams.getInstance().getGSon().toJsonTree(resultsList.get(i)).getAsJsonObject();
-//                listCourse.add(GlobalParams.getInstance().getGSon().fromJson(jsonObject.toString(), Course.class));
-//
-//            }
-//            searchAdapter.notifyDataSetChanged();
 
         }
     }
