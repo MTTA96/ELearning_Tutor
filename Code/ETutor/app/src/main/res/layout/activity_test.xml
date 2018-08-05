@@ -8,6 +8,6 @@
     tools:context="com.eways.etutor.Views.Activity.TestActivity">
 
     <include
-    layout="@layout/fragment_course_detail"/>
+        layout="@layout/activity_create_course"/>
 
 </RelativeLayout>

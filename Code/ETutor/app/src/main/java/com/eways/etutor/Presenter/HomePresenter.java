@@ -1,63 +1,39 @@
 package com.eways.etutor.Presenter;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.content.Context;
 
 import com.eways.etutor.Interfaces.DataCallBack;
-import com.eways.etutor.Model.Course;
-import com.eways.etutor.Model.SearchResults;
-import com.eways.etutor.Utils.SupportKey;
-import com.eways.etutor.Utils.params.GlobalParams;
-import com.eways.etutor.Views.Activity.HomeActivity;
-import com.google.gson.JsonObject;
-
-import java.util.ArrayList;
+import com.eways.etutor.Interfaces.DataCallback.SearchSuggestion.SearchSuggestionCallBack;
+import com.eways.etutor.Interfaces.DataCallback.Subject.FavSubjectWithCoursesCallBack;
+import com.eways.etutor.Interfaces.DataCallback.Subject.TrendingSubjectCallBack;
+import com.eways.etutor.Interfaces.DataCallback.User.TopTutorsCallBack;
+import com.eways.etutor.Utils.SharedPreferences.SharedPrefSupportKeys;
+import com.eways.etutor.Utils.SharedPreferences.SharedPrefUtils;
 
 /**
  * Created by ADMIN on 5/20/2018.
  */
 
-public class HomePresenter implements DataCallBack {
+public class HomePresenter {
+
     private DataCallBack dataCallBack;
+    private SearchSuggestionCallBack searchSuggestionCallBack;
+    private SharedPrefUtils sharedPrefUtils;
 
-    public HomePresenter(DataCallBack dataCallBack) {
-        this.dataCallBack = dataCallBack;
+    /** For home fragment */
+    public HomePresenter(Context context) {
+        sharedPrefUtils = new SharedPrefUtils(context, SharedPrefSupportKeys.SHARED_PREF_FILE_NAME);
     }
 
-    /** Search suggestions */
-    public void searchSuggestions(String keyWord) {
-        // Check current type for searching
-        switch (HomeActivity.currentSearchType) {
-            case SupportKey.SEARCH_SUBJECTS:
-                SearchResults.searchSubjectSuggestions(keyWord, this);
-                break;
-            case SupportKey.SEARCH_STUDENTS:
-                SearchResults.searchSubjectSuggestions(keyWord, this);
-                break;
-        }
+    /** For home activity */
+    public HomePresenter(Context context, SearchSuggestionCallBack searchSuggestionCallBack) {
+        this.searchSuggestionCallBack = searchSuggestionCallBack;
+        sharedPrefUtils = new SharedPrefUtils(context, SharedPrefSupportKeys.SHARED_PREF_FILE_NAME);
     }
 
-    /** handle data from server */
-    @Override
-    public void dataCallBack(int result, @Nullable Bundle bundle) {
-        // handle errors
-        if (result == SupportKey.FAILED_CODE) {
-            dataCallBack.dataCallBack(result, null);
-            return;
-        }
 
-        // Get data success
-        ArrayList tempList = (ArrayList) bundle.getSerializable(null);
-        ArrayList results = new ArrayList();
+    /**
+     *  MARK: - HANDLE DATA FROM SERVER
+     *  */
 
-        for (int i = 0; i < tempList.size(); i++) {
-
-            JsonObject jsonObject = GlobalParams.getInstance().getGSon().toJsonTree(tempList.get(i)).getAsJsonObject();
-            results.add(GlobalParams.getInstance().getGSon().fromJson(jsonObject.toString(), Course.class));
-
-        }
-        bundle.clear();
-        bundle.putSerializable(null, result);
-        dataCallBack.dataCallBack(result, bundle);
-    }
 }

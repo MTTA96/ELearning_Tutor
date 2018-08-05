@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/horizontal_padding"
+    android:padding="7dp"
+    android:background="@drawable/white_rectangle_corner_main_color_stroke_shape">
+
+    <!--User info-->
+    <LinearLayout
+        android:id="@+id/view_UserInfo_DanhSachKhoaHoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_KhoaHoc"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/Height_KhoaHoc"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/blue_scrim_round_shape"
+                android:padding="@dimen/min_vertical_padding"
+                android:text="5.0"
+                android:textColor="@color/colorWhite" />
+        </FrameLayout>
+
+        <!--<RatingBar-->
+        <!--android:id="@+id/rtb_KhoaHoc"-->
+        <!--style="@style/ratingbarCustom"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginLeft="9dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:isIndicator="true"-->
+        <!--android:numStars="5"-->
+        <!--android:stepSize="0.5" />-->
+
+        <!--Divider-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorScrim" />
+
+        <!-- User's name-->
+        <TextView
+            android:id="@+id/user_name_item_course_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/MarginTop_Tv_KhoaHoc"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingLeft="@dimen/min_vertical_padding"
+            android:paddingRight="@dimen/min_vertical_padding"
+            android:textColor="@color/colorGrey"
+            android:textSize="@dimen/TextSize_KhoaHoc"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!--Course info-->
+    <LinearLayout
+        android:id="@+id/loChiTietKhoaHoc_ListKhoaHoc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/horizontal_padding_user_info_list_item">
+
+        <LinearLayout
+            android:id="@+id/view_CourseInfo_DanhSachKhoaHoc"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Height_KhoaHoc"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/horizontal_padding_user_info_list_item"
+            android:paddingRight="@dimen/horizontal_padding_user_info_list_item">
+
+            <!--Course name-->
+            <TextView
+                android:id="@+id/course_name_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/MarginLeft_Tv_KhoaHoc"
+                android:layout_marginTop="@dimen/MarginTop_Tv_KhoaHoc"
+                android:textColor="@color/colorGrey"
+                android:textSize="@dimen/TextSize_KhoaHoc" />
+
+            <!--Subject's name-->
+            <TextView
+                android:id="@+id/tvMon_KhoaHoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/MarginLeft_Tv_KhoaHoc"
+                android:layout_marginTop="@dimen/MarginTop_Tv_KhoaHoc"
+                android:text="@string/Xem_Mon"
+                android:textColor="@color/colorGrey"
+                android:textSize="@dimen/TextSize_KhoaHoc" />
+
+            <!--Period-->
+            <TextView
+                android:id="@+id/tvBuoi_KhoaHoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/MarginLeft_Tv_KhoaHoc"
+                android:layout_marginTop="@dimen/MarginTop_Tv_KhoaHoc"
+                android:text="@string/Xem_Buoi"
+                android:textColor="@color/colorGrey"
+                android:textSize="@dimen/TextSize_KhoaHoc" />
+
+            <!--Tuition-->
+            <TextView
+                android:id="@+id/tvGia_KhoaHoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/MarginLeft_Tv_KhoaHoc"
+                android:layout_marginTop="@dimen/horizontal_padding"
+                android:text="@string/Xem_Gia"
+                android:textColor="@color/colorMain"
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/MarginLeft_BtnChat_KhoaHoc"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

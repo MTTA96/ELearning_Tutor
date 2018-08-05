@@ -16,12 +16,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.eways.etutor.Model.Account.User;
+import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.Interfaces.DataCallBack;
-import com.eways.etutor.Model.User;
 import com.eways.etutor.Presenter.Authentication.SignUpInfoPresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
-import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.Views.Fragment.FragmentFavorite;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -186,7 +186,7 @@ public class FragmentUserInfo extends Fragment implements View.OnClickListener, 
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser fbUser = task.getResult().getUser();
-                            user.setUid(fbUser.getUid());
+                            user.setId(fbUser.getUid());
                             signUpInfoPresenter.signUp(user);
                             // ...
                         } else {

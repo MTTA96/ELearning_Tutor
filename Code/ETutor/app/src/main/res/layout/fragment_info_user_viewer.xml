@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/White"
-    tools:context="com.eways.etutor.Views.Fragment.Account.FragmentInfoUserViewer">
+    tools:context="com.eways.etutor.com.eways.etuto.Views.Fragment.Account.FragmentInfoUserViewer">
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

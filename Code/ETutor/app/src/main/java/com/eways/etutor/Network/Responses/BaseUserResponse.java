@@ -4,7 +4,7 @@ package com.eways.etutor.Network.Responses;
  * Created by zzzzz on 3/25/2018.
  */
 
-import com.eways.etutor.Model.User;
+import com.eways.etutor.Model.Account.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

@@ -1,7 +1,6 @@
 package com.eways.etutor.Adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -15,10 +14,7 @@ import com.eways.etutor.Model.ImageSelect;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.params.GlobalParams;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ADMIN on 5/26/2018.

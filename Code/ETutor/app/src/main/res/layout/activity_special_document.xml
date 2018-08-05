@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:weightSum="100"
+    android:orientation="vertical"
+    tools:context="com.eways.etutor.Views.Activity.Account.SpecialDocumentActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="35"
+        android:background="#f1f1f1"
+        android:elevation="10dp">
+
+        <RelativeLayout
+            android:id="@+id/certi_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:id="@+id/title_certi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bằng cấp"
+                android:textStyle="bold"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/colorBlue"/>
+            <ImageView
+                android:id="@+id/iv_mini_certi"
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/icn_line"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/scr_certi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/certi_bar"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rc_certificate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_gravity="center_vertical"/>
+
+                <RelativeLayout
+                    android:id="@+id/btn_add_certi"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/add_certificate_shape">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@android:drawable/ic_input_add" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="65">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rc_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f1f1f1"
+                android:elevation="10dp"/>
+
+            <Button
+                android:id="@+id/btn_add_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Thêm môn +"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+</LinearLayout>

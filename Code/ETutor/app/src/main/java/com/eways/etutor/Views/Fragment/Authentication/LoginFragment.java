@@ -17,8 +17,11 @@ import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Presenter.Authentication.SignInPresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
-import com.eways.etutor.Utils.SupportKey;
-import com.eways.etutor.Views.Activity.HomeActivity;
+import com.eways.etutor.Utils.SharedPreferences.SharedPrefSupportKeys;
+import com.eways.etutor.Utils.SharedPreferences.SharedPrefUtils;
+import com.eways.etutor.Utils.SupportKeys;
+import com.eways.etutor.Views.Activity.Account.UserManagerActivity;
+import com.eways.etutor.Views.Dialog.LoadingDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,10 +33,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
     Button btnLogin;
     TextView  tvRules;
     View tvSignup;
+    LoadingDialog loadingDialog;
 
     /** MODELS */
     private FragmentHandler fragmentHandler;
     private SignInPresenter signInPresenter;
+    private SharedPrefUtils sharedPrefUtils;
     private String userName, password;
 
     /** KEYS */
@@ -50,12 +55,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
         return fragment;
     }
 
+    /** LIFECYCLE */
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        signInPresenter = new SignInPresenter(this);
+        signInPresenter = new SignInPresenter(getContext(), this);
         fragmentHandler = new FragmentHandler(getActivity(), R.id.content_user);
+        sharedPrefUtils = new SharedPrefUtils(getContext(), SharedPrefSupportKeys.SHARED_PREF_FILE_NAME);
     }
 
     @Override
@@ -69,19 +77,37 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
         return root;
     }
 
-    /** Declare views */
+    /** CONFIG */
+
     public void declare(View root) {
 
         edtPhone = root.findViewById(R.id.phone);
         edtPass = root.findViewById(R.id.password_login);
         tvSignup = root.findViewById(R.id.sign_up_button);
         btnLogin = root.findViewById(R.id.sign_in_button);
+        
+        loadingDialog = LoadingDialog.getInstance(getContext());
+
+        SharedPrefUtils sharedPrefUtils = new SharedPrefUtils(getContext(), SharedPrefSupportKeys.SHARED_PREF_FILE_NAME);
+        if (sharedPrefUtils.getString(SharedPrefSupportKeys.userName) != null) {
+
+            String sdt = sharedPrefUtils.getString(SharedPrefSupportKeys.userName);
+
+            String withoutCountryCode = sdt.substring(3);
+
+            edtPhone.setText(withoutCountryCode);
+
+        }
     }
 
-    /** handle views */
     public void handle() {
         btnLogin.setOnClickListener(this);
         tvSignup.setOnClickListener(this);
+
+        if (isSignedIn()) {
+            loadingDialog.show();
+            signInPresenter.signIn(userName, password);
+        }
     }
 
     private boolean checkInfo() {
@@ -91,64 +117,69 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Dat
         return true;
     }
 
-    /** MARK: - EVENTS */
+    private boolean isSignedIn() {
+        if (sharedPrefUtils.getString(SharedPrefSupportKeys.userName) != null) {
+            userName = sharedPrefUtils.getString(SharedPrefSupportKeys.userName);
+            password = sharedPrefUtils.getString(SharedPrefSupportKeys.password);
+            return true;
+        }
+        return false;
+    }
+
+    /** MARK: - ACTIONS */
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             // Sign in
             case R.id.sign_in_button:
+                loadingDialog.show();
                 userName = edtPhone.getText().toString();
                 password = edtPass.getText().toString();
                 if (checkInfo())
                     signInPresenter.signIn("+84" + userName, password);
                 else
                     Toast.makeText(getContext(), R.string.msg_missing_info, Toast.LENGTH_SHORT).show();
+
                 break;
 
             // Sign up
             case R.id.sign_up_button:
-                fragmentHandler.changeFragment(new SignupFragment(), SupportKey.SIGN_UP_FRAGMENT_TAG,R.anim.slide_from_left, 0);
+                fragmentHandler.changeFragment(new SignupFragment(), SupportKeys.SIGN_UP_FRAGMENT_TAG,R.anim.slide_from_left, 0);
                 break;
         }
     }
 
-    /** handle result from presenter */
+    /** HANDLE RESULTS FROM PRESENTER */
+
     @Override
     public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
-        // handle error
-        if (resultCode == SupportKey.FAILED_CODE) {
+
+        loadingDialog.dismiss();
+
+        // Handle error
+        if (resultCode == SupportKeys.FAILED_CODE) {
             Toast.makeText(getContext(), R.string.msg_sign_in_failed, Toast.LENGTH_SHORT).show();
+            loadingDialog.dismiss();
             return;
         }
 
+        // Check sign in result
         int status = Integer.parseInt(bundle.getString(null));
-        switch (status) {
-            // Sign in success
-            case 0:
-                // Move to home
-                Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
-                startActivity(homeIntent);
-                getActivity().finish();
-                break;
-
-            // User existed in elearning
-            case 1:
-                Toast.makeText(getContext(), R.string.msg_account_has_not_sign_up, Toast.LENGTH_SHORT).show();
-                break;
-
-            // Wrong info
-            case 2:
-                Toast.makeText(getContext(), R.string.msg_wrong_info, Toast.LENGTH_SHORT).show();
-                break;
-
-            // Banned account
-            case 3:
-                Toast.makeText(getContext(), R.string.msg_banned_account, Toast.LENGTH_SHORT).show();
-                break;
+        if (status == 1) {
+            // Move to home
+            Intent homeIntent = new Intent(getActivity(), UserManagerActivity.class);
+            startActivity(homeIntent);
+            getActivity().finish();
+            return;
         }
+
+        // Show msg result to user
+        Toast.makeText(getContext(), bundle.getString(SupportKeys.BUNDLE_MSG), Toast.LENGTH_SHORT).show();
+
     }
 
-    /** handle result from Gmail */
+    /** Handle RESULTS FROM GMAIL */
     @Override
     public void onStart() {
         super.onStart();

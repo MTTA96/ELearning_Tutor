@@ -1,15 +1,155 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/cardview_light_background"
     tools:context="com.eways.etutor.Views.Fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom"
-        android:text="This is home, press search to move to search screen"
-        android:textColor="@color/colorGrey"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swr_refresh_home_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- Banner -->
+                <!--<ss.com.bannerslider.Slider-->
+                    <!--android:id="@+id/banner"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="230dp"-->
+                    <!--app:slider_loopSlides="true"/>-->
+
+                <!-- Top tutors -->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:elevation="@dimen/elevation">
+
+                    <RelativeLayout
+                        android:id="@+id/title_bar_toptutor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/horizontal_padding">
+
+                        <!--Title-->
+                        <TextView
+                            android:id="@+id/title_toptutor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:text="Top gia sư"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="@dimen/normal_text_size" />
+
+                        <!--Load more-->
+                        <TextView
+                            android:id="@+id/tv_toptutor_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="Xem thêm"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="@dimen/normal_text_size" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:id="@+id/divide"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/title_bar_toptutor"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/colorLightScrim" />
+
+                    <!--List-->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/item_top_tutors"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divide"
+                        android:paddingVertical="@dimen/min_vertical_padding"/>
+
+                </RelativeLayout>
+
+                <!-- Trending -->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorWhite"
+                    android:elevation="@dimen/elevation">
+
+                    <!--Title bar-->
+                    <RelativeLayout
+                        android:id="@+id/title_bar_trending"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/horizontal_padding">
+
+                        <!--Title-->
+                        <TextView
+                            android:id="@+id/title_trending"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:text="Môn nổi bật"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="@dimen/normal_text_size" />
+
+                        <!--Load more-->
+                        <TextView
+                            android:id="@+id/more_trending"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="Xem thêm"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="@dimen/normal_text_size" />
+
+                    </RelativeLayout>
+
+                    <!--Divider-->
+                    <View
+                        android:id="@+id/divide1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/title_bar_trending"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/colorLightScrim" />
+
+                    <!--List-->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/item_trending"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divide1"
+                        android:paddingVertical="@dimen/min_vertical_padding" />
+
+                </RelativeLayout>
+
+                <!-- Subject -->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rc_subject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:elevation="@dimen/elevation"
+                    android:padding="@dimen/min_vertical_padding" />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</RelativeLayout>

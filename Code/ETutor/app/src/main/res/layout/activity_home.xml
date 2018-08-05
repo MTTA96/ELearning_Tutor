@@ -12,32 +12,88 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
+            android:id="@+id/toolbar_new"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorBlue"
             android:minHeight="?attr/actionBarSize"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+            android:orientation="horizontal"
+            android:weightSum="100"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/bg_toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="90"
+                android:background="@drawable/search_shape"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <ImageView
+                        android:id="@+id/iv_menu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/icn_menu_black" />
+
+                    <ImageView
+                        android:id="@+id/iv_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/icn_back_white"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <EditText
+                    android:id="@+id/et_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Tìm kiếm"
+                    android:textColorHint="@color/colorGrey"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_filter"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/icn_filter_black" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <!-- Suggestions -->
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"/>
 
             <!-- Content -->
             <FrameLayout
                 android:id="@+id/home_content_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
+            <!-- Suggestions -->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/elevation"
+                android:background="@android:color/white"/>
 
         </RelativeLayout>
     </LinearLayout>
@@ -49,6 +105,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:itemTextColor="@color/colorBlue"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/nav_menu" />
 </android.support.v4.widget.DrawerLayout>

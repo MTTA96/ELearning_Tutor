@@ -45,9 +45,7 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_search_results, container, false);
         tutorResultView = root.findViewById(R.id.tutor_search_result_view);
-        couseResultView = root.findViewById(R.id.courses_search_result_view);
         rvTutorResults = root.findViewById(R.id.tutor_search_results_recycler_view);
-        rvCourseResults = root.findViewById(R.id.course_search_results_recycler_view);
 
         return root;
     }

@@ -1,7 +1,5 @@
 package com.eways.etutor.Network;
 
-
-import com.eways.etutor.Network.Services.CourseServicesImp;
 import com.eways.etutor.Network.Services.ETutorServicesImp;
 import com.eways.etutor.Network.Services.UserServicesImp;
 
@@ -20,11 +18,6 @@ public class ApiUtils {
     /** User services */
     public static UserServicesImp userServices() {
         return RetrofitClient.getClient(BASE_URL).create(UserServicesImp.class);
-    }
-
-    /** Course services */
-    public static CourseServicesImp courseServices() {
-        return RetrofitClient.getClient(BASE_URL).create(CourseServicesImp.class);
     }
 
 }

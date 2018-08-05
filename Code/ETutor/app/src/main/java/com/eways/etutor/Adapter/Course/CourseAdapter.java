@@ -1,11 +1,12 @@
 package com.eways.etutor.Adapter.Course;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.eways.etutor.Model.Course;
+
 import com.eways.etutor.R;
 
 import java.util.ArrayList;
@@ -15,10 +16,10 @@ import java.util.ArrayList;
  */
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseVHolder> {
-    ArrayList<Course> listCourse ;
+    ArrayList<com.eways.etutor.Model.Course.Course> listCourse ;
     int res;
 
-    public CourseAdapter(ArrayList<Course> listCourse, int res) {
+    public CourseAdapter(Context context, ArrayList<com.eways.etutor.Model.Course.Course> listCourse, int res) {
         this.listCourse = listCourse;
         this.res = res;
     }
@@ -26,7 +27,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseVHolder> {
     @Override
     public CourseVHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_course,parent,false);
+                .inflate(R.layout.item_course_attend,parent,false);
         return new CourseVHolder(view);
     }
 

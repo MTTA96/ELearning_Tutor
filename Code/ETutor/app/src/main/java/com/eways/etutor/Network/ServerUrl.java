@@ -9,16 +9,22 @@ package com.eways.etutor.Network;
 public class ServerUrl {
     //Link server
     public static final String ServerUrl = "https://ewayseducation.000webhostapp.com/";
-    public static final String ServerAPIURL = ServerUrl + "API/";
+    public static final String ServerAPIURL = ServerUrl + "api/";
 
-    /** User */
-    public static final String UserAPIRoot = ServerAPIURL + "User/";
-    public static final String LOGIN_URL = UserAPIRoot + "Tutor/TutorLogin.php";
-    public static final String SIGN_UP_URL = UserAPIRoot + "AddNewUser.php";
-    public static final String CHECK_PHONE_NUMBER_URL = UserAPIRoot + "UserIsExisted.php";
+    /** ACCOUNT */
+    public static final String UserAPIRoot = ServerAPIURL + "user/";
+    public static final String LOGIN_URL = UserAPIRoot + "tutor/tutorlogin.php";
+    public static final String SIGN_UP_URL = UserAPIRoot + "addnewuser.php";
+    public static final String GET_USER_INFO_URL = UserAPIRoot + "getuserbyid.php";
+    public static final String CHECK_PHONE_NUMBER_URL = UserAPIRoot + "isuserexisted.php";
+    public static final String SEND_REQUEST_URL = ServerAPIURL + "requisitioncourse/addrequisitioncourse.php";
 
-    /** Search */
-    public static final String SEARCH_URL = ServerAPIURL + "Course/SearchCoursesResult.php";
-    public static final String SEARCH_SUGGESTIONS_URL = ServerAPIURL + "Course/SearchCourses.php";
+    /** Subjects */
+    public static final String GET_SUBJECT_LIST_URL = ServerAPIURL + "subject/getsubject.php";
+
+    /** Course */
+    public static final String CREATE_COURSE_URL = ServerAPIURL + "Course/AddNewCourse.php";
+    public static final String GET_COURSE_LIST_BY_SUBJECT_URL = ServerAPIURL + "Course/GetCoursesBySubject.php";
+    public static final String GET_COURSE_BY_ID_URL = ServerAPIURL + "Course/GetCourseByIdCourse.php";
 
 }

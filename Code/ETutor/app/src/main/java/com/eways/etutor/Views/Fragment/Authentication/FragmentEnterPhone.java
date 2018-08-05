@@ -16,7 +16,7 @@ import com.eways.etutor.Presenter.Authentication.EnterPhonePresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 //import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
-import com.eways.etutor.Utils.SupportKey;
+import com.eways.etutor.Utils.SupportKeys;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,7 +54,7 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_fragment_enter_phone, container, false);
+        View root = inflater.inflate(R.layout.fragment_enter_phone, container, false);
         tvPhoneNumber = root.findViewById(R.id.phone);
 
         // Events
@@ -67,7 +67,7 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
     private void checkPhone(String phoneNumber) {
         // handle errors
         if (phoneNumber.isEmpty() || phoneNumber.length() < 9 || phoneNumber.length() > 10) {
-            Toast.makeText(getContext(), getString(R.string.msg_wrong_info), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.msg_phone_number_incorrect), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -78,7 +78,8 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
         return;
     }
 
-    /** EVENTS */
+    /** ----- EVENTS ----- */
+
     @Override
     public void onClick(View v) {
         // Check if this fragment is the current fragment
@@ -94,11 +95,12 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
     }
 
 
-    /** handle result from presenter */
+    /** ----- Handle results from presenter ----- */
+
     @Override
     public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
         // handle error
-        if (resultCode == SupportKey.FAILED_CODE) {
+        if (resultCode == SupportKeys.FAILED_CODE) {
             Toast.makeText(getContext(), R.string.msg_unknow_error, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -107,13 +109,13 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
         int status = bundle.getInt(null);
 
         // If phone is not available
-        if (status == 0) {
+        if (status != 0) {
             Toast.makeText(getContext(), R.string.msg_existing_user, Toast.LENGTH_LONG).show();
             return;
         }
 
         // Phone is available to use now
-        fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKey.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+        fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKeys.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
     }
 
 }

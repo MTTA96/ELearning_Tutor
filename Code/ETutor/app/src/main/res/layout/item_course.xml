@@ -13,26 +13,16 @@
         android:elevation="10dp"
         android:weightSum="100">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="32">
-            <ImageView
-                android:id="@+id/img_avarta"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:weightSum="100"
+            android:layout_marginLeft="15dp"
             android:orientation="vertical"
             android:layout_weight="58">
 
             <TextView
-                android:id="@+id/student_name"
+                android:id="@+id/tv_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="30"
@@ -40,10 +30,9 @@
                 android:gravity="center"
                 android:textColor="@color/colorBlue"
                 android:textStyle="bold"
-                android:text="Student Name"/>
+                android:text="Tutor Name"/>
 
             <TextView
-                android:id="@+id/subject"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="20"
@@ -51,7 +40,8 @@
                 android:gravity="center"
                 android:textColor="@color/colorBlue"
                 android:textStyle="bold"
-                android:text="Subject"/>
+                android:text="Subject"
+                android:visibility="invisible"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,6 +51,7 @@
                 android:weightSum="100">
 
                 <TextView
+                    android:id="@+id/start_date"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="37"
@@ -71,6 +62,7 @@
                     android:text="18/05/2018"/>
 
                 <TextView
+
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
@@ -80,6 +72,7 @@
                     android:text="-"/>
 
                 <TextView
+                    android:id="@+id/end_date"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="37"
@@ -91,41 +84,49 @@
                     android:text="18/05/2018"/>
             </LinearLayout>
             
-            <RelativeLayout
-                android:id="@+id/bg_status"
-                android:layout_width="65dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="20"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:background="@drawable/status_shape">
-                <TextView
-                    android:id="@+id/text_status"
+                android:layout_weight="30"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_request_manager"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="kết thúc"
-                    android:maxLines="1"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="12sp" />
-            </RelativeLayout>
+                    android:text="Chi Tiết"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/btn_confirm_shape"/>
 
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xóa"
+                    android:textColor="@color/colorBlue"
+                    android:background="@drawable/btn_delete_white_shape"/>
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="10"
-            android:gravity="center">
+            android:layout_weight="42">
 
             <ImageView
-                android:id="@+id/to_detail"
+                android:id="@+id/btn_manager_request"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:background="@drawable/btn_next_white"/>
-        </LinearLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 
 </RelativeLayout>

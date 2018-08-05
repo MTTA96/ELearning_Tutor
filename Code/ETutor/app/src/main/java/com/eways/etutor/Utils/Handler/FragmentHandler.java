@@ -1,13 +1,8 @@
 package com.eways.etutor.Utils.Handler;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-
-import com.eways.etutor.R;
 
 /**
  * Created by zzzzz on 10/8/2017.
@@ -36,4 +31,5 @@ public class FragmentHandler {
     public void deleteCurrentFragment() {
         ((AppCompatActivity) context).getSupportFragmentManager().popBackStack();
     }
+
 }

@@ -7,15 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.eways.etutor.R;
-//<<<<<<< HEAD
-//=======
-//import com.eways.etutor.Utils.Handler.FragmentHandler;
-//import com.eways.etutor.Utils.Handler.ReadTextHandler;
-//import com.eways.etutor.Utils.SupportKey;
-//>>>>>>> origin/master
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,15 +16,7 @@ import com.eways.etutor.R;
 public class FragmentRules extends Fragment implements View.OnClickListener {
 
     /** Views */
-    TextView rules;
-
-//<<<<<<< HEAD
-//
-//=======
-//    /** Models */
-//    private FragmentHandler fragmentHandler;
-//    private ReadTextHandler readTextHandler;
-//>>>>>>> origin/master
+    //PDFView pdfView ;
 
     public FragmentRules() {
         // Required empty public constructor
@@ -47,23 +32,18 @@ public class FragmentRules extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_fragment_rules, container, false);
+        View root = inflater.inflate(R.layout.fragment_rules, container, false);
         declare_views(root);
         handle_views();
         return root;
     }
 
     public void declare_views(View root){
-        rules = root.findViewById(R.id.tvRules);
+        //pdfView = root.findViewById(R.id.pdf_rules);
     }
 
     public void handle_views(){
-//        SignupFragment.btnNext.setOnClickListener(this);
-
-        //read and set text for rules
-//        readTextHandler = new ReadTextHandler(getActivity());
-//        String rulesText = readTextHandler.readTxt("rules.txt");
-//        rules.setText(rulesText);
+        //pdfView.fromAsset("dieukhoansudung.pdf").pages(0,2,1,3,3,3).defaultPage(1).showMinimap(false).enableSwipe(true).load();
     }
 
     /** MARK: - EVENTS */
@@ -71,7 +51,7 @@ public class FragmentRules extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 //        if (getActivity().getSupportFragmentManager().findFragmentById(R.id.childSignUpContentView) == this) {
 //            if (v.getId() == R.id.btn_next) {
-////                fragmentHandler.changeFragment(FragmentEnterPhone.newInstance(), SupportKey.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+////                fragmentHandler.changeFragment(FragmentEnterPhone.newInstance(), SupportKeys.ENTER_PHONE_FRAGMENT_TAG, R.anim.slide_from_left, 0);
 //            }
 //        }
     }
