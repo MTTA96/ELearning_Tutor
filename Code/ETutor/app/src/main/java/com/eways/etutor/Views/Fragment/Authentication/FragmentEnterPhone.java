@@ -1,6 +1,7 @@
 package com.eways.etutor.Views.Fragment.Authentication;
 
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
 //import com.eways.etutor.Utils.Handler.SharedPreferencesHandler;
 import com.eways.etutor.Utils.SupportKeys;
+import com.eways.etutor.Views.Fragment.Account.FragmentUpdateInfo;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -108,14 +110,19 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
         // handle result
         int status = bundle.getInt(null);
 
-        // If phone is not available
-        if (status != 0) {
-            Toast.makeText(getContext(), R.string.msg_existing_user, Toast.LENGTH_LONG).show();
-            return;
+        switch (status) {
+            case 0:
+                fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKeys.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
+                break;
+            case 1:
+                fragmentHandler.changeFragment(FragmentUpdateInfo.newInstance(), null, R.anim.slide_from_left, 0);
+                Toast.makeText(getContext(), R.string.msg_existing_user, Toast.LENGTH_LONG).show();
+                break;
+            default:
+                break;
         }
 
         // Phone is available to use now
-        fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKeys.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
     }
 
 }
