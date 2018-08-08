@@ -153,24 +153,24 @@ public class FragmentUpdateInfo extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            // Check if this fragment is the current fragment
-            Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup);
-            if (currentFragment != null && currentFragment == this) {
-                switch (v.getId()) {
-                    case R.id.btn_next:
-                        // Check phone number
-                        checkPhone(tvPhoneNumber.getText().toString());
-                        break;
-                }
-            }
-            case R.id.date_picker:
 
-                new DatePickerDialog(getActivity(), mDate, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-                break;
+        // Check if this fragment is the current fragment
+        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.content_signup);
+
+        if (currentFragment != null && currentFragment == this) {
+            switch (view.getId()) {
+                case R.id.btn_next:
+//                    checkData()
+                    break;
+                case R.id.date_picker:
+
+                    new DatePickerDialog(getActivity(), mDate, myCalendar
+                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    break;
+            }
         }
+
     }
 
     Calendar myCalendar = Calendar.getInstance();
