@@ -37,8 +37,6 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
     EditText etLastName, etFirstName, etSkype, etCmnd, etBirthDay, etEmail, etPhone, etAddress, etCerti, etJob;
     TextView tvBack;
 
-
-
     ImageHandler imageHandler;
     DialogPlusHandler dialogPlusHandler;
     ImageChooseAdapter imageChooseAdapter;
