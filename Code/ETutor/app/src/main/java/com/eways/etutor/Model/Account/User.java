@@ -341,8 +341,10 @@ public class User {
 
     /** Check phone's status to know if it existing in database when signing up */
     public static void checkPhoneNumber(String phoneNumber, final DataCallBack dataCallBack) {
+
         UserServicesImp userServicesImp = ApiUtils.userServices();
         userServicesImp.checkPhoneNumber(phoneNumber).enqueue(new Callback<BaseResponse>() {
+
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
 
@@ -367,7 +369,9 @@ public class User {
                 Log.d("CheckPhoneNumberModel:", t.getLocalizedMessage());
                 dataCallBack.dataCallBack(SupportKeys.FAILED_CODE, null);
             }
+
         });
+
     }
 
     /** [END - Authentication] */

@@ -102,6 +102,7 @@ public class FragmentVerify extends Fragment implements View.OnClickListener, Ve
     }
 
     /** This will trigger when verification state changed */
+
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
