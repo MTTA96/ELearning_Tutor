@@ -13,7 +13,7 @@ public class UserBaseResponse {
     @SerializedName("errorCode")
     @Expose
     private Integer errorCode;
-    @SerializedName("result")
+    @SerializedName("status")
     @Expose
     private User teacher;
 

@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class SignInResponse extends BaseResponse {
 
-    @SerializedName("Uid")
+    @SerializedName("id")
     @Expose
     private String uID;
 

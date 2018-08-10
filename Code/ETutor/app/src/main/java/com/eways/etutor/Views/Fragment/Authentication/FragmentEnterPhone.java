@@ -2,6 +2,7 @@ package com.eways.etutor.Views.Fragment.Authentication;
 
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 
 import com.eways.etutor.Interfaces.DataCallBack;
+import com.eways.etutor.Model.Account.User;
 import com.eways.etutor.Presenter.Authentication.EnterPhonePresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.Handler.FragmentHandler;
@@ -101,6 +103,7 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
 
     @Override
     public void dataCallBack(int resultCode, @Nullable Bundle bundle) {
+
         // handle error
         if (resultCode == SupportKeys.FAILED_CODE) {
             Toast.makeText(getContext(), R.string.msg_unknow_error, Toast.LENGTH_SHORT).show();
@@ -111,18 +114,42 @@ public class FragmentEnterPhone extends Fragment implements View.OnClickListener
         int status = bundle.getInt(null);
 
         switch (status) {
+
+            // Available to use
+
             case 0:
                 fragmentHandler.changeFragment(FragmentVerify.newInstance(phoneNumber), SupportKeys.VERIFY_FRAGMENT_TAG, R.anim.slide_from_left, 0);
                 break;
+
+            // User existed
+
             case 1:
-                fragmentHandler.changeFragment(FragmentUpdateInfo.newInstance(), null, R.anim.slide_from_left, 0);
-                Toast.makeText(getContext(), R.string.msg_existing_user, Toast.LENGTH_LONG).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                builder.setMessage("Tài khoản của bạn đã là học viên, bấm đăng ký để trở thành gia sư")
+                        .setTitle(R.string.msg_existing_user);
+
+                builder.setPositiveButton("Đăng ký", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        User user = new User();
+                        user.setPhone(tvPhoneNumber.getText().toString());
+                        fragmentHandler.changeFragment(FragmentUpdateInfo.newInstance(user), null, R.anim.slide_from_left, 0);
+                    }
+                });
+                builder.setNegativeButton("Huỷ", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 break;
+
             default:
                 break;
+
         }
 
-        // Phone is available to use now
     }
 
 }

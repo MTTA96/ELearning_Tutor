@@ -17,6 +17,7 @@ public class ServerUrl {
     public static final String LOGIN_URL = UserAPIRoot + "tutor/tutorlogin.php";
     public static final String SIGN_UP_URL = UserAPIRoot + "addnewuser.php";
     public static final String GET_USER_INFO_URL = UserAPIRoot + "getuserbyid.php";
+    public static final String UPDATE_USER_INFO_URL = UserAPIRoot + "updateuserinfo.php";
     public static final String CHECK_PHONE_NUMBER_URL = UserAPIRoot + "isuserexisted.php";
     public static final String SEND_REQUEST_URL = ServerAPIURL + "requisitioncourse/addrequisitioncourse.php";
 

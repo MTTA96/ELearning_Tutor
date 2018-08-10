@@ -66,10 +66,10 @@ public class UserManagerActivity extends Activity implements View.OnClickListene
 
                 break;
 
-            case R.id.btn_my_course:
-                ActivityUtils.ChangeActivity(UserManagerActivity.this, CourseManager.class);
-
-                break;
+//            case R.id.btn_my_course:
+//                ActivityUtils.ChangeActivity(UserManagerActivity.this, CourseManager.class);
+//
+//                break;
 
             case R.id.btn_course_attend:
 

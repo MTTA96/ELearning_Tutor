@@ -7,6 +7,7 @@ import com.eways.etutor.Interfaces.DataCallBack;
 import com.eways.etutor.Interfaces.DataCallback.Subject.FavSubjectWithCoursesCallBack;
 import com.eways.etutor.Interfaces.DataCallback.User.SendRequestCallback;
 import com.eways.etutor.Interfaces.DataCallback.User.TopTutorsCallBack;
+import com.eways.etutor.Interfaces.DataCallback.User.UpdateUserInfoCallBack;
 import com.eways.etutor.Interfaces.DataCallback.User.UserCallBack;
 import com.eways.etutor.Network.ApiUtils;
 import com.eways.etutor.Network.Responses.BaseResponse;
@@ -239,34 +240,6 @@ public class User {
 
     /** MARK: - METHODS */
 
-    public static void getUserInfo(String uId, final UserCallBack userCallBack) {
-
-        UserServicesImp userServices = ApiUtils.userServices();
-        userServices.getUserDetails(uId).enqueue(new Callback<UserBaseResponse>() {
-            @Override
-            public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
-                Log.d("User Details", call.request().toString());
-                // handle errors
-                Log.d("User Details:", call.request().toString());
-                if (!response.isSuccessful()) {
-                    Log.d("User Details:", "connect failed");
-                    userCallBack.userCallBack(SupportKeys.FAILED_CODE, null);
-                    return;
-                }
-
-                // Sign up success
-                userCallBack.userCallBack(SupportKeys.SUCCESS_CODE, response.body().getTeacher());
-            }
-
-            @Override
-            public void onFailure(Call<UserBaseResponse> call, Throwable t) {
-                Log.d("User Details", call.request().toString() + "Error msg: " + t.getLocalizedMessage());
-                userCallBack.userCallBack(SupportKeys.FAILED_CODE, null);
-            }
-        });
-
-    }
-
     /** [START - Authentication] */
     /** Sign up*/
     public static void signUp(String jsonData, final DataCallBack dataCallBack) {
@@ -322,7 +295,7 @@ public class User {
                 Bundle bundle = new Bundle();
 
                 int status = Integer.parseInt(response.body().getStatus());
-                if (status == 0) {
+                if (status == 1) {
                         bundle.putString("uID", response.body().getUId());
                 }
 
@@ -376,6 +349,65 @@ public class User {
     }
 
     /** [END - Authentication] */
+
+    /** Get user info */
+
+    public static void getUserInfo(String uId, final UserCallBack userCallBack) {
+
+        UserServicesImp userServices = ApiUtils.userServices();
+        userServices.getUserDetails(uId).enqueue(new Callback<ArrayList<User>>() {
+            @Override
+            public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
+                Log.d("User Details", call.request().toString());
+                // handle errors
+                Log.d("User Details:", call.request().toString());
+                // Sign up success
+                userCallBack.userCallBack(SupportKeys.SUCCESS_CODE, response.body().get(0));
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<User>> call, Throwable t) {
+                Log.d("User Details", call.request().toString());
+                Log.d("User Details", call.request().toString() + "Error msg: " + t.getLocalizedMessage());
+                String request = call.request().toString();
+                userCallBack.userCallBack(SupportKeys.FAILED_CODE, null);
+            }
+        });
+
+    }
+
+    /** Update user info */
+
+    public static void updateUserInfo(String jsonUser, final UpdateUserInfoCallBack updateUserInfoCallBack) {
+
+        UserServicesImp userServicesImp = ApiUtils.userServices();
+        userServicesImp.updateUserInfo(jsonUser).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                // Handle error
+                if (!response.isSuccessful()) {
+                    Log.d("Update info:", "Update failed!");
+                    updateUserInfoCallBack.uploadInfoCallBack(SupportKeys.FAILED_CODE);
+                    return;
+                }
+
+                // Prepare data
+                int status = Integer.parseInt(response.body().getStatus());
+
+                if (status == 1)
+                    updateUserInfoCallBack.uploadInfoCallBack(SupportKeys.SUCCESS_CODE);
+                else
+                    updateUserInfoCallBack.uploadInfoCallBack(SupportKeys.FAILED_CODE);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Log.d("Update info:", "Update failed!");
+                updateUserInfoCallBack.uploadInfoCallBack(SupportKeys.FAILED_CODE);
+            }
+        });
+
+    }
 
     /** Send request to tutor */
 

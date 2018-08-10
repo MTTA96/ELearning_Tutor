@@ -60,7 +60,10 @@ public class SignInPresenter implements DataCallBack {
 
             // User existed in ETutor
             case 1:
-                sharedPreferencesUtils.putString(SharedPrefSupportKeys.UID, bundle.getString("uID"), true);
+                if (bundle.getString("uID") != null) {
+                    String id = bundle.getString("uID");
+                    sharedPreferencesUtils.putString(SharedPrefSupportKeys.UID, id, true);
+                }
                 sharedPreferencesUtils.putString(SharedPrefSupportKeys.userName, userName, true);
                 sharedPreferencesUtils.putString(SharedPrefSupportKeys.password, password, true);
                 dataCallBack.dataCallBack(resultCode, bundle);

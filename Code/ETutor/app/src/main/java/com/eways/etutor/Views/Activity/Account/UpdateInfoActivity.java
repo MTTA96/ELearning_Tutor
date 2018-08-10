@@ -13,13 +13,21 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eways.etutor.Adapter.ImageChooseAdapter;
+import com.eways.etutor.Interfaces.DataCallback.User.UserCallBack;
+import com.eways.etutor.Model.Account.User;
 import com.eways.etutor.Model.ImageSelect;
+import com.eways.etutor.Presenter.Authentication.UserPresenter;
 import com.eways.etutor.R;
 import com.eways.etutor.Utils.DialogPlusHandler;
 import com.eways.etutor.Utils.FileUtils;
+import com.eways.etutor.Utils.Handler.FragmentHandler;
 import com.eways.etutor.Utils.Handler.ImageHandler;
+import com.eways.etutor.Utils.SharedPreferences.SharedPrefSupportKeys;
+import com.eways.etutor.Utils.SharedPreferences.SharedPrefUtils;
+import com.eways.etutor.Utils.SupportKey;
 import com.eways.etutor.Utils.params.GlobalParams;
 
 import org.json.JSONArray;
@@ -30,17 +38,25 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class UpdateInfoActivity extends AppCompatActivity implements View.OnClickListener{
+public class UpdateInfoActivity extends AppCompatActivity implements View.OnClickListener, UserCallBack {
 
     /* VIEWS */
     ImageView ivAvarta, ivBack;
     EditText etLastName, etFirstName, etSkype, etCmnd, etBirthDay, etEmail, etPhone, etAddress, etCerti, etJob;
     TextView tvBack;
 
-    ImageHandler imageHandler;
-    DialogPlusHandler dialogPlusHandler;
-    ImageChooseAdapter imageChooseAdapter;
-    ArrayList<ImageSelect> imageSelects;
+    /** ----- PROPS ----- */
+
+    private UserPresenter userPresenter;
+    private FragmentHandler fragmentHandler;
+    private ImageHandler imageHandler;
+    private DialogPlusHandler dialogPlusHandler;
+    private ImageChooseAdapter imageChooseAdapter;
+    private User user;
+    private ArrayList<ImageSelect> imageSelects;
+    private Uri imgUri;
+
+    /** ---- LIFECYCLE----- */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +64,13 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_update_info);
         declare_views();
         handle_views();
+        SharedPrefUtils sharedPrefUtils = new SharedPrefUtils(this, SharedPrefSupportKeys.SHARED_PREF_FILE_NAME);
+        String id = sharedPrefUtils.getString(SharedPrefSupportKeys.UID);
+        userPresenter = new UserPresenter(this);
+        userPresenter.getUserInfo(id, this);
     }
+
+    /** ----- CONFIG ----- */
 
     public void declare_views(){
         ivAvarta = findViewById(R.id.avarta);
@@ -65,7 +87,7 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
         ivBack = findViewById(R.id.iv_back);
     }
 
-    public void handle_views(){
+    public void handle_views() {
         imageHandler = new ImageHandler(this);
         SetUpDialog();
         ivAvarta.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +101,7 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
         ivBack.setOnClickListener(this);
     }
 
-    public void SetUpDialog(){
+    public void SetUpDialog() {
         imageSelects = new ArrayList<>();
 
         try {
@@ -94,21 +116,57 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    Calendar myCalendar = Calendar.getInstance();
+    private DatePickerDialog.OnDateSetListener mDate = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            myCalendar.set(Calendar.YEAR, i);
+            myCalendar.set(Calendar.MONTH, i1);
+            myCalendar.set(Calendar.DAY_OF_MONTH, i2);
+            updateLabel();
+        }
+    };
+
+    private void updateLabel() {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        etBirthDay.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    /** ----- SUPPORTED FUNC ----- */
+
+    private void loadData() {
+
+        etFirstName.setText(user.getFirstName());
+        etLastName.setText(user.getLastName());
+        etAddress.setText(user.getAddress());
+        etBirthDay.setText(user.getBirthday());
+        etEmail.setText(user.getEmail());
+        etPhone.setText(user.getPhone());
+        etSkype.setText(user.getSkype());
+        etJob.setText(user.getCareer());
+        //etCmnd.setText(user.getVerification());
+
+    }
+
+    /** ----- ACTION ----- */
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode){
             case DialogPlusHandler.REQUEST_CODE_CAMERA:
-                Uri captureImage = data.getData();
-                imageHandler.loadImageRound(String.valueOf(captureImage), ivAvarta);
+                imgUri = data.getData();
+                imageHandler.loadImageRound(String.valueOf(imgUri), ivAvarta);
 
                 break;
 
             case DialogPlusHandler.REQUEST_CODE_GALLERY:
 
-                Uri selectedImage = data.getData();
-                imageHandler.loadImageRound(String.valueOf(selectedImage), ivAvarta);
+                imgUri = data.getData();
+                imageHandler.loadImageRound(String.valueOf(imgUri), ivAvarta);
 
                 break;
         }
@@ -143,22 +201,16 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
+    @Override
+    public void userCallBack(int errorCode, User user) {
 
-    Calendar myCalendar = Calendar.getInstance();
-    private DatePickerDialog.OnDateSetListener mDate = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-            myCalendar.set(Calendar.YEAR, i);
-            myCalendar.set(Calendar.MONTH, i1);
-            myCalendar.set(Calendar.DAY_OF_MONTH, i2);
-            updateLabel();
+        if(errorCode == SupportKey.FAILED_CODE) {
+            Toast.makeText(this, "Không thể lấy thông tin!", Toast.LENGTH_LONG).show();
+            return;
         }
-    };
 
-    private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        this.user = user;
+        loadData();
 
-        etBirthDay.setText(sdf.format(myCalendar.getTime()));
     }
 }
